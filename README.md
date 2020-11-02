@@ -4,11 +4,13 @@
 
 Routes marked with (!) are visited by the user
 
+**NOTE:** We use UUIDs because a non-functional requirement is security.
+
 - (!) `/login`
 - (!) `/register`
 - (!) `/request_access`
 - (!) `/verify/<uuid>`
-- (!) `/donor/<id>`
+- (!) `/donor/<uuid>`
 - (!) `/items`
 - (!) `/items/offer`
 - `/items/remove`
@@ -17,7 +19,7 @@ Routes marked with (!) are visited by the user
 - `/items/approve_time`
 - `/items/reject_time`
 - (!) `/orgs`
-- (!) `/orgs/<id>`
+- (!) `/orgs/<uuid>`
 - (!) `/access_requests`
 - `/access_requests/approve`
 - `/access_requests/reject`
@@ -113,6 +115,17 @@ Routes marked with (!) are visited by the user
   - [ ] Verifying information
   - [ ] Mark organization as rejected
   - [ ] Send email
+
+
+## Frontend
+
+### Components
+
+- Bootstrap v5 for the design/framework
+- FontAwesome for the icons
+- Animate.css for the animations
+- SweetAlert2 for the alerts
+- Jinja2 for the templates
 
 ## TODO
 
