@@ -4,23 +4,25 @@
 
 ## Routes
 
-- `/login`
-- `/register`
-- `/request_access`
-- `/verify/<uuid>`
-- `/donor/<id>`
-- `/items`
-- `/items/offer`
+Routes marked with (!) are visited by the user
+
+- (!) `/login`
+- (!) `/register`
+- (!) `/request_access`
+- (!) `/verify/<uuid>`
+- (!) `/donor/<id>`
+- (!) `/items`
+- (!) `/items/offer`
 - `/items/remove`
 - `/items/approve`
 - `/items/reject`
 - `/items/approve_time`
 - `/items/reject_time`
-- `/orgs`
-- `/orgs/<uuid>`
-- `/access_requests`
-- `/access_requests/approve`
-- `/access_requests/reject`
+- (!) `/orgs`
+- (!) `/orgs/<uuid>`
+- (!) `/access_requests`
+- (!) `/access_requests/approve`
+- (!) `/access_requests/reject`
 
 ## Database Structure
 
