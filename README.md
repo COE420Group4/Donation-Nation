@@ -1,7 +1,5 @@
 # COE420Project
 
----
-
 ## Routes
 
 Routes marked with (!) are visited by the user
@@ -26,12 +24,12 @@ Routes marked with (!) are visited by the user
 
 ## Database Structure
 
-<!-- ! NEEDS WORK -->
+***NEEDS WORK @Youssef + @Mariam***
+
 - USERS
 - ITEMS
 - ORGS (if user.type == 2)
 - ACCESS_REQS
-
 
 ## Functional Requirements
 
