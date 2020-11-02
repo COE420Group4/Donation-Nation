@@ -19,10 +19,10 @@ Routes marked with (!) are visited by the user
 - `/items/approve_time`
 - `/items/reject_time`
 - (!) `/orgs`
-- (!) `/orgs/<uuid>`
+- (!) `/orgs/<id>`
 - (!) `/access_requests`
-- (!) `/access_requests/approve`
-- (!) `/access_requests/reject`
+- `/access_requests/approve`
+- `/access_requests/reject`
 
 ## Database Structure
 
