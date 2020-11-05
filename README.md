@@ -1,5 +1,14 @@
 # COE420Project
 
+## Running The Project
+
+You need **Python 3** to get started.
+To install the libraries used in the project, run the following command:
+
+```bash
+pip install flask sqlite3 simplejson hashlib
+```
+
 ## Routes
 
 Routes marked with (!) are visited by the user
@@ -116,12 +125,11 @@ Routes marked with (!) are visited by the user
   - [ ] Mark organization as rejected
   - [ ] Send email
 
-
 ## Frontend
 
 ### Components
 
-- Bootstrap v5 for the design/framework
+- Bootstrap v4 for the design/framework
 - FontAwesome for the icons
 - Animate.css for the animations
 - SweetAlert2 for the alerts
