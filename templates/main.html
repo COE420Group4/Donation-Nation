@@ -2,17 +2,63 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<!-- * Introduction * -->
-<div class="container">
-	<div class="jumbotron">
-		<h1 class="display-4">Hello, world!</h1>
-		<p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-		<hr class="my-4">
-		<p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-		<a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+<!-- * Jumbotron * -->
+<div class="jumbotron jumbotron-fluid JumboHeaderHome">
+	<div class="container">
+		<h2 class="display-1">Give Back</h2>
+		<p class="lead" id=intro>Give back to your community. Donate today!</p>
 	</div>
+</div>
+
 	<!-- * About This Project * -->
-	<!-- * How It Works * -->
+	<div class="container bg-light p-3">
+		<div class="row">
+			<!-- The text -->
+			<div class="col-sm">
+			<h1>Who Are We?</h1>
+			<p align="justify">We are a non-profit organization aiming to help people easily donate their
+				items from the comfort of their homes to those in needed. Such a service is needed 
+				now more than ever, especially with many limitations due to COVID-19. We act as the 
+				middle-man between your selected charity organization and you. Donate an item to your 
+				selected organization through our platform and have it picked up right from your doorstep. 
+				Register now!
+			</p>
+
+			</div>
+			<!-- An image :) -->
+			<div class="col-sm">
+				<img src="/assets/about-us.jpg" class="img-fluid img-thumbnail images">
+			</div>
+		</div>
+	</div>
+	<!-- * How it Works * -->
+	<div class="container p-3">
+		<h1>How Does It Work?</h1>
+		<img src="/assets/steps.png" class="img-fluid img-thumbnail images">
+	</div>
+
+	<!--Last thing-->
+	<div class="container p-3">
+		<h1>Register Now!</h1>
+		<hr />
+		<div class="row">
+			<!--User-->
+			<div class="col-sm text-center">
+				<h2 align="center">Are you a user wishing to use our organization?</h2>
+				<div class="p-3">
+					<button type="button" class="btn btn-primary btn-lg">Register as User</button>
+				</div>
+			</div>
+
+			<!--Organization-->
+			<div class="col-sm text-center">
+				<h2 align="center">Are you an organization wishing to use our platform?</h2>
+				<div class="p-3">
+					<button type="button" class="btn btn-primary btn-lg">Register as Organization</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}
