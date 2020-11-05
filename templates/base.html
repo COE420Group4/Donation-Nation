@@ -17,7 +17,7 @@
 		crossorigin="anonymous"></script>
 
 	<!-- * Custom Files -->
-	<link rel="stylesheet" href="/files/styles.css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
 </head>
 
 <body>
@@ -29,12 +29,14 @@
 			<a class="btn btn-outline-info my-2 my-sm-0" href="/login">Login</a>
 		</form>
 	</nav>
-	<div id="main" class="container">
+	<div id="main">
 		{% block content %}{% endblock %}
 	</div>
 	<footer class="footer">
 		<div class="container">
-			<span class="text-muted"><!--TODO: Create footer--></span>
+			<span class="text-muted">
+				<!--TODO: Create footer-->
+			</span>
 		</div>
 	</footer>
 </body>

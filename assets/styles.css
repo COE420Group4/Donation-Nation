@@ -28,3 +28,6 @@ have a background size like that*/
   background-image: url(images/bannerA.jpg);
 }
 
+.login-cards {
+  width: 200px
+}
