@@ -16,6 +16,18 @@ body {
   background-color: #f5f5f5;
 }
 
+/*Inheritance*/
+/*All jumbotrons will
+have a background size like that*/
+.JumboHeaderHome {
+  background-size: cover;
+}
+
+/*Home Page Jumbotron Image*/
+.JumboHeaderHome {
+  background-image: url(images/bannerA.jpg);
+}
+
 .login-cards {
   width: 300px
 }
