@@ -17,7 +17,6 @@ Routes marked with (!) are visited by the user
 
 - (!) `/login`
 - (!) `/register`
-- (!) `/request_access`
 - (!) `/verify/<uuid>`
 - (!) `/donor/<uuid>`
 - (!) `/items`
@@ -45,7 +44,7 @@ Routes marked with (!) are visited by the user
 ## Functional Requirements
 
 - [ ] **R1: Login to system**
-  - [ ] Frontend
+  - [x] Frontend (NEEDS BEAUTIFYING)
   - [ ] Database setup
   - [ ] Verifying credentials + session setup
 - [ ] **R2: User Sign up**
