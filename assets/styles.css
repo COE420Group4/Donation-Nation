@@ -35,3 +35,16 @@ have a background size like that*/
 .padded-top {
   margin-top: 20px;
 }
+
+.org-cards {
+  max-width: 300px;
+}
+
+.card-deck {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.card-title {
+  font-weight: bolder;
+}
