@@ -12,19 +12,133 @@
 		</div>
 	</div>
 	<div class="row justify-content-center align-items-center">
-		<!-- TODO: Actual Form -->
 		<form>
+			<p><em>We will never share this information with anyone!</em></p>
+			<div class="form-row">
+				<!-- First Name -->
+				<div class="col-md-6 mb-3">
+					<label for="validationTooltip01">First name</label>
+					<input type="text" class="form-control" id="validationTooltip01" placeholder="John" required>
+					<div class="valid-tooltip">Looks good!</div>
+				</div>
+				<!-- Last Name -->
+				<div class="col-md-6 mb-3">
+					<label for="validationTooltip02">Last name</label>
+					<input type="text" class="form-control" id="validationTooltip02" placeholder="Smith" required>
+					<div class="valid-tooltip">Looks good!</div>
+				</div>
+
+			</div>
+			<!--Birth date-->
 			<div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+				<label for="Birthdate">Date of Birth</label>
+				<input type="date" class="form-control" id="exampleFormControlInput1" placeholder="mm/dd/yyyy">
+			</div>
+			<!-- Check box - confirm I am 18+ -->
+			<div class="form-group">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="gridCheck" required>
+					<label class="form-check-label" for="gridCheck">
+					I promise that I am 18 years old or older!
+					</label>
+				</div>
+				</div>
+			<!-- Address -->
+			<div class="form-row">
+				<!-- City -->
+				<div class="col-md-4 mb-3">
+					<label for="validationTooltip03">City</label>
+					<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland" required>
+					<div class="invalid-tooltip">Please provide a valid city.</div>
+				</div>
+				<!--Emirate Drop-Down-->
+				<div class="col-md-4 mb-3">
+					<label for="validationTooltip04">Emirate</label>
+					<select class="custom-select" id="validationTooltip04" required>
+						<option selected disabled value="">Choose...</option>
+						<option>Abu Dhabi</option>
+						<option>Dubai</option>
+						<option>Sharjah</option>
+						<option>Ajman</option>
+						<option>Fujairah</option>
+						<option>Ras al Khaimah</option>
+						<option>Umm al Quwain</option>
+					</select>
+					<div class="invalid-tooltip">Please select a valid Emirate.</div>
+				</div>
+
+				<!--PO BOX-->
+				<div class="col-md-4 mb-3">
+					<label for="PO-BOX">PO Box</label>
+					<input type="text" class="form-control" id ="PO-BOX" placeholder="xxxxx">
+				</div>
+			</div>
+			<!--2 complete address lines-->
+			<div class="form-group">
+				<label for="Address1">Address #1</label>
+				<input type="text" class="form-control" placeholder="Street 1, Building 3, Apartment 55" required>
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1">
+				<label for="Address2">Address #2</label>
+				<input type="text" class="form-control" placeholder="Behind AUS" required>
+			</div>
+
+			<!-- Phone number -->
+			<div class="form-group">
+				<label for="validationTooltip05">Phone Number</label>
+				<input type="tel" class="form-control" id="validationTooltip05" placeholder="05x xxxxxxx" required>
+			</div>
+			<!-- Email -->
+			<div class="form-group">
+				<label for="validationTooltip06">Email</label>
+				<input type="email" class="form-control" id="validationTooltip06" placeholder= "johnsmith@email.com" required>
+			</div>
+			<!--Password & Confirm Password-->
+			<div class="form-row">
+				<!--Password-->
+				<div class="col-md-6 mb-3">
+					<label for="validationTooltip07">Password</label>
+					<input type="password" class="form-control" id="validationTooltip07" required>
+				</div>
+				<!--Confrim Password-->
+				<div class="col-md-6 mb-3">
+					<label for="validationTooltip08">Confirm Password</label>
+					<input type="password" class="form-control" id="validationTooltip08" required>
+				</div>
+			</div>
+			<!-- Check box - terms and conditions -->
+			<div class="form-group">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" id="gridCheck" required>
+					<label class="form-check-label" for="gridCheck">
+					I have read and understood the <a href data-target="#termsconditions" data-toggle="modal">terms and conditions</a>.
+					</label>
+				</div>
+			</div>
+			<!-- Terms and Conditions Modal -->
+			<div class="modal fade" id="termsconditions" tabindex="-1" role="dialog" aria-labelledby="termsconditions" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					</div>
+					<div class="modal-body">
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna mattis auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius mattis in non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut sem lorem, viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante. Praesent metus turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus neque.
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
+
+	<!--Organization Form-->
 	{% elif type == 'org' %}
 	<div class="row align-items-center">
 		<div class="col">
@@ -32,21 +146,122 @@
 			<hr />
 		</div>
 	</div>
+
 	<div class="row justify-content-center align-items-center">
-		<!-- TODO: Actual Form -->
-		<form>
-			<div class="form-group">
-				<label for="exampleInputEmail1">Email address</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1">
-			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
-		</form>
-	</div>
+		<div class="row justify-content-center align-items-center">
+			<form>
+				<p><em>We will never share this information with anyone!</em></p>
+				<!--Organization Name-->
+				<div class="form-group">
+					<label for="validationTooltip01">Organization Name</label>
+					<input type="text" class="form-control" id="validationTooltip01" placeholder="Charity Organization" required>
+					<div class="valid-tooltip">Looks good!</div>
+				</div>
+				
+				<!-- Registration number-->
+				<div class="form-group">
+					<label for="validationTooltip02">Charity License Number</label>
+					<input type="text" class="form-control" id="validationTooltip01" aria-describedby="regNumHelp" placeholder="123456789" required>
+					<small id="regNumHelp" class="form-text text-muted">
+						This number is the official government-issued charity license number for your organization.
+					</small>
+					<div class="valid-tooltip">Looks good!</div>
+				</div>
+				<!-- Address -->
+				<div class="form-row">
+					<!-- City -->
+					<div class="col-md-4 mb-3">
+						<label for="validationTooltip03">City</label>
+						<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland" required>
+						<div class="invalid-tooltip">Please provide a valid city.</div>
+					</div>
+					<!--Emirate Drop-Down-->
+					<div class="col-md-4 mb-3">
+						<label for="validationTooltip04">Emirate</label>
+						<select class="custom-select" id="validationTooltip04" required>
+							<option selected disabled value="">Choose...</option>
+							<option>Abu Dhabi</option>
+							<option>Dubai</option>
+							<option>Sharjah</option>
+							<option>Ajman</option>
+							<option>Fujairah</option>
+							<option>Ras al Khaimah</option>
+							<option>Umm al Quwain</option>
+						</select>
+						<div class="invalid-tooltip">Please select a valid Emirate.</div>
+					</div>
+	
+					<!--PO BOX-->
+					<div class="col-md-4 mb-3">
+						<label for="PO-BOX">PO Box</label>
+						<input type="text" class="form-control" id ="PO-BOX" placeholder="xxxxx">
+					</div>
+				</div>
+				<!--2 complete address lines-->
+				<div class="form-group">
+					<label for="Address1">Address #1</label>
+					<input type="text" class="form-control" placeholder="Street 1, Building 3, Apartment 55" required>
+				</div>
+				<div class="form-group">
+					<label for="Address2">Address #2</label>
+					<input type="text" class="form-control" placeholder="Behind AUS" required>
+				</div>
+	
+				<!-- Phone number -->
+				<div class="form-group">
+					<label for="validationTooltip05">Phone Number</label>
+					<input type="tel" class="form-control" id="validationTooltip05" placeholder="05x xxxxxxx" required>
+				</div>
+				<!-- Email -->
+				<div class="form-group">
+					<label for="validationTooltip06">Email</label>
+					<input type="email" class="form-control" id="validationTooltip06" placeholder= "johnsmith@email.com" required>
+				</div>
+				<!--Password & Confirm Password-->
+				<div class="form-row">
+					<!--Password-->
+					<div class="col-md-6 mb-3">
+						<label for="validationTooltip07">Password</label>
+						<input type="password" class="form-control" id="validationTooltip07" required>
+					</div>
+					<!--Confrim Password-->
+					<div class="col-md-6 mb-3">
+						<label for="validationTooltip08">Confirm Password</label>
+						<input type="password" class="form-control" id="validationTooltip08" required>
+					</div>
+				</div>
+				<!-- Check box - terms and conditions -->
+				<div class="form-group">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="gridCheck" required>
+						<label class="form-check-label" for="gridCheck">
+						I have read and understood the <a href data-target="#termsconditions" data-toggle="modal">terms and conditions</a>.
+						</label>
+					</div>
+				</div>
+				<!-- Terms and Conditions Modal -->
+				<div class="modal fade" id="termsconditions" tabindex="-1" role="dialog" aria-labelledby="termsconditions" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+						<h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						</div>
+						<div class="modal-body">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna mattis auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius mattis in non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut sem lorem, viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante. Praesent metus turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus neque.
+						</div>
+						<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					</div>
+				</div>
+				<p><em>Note: This information must be verified before you can get access to the platform.</em></p>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
 	{% else %}
 	<div class="row align-items-center">
 		<div class="col">
