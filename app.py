@@ -28,6 +28,10 @@ def items():
 def admin():
     return render_template('admin.html')
 
+@app.route('/addItem', methods=['GET', 'POST'])
+def donate():
+    return render_template('addItem.html')
+
 # Custom 404 page
 @app.errorhandler(404)
 def page_not_found(e):

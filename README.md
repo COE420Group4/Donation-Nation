@@ -65,7 +65,7 @@ Routes marked with (!) are visited by the user
   - [ ] Database setup
   - [ ] Backend logic to verify account
 - [ ] **R5: Offer item**
-  - [ ] Frontend
+  - [x] Frontend
   - [ ] Database setup
   - [ ] Verifying information
   - [ ] Inserting item into db
