@@ -111,7 +111,7 @@ Routes marked with (!) are visited by the user
   - [x] Frontend
   - [ ] Fetch information from db
 - [ ] **R15: List Organization Access Requests**
-  - [ ] Frontend
+  - [x] Frontend
   - [ ] Fetch information from db
 - [ ] **R16: Approve Organization Access Request**
   - [ ] Frontend
