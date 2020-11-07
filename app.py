@@ -27,3 +27,7 @@ def items():
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     return render_template('admin.html')
+
+@app.route('/addItem', methods=['GET', 'POST'])
+def donate():
+    return render_template('addItem.html')
