@@ -108,7 +108,7 @@ Routes marked with (!) are visited by the user
   - [ ] Mark new pickup time as rejected
   - [ ] Send email with new suggested time
 - [ ] **R14: List Organizations**
-  - [ ] Frontend
+  - [x] Frontend
   - [ ] Fetch information from db
 - [ ] **R15: List Organization Access Requests**
   - [ ] Frontend
