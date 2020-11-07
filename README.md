@@ -136,10 +136,10 @@ Routes marked with (!) are visited by the user
 
 ## TODO
 
-- [ ] Setup files
-- [ ] Build flask skeleton
+- [x] Setup files
+- [x] Build flask skeleton
 - [ ] Setup flask templates
-- [ ] Finish planning routes
+- [x] Finish planning routes
 - [ ] Finish database structure
 - [ ] Finish db.py
 - [ ] Finish all the frontend
