@@ -48,13 +48,13 @@ Routes marked with (!) are visited by the user
   - [ ] Database setup
   - [ ] Verifying credentials + session setup
 - [ ] **R2: User Sign up**
-  - [ ] Frontend
+  - [x] Frontend
   - [ ] Database setup
   - [ ] Verifying information
   - [ ] Insertion into database
   - [ ] Sending verification email
 - [ ] **R3: Organization Request access**
-  - [ ] Frontend
+  - [x] Frontend
   - [ ] Database setup
   - [ ] Verifying information
   - [ ] Insertion into database

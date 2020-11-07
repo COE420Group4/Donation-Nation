@@ -29,6 +29,19 @@ have a background size like that*/
   background-image: url(/assets/jumbotronHome.jpg);
 }
 
+/*Form Background*/
+.FormBackground {
+  background-image: url('backgroundRegistration.jpg');
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .login-cards {
   width: 300px
 }
