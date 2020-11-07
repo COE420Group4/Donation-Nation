@@ -30,7 +30,7 @@ def admin():
 
 @app.route('/addItem', methods=['GET', 'POST'])
 def donate():
-    return render_template('addItem.html')
+    return render_template('addItem.html', method=['GET', 'POST'])
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():
