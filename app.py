@@ -30,7 +30,7 @@ def admin():
 
 @app.route('/addItem', methods=['GET', 'POST'])
 def donate():
-    return render_template('addItem.html')
+    return render_template('addItem.html', method=['GET', 'POST'])
 
 # Custom 404 page
 @app.errorhandler(404)
