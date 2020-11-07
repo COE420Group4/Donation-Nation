@@ -32,7 +32,16 @@ def admin():
 def donate():
     return render_template('addItem.html')
 
+@app.route('/orgProfile', methods=['GET'])
+def orgProfile():
+    return render_template('org_profile.html')
+
+@app.route('/userProfile', methods=['GET'])
+def userProfile():
+    return render_template('user_profile.html')
+
 # Custom 404 page
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+

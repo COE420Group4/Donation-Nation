@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="scol-sm text-center">
+        <!-- display picture -->
+            <a href=""><img class="img-fluid rounded mx-auto d-block login-cards"
+                src="{{ url_for('static', filename='org.png') }}" /></a>
+            <!-- Name -->
+            <h1>Legit Organization</h1>
+            <hr />
+</div>
+<div class="form-row">
+    <!-- Registration Number -->
+    <div class="col-md-4 mb-3">
+        <h3><label for="registrationno"><strong>Registration number:</strong> </label></h3>
+        <h4 class="text-left" id="registrationno">696969420696969<br></h4>
+    </div>
+    <!-- Address -->
+    <div class="col-md-4 mb-3">
+    <h3><label for="address"><strong>Full address:</strong> </label></h3>
+        <h4 class="text-left" id = "addess">221B, Yellow Brick Road, FairyLand<br></h4>
+    </div>
+    <!-- PO Box -->
+    <div class="col-md-4 mb-3">
+    <h3><label for="po"><strong>P.O. Box:</strong> </label></h3>
+        <h4 class="text-left" id = "po">123453 <br></h4>
+    </div>
+    <!-- Phone -->
+    <div class="col-md-4 mb-3">
+    <h3><label for="phone"><strong>Phone number:</strong> </label></h3>
+        <h4 class="text-left" id= "phone">+5550918374<br></h4>
+    </div>
+    <!-- Email -->
+    <div class="col-md-4 mb-3">
+    <h3><label for="Email"><strong>Email address:</strong> </label></h3>
+        <h4 class="text-left" id = email> legitorganization@email.com<br></h4>
+    </div>
+</div>
+{% endblock %}
