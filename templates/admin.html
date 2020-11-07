@@ -4,7 +4,68 @@
 {% block content %}
 
 <div class="container padded-top">
-
+	<div class="row align-items-center justify-content-center">
+		<div class="col m-2">
+			<p class="display-4 mx-auto text-center">Organization Access Requests</p>
+			<hr />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col table-responsive">
+			<table class="table table-bordered table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Org. Name</th>
+						<th scope="col">License No.</th>
+						<th scope="col">City</th>
+						<th scope="col">PO. Box</th>
+						<th scope="col">Email</th>
+						<th scope="col">Phone No.</th>
+						<th scope="col">Request Date</th>
+						<th scope="col">View Info</th>
+						<th scope="col">Approve?</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th scope="row">1</th>
+					<td>Red Cross</td>
+					<td>1234-666-11231</td>
+					<td>Sharjah</td>
+					<td>58172</td>
+					<td><a href="mailto:contact@redcross.org">contact@redcross.org</a></td>
+					<td>0501234567</td>
+					<td>20/5/2020</td>
+					<td><a href="#">View</a></td>
+					<td class="text-center"><button class="btn btn-success text-white m-1">✓</button><button class="btn btn-danger text-white m-1">✗</button></td>
+				</tbody>
+				<tbody>
+					<th scope="row">2</th>
+					<td>Red Cross</td>
+					<td>1234-666-11231</td>
+					<td>Sharjah</td>
+					<td>58172</td>
+					<td><a href="mailto:contact@redcross.org">contact@redcross.org</a></td>
+					<td>0501234567</td>
+					<td>13/8/2020</td>
+					<td><a href="#">View</a></td>
+					<td class="text-center"><button class="btn btn-success text-white m-1">✓</button><button class="btn btn-danger text-white m-1">✗</button></td>
+				</tbody>
+				<tbody>
+					<th scope="row">3</th>
+					<td>Red Cross</td>
+					<td>1234-666-11231</td>
+					<td>Sharjah</td>
+					<td>58172</td>
+					<td><a href="mailto:contact@redcross.org">contact@redcross.org</a></td>
+					<td>0501234567</td>
+					<td>5/11/2020</td>
+					<td><a href="#">View</a></td>
+					<td class="text-center"><button class="btn btn-success text-white m-1">✓</button><button class="btn btn-danger text-white m-1">✗</button></td>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 
 {% endblock %}
