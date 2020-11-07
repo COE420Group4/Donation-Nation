@@ -1,16 +1,20 @@
 /* Sticky footer styles
 -------------------------------------------------- */
+#main {
+  height: 100%;
+}
+
 html {
   position: relative;
-  min-height: 100%;
+  height: 100%;
 }
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
+  height: 100%;
 }
 
 .footer {
   position: absolute;
-  bottom: 0;
   width: 100%;
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
@@ -31,7 +35,7 @@ have a background size like that*/
 
 /*Form Background*/
 .FormBackground {
-  background-image: url('FormBackground2.jpg');
+  background-image: url(/assets/FormBackground2.jpg);
 
   /* Full height */
   height: 100%;
@@ -44,10 +48,6 @@ have a background size like that*/
 
 .login-cards {
   width: 300px
-}
-
-.padded-top {
-  margin-top: 20px;
 }
 
 .org-cards {

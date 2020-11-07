@@ -22,7 +22,7 @@ def orgs():
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():
-    return render_template('items.html')
+    return render_template('items.html', type=request.args.get('type'))
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
