@@ -2,15 +2,15 @@
 {% block title %}Donate Item{% endblock %}
 
 {% block content %}
-<div class="FormBackground"></div>
-    <div class="container padded-top">
+<div class="FormBackground">
+    <div class="container pt-5">
         <div class="row align-items-center">
             <div class="col">
                 <p class="text-center display-4">Donate an Item</p>
                 <hr />
             </div>
         </div>
-        
+
         <div class="row justify-content-center align-items-center">
             <form>
                 <div><h2>Item Details</h2></div>
@@ -30,12 +30,19 @@
                             <option>Clothes</option>
                             <option>Toys</option>
                             <option>Linens</option>
-                            <option id="whenClicked">Other</option>
+                            <option>Other</option>
                         </select>
                         <script>
                             $(document).ready(function(){
-                            $("#whenClicked").click(function(){
-                            $("#specify").show();})
+                                $("#specify").hide();
+                                $('#validationTooltip02').on('change', function(){
+                                    if (this.value === 'Other') {
+                                        console.log('Hello!');
+                                        $("#specify").show();
+                                    } else {
+                                        $("#specify").hide();
+                                    }
+                                });
                             });
                         </script>
                         <div class="invalid-tooltip">Please select a valid category.</div>
@@ -69,8 +76,6 @@
                     <input type="file" class="form-control-file" id="validationTooltip06">
                     <hr />
                 </div>
-    
-    
                 <h2>Organization & Pickup Details</h2>
                 <div class="form-row">
                     <!--Select an Organization-->
@@ -131,5 +136,5 @@
             </form>
         </div>
     </div>
-
+</div>
 {% endblock %}
