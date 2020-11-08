@@ -34,12 +34,22 @@ def donate():
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():
-    return render_template('org_profile.html')
+    return render_template('orgProfile.html')
 
 @app.route('/userProfile', methods=['GET'])
 def userProfile():
     return render_template('userProfile.html')
 
+# The user information page from organization's perspective
+@app.route('/viewUser', methods=['GET'])
+def viewUser():
+    return render_template('viewUser.html')
+
+#The organization information page from user's perspective
+@app.route('/viewOrg', methods=['GET'])
+def viewOrg():
+    return render_template('viewOrg.html')
+    
 # Custom 404 page
 @app.errorhandler(404)
 def page_not_found(e):
