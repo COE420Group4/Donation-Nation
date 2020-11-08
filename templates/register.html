@@ -38,10 +38,10 @@
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" id="gridCheck" required>
 					<label class="form-check-label" for="gridCheck">
-					I promise that I am 18 years old or older!
+						I promise that I am 18 years old or older!
 					</label>
 				</div>
-				</div>
+			</div>
 			<!-- Address -->
 			<div class="form-row">
 				<!-- City -->
@@ -69,7 +69,7 @@
 				<!--PO BOX-->
 				<div class="col-md-4 mb-3">
 					<label for="PO-BOX">PO Box</label>
-					<input type="text" class="form-control" id ="PO-BOX" placeholder="xxxxx">
+					<input type="text" class="form-control" id="PO-BOX" placeholder="xxxxx">
 				</div>
 			</div>
 			<!--2 complete address lines-->
@@ -90,7 +90,8 @@
 			<!-- Email -->
 			<div class="form-group">
 				<label for="validationTooltip06">Email</label>
-				<input type="email" class="form-control" id="validationTooltip06" placeholder= "johnsmith@email.com" required>
+				<input type="email" class="form-control" id="validationTooltip06" placeholder="johnsmith@email.com"
+					required>
 			</div>
 			<!--Password & Confirm Password-->
 			<div class="form-row">
@@ -110,33 +111,38 @@
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" id="gridCheck" required>
 					<label class="form-check-label" for="gridCheck">
-					I have read and understood the <a href data-target="#termsconditions" data-toggle="modal">terms and conditions</a>.
+						I have read and understood the <a href data-target="#termsconditions" data-toggle="modal">terms
+							and conditions</a>.
 					</label>
 				</div>
 			</div>
 			<!-- Terms and Conditions Modal -->
-			<div class="modal fade" id="termsconditions" tabindex="-1" role="dialog" aria-labelledby="termsconditions" aria-hidden="true">
+			<div class="modal fade" id="termsconditions" tabindex="-1" role="dialog" aria-labelledby="termsconditions"
+				aria-hidden="true">
 				<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-					<h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna mattis
+							auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius mattis in
+							non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut sem lorem,
+							viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante. Praesent metus
+							turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus neque.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
 					</div>
-					<div class="modal-body">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna mattis auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius mattis in non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut sem lorem, viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante. Praesent metus turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus neque.
-					</div>
-					<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					</div>
-				</div>
 				</div>
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
-
 	<!--Organization Form-->
 	{% elif type == 'org' %}
 	<div class="row align-items-center">
@@ -145,7 +151,6 @@
 			<hr />
 		</div>
 	</div>
-
 	<div class="row justify-content-center align-items-center">
 		<div class="row justify-content-center align-items-center">
 			<form>
@@ -153,13 +158,15 @@
 				<!--Organization Name-->
 				<div class="form-group">
 					<label for="validationTooltip01">Organization Name</label>
-					<input type="text" class="form-control" id="validationTooltip01" placeholder="Charity Organization" required>
+					<input type="text" class="form-control" id="validationTooltip01" placeholder="Charity Organization"
+						required>
 					<div class="valid-tooltip">Looks good!</div>
 				</div>
 				<!-- Registration number-->
 				<div class="form-group">
 					<label for="validationTooltip02">Charity License Number</label>
-					<input type="text" class="form-control" id="validationTooltip01" aria-describedby="regNumHelp" placeholder="123456789" required>
+					<input type="text" class="form-control" id="validationTooltip01" aria-describedby="regNumHelp"
+						placeholder="123456789" required>
 					<small id="regNumHelp" class="form-text text-muted">
 						This number is the official government-issued charity license number for your organization.
 					</small>
@@ -170,7 +177,8 @@
 					<!-- City -->
 					<div class="col-md-4 mb-3">
 						<label for="validationTooltip03">City</label>
-						<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland" required>
+						<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland"
+							required>
 						<div class="invalid-tooltip">Please provide a valid city.</div>
 					</div>
 					<!--Emirate Drop-Down-->
@@ -192,7 +200,7 @@
 					<!--PO BOX-->
 					<div class="col-md-4 mb-3">
 						<label for="PO-BOX">PO Box</label>
-						<input type="text" class="form-control" id ="PO-BOX" placeholder="xxxxx">
+						<input type="text" class="form-control" id="PO-BOX" placeholder="xxxxx">
 					</div>
 				</div>
 				<!--2 complete address lines-->
@@ -213,7 +221,8 @@
 				<!-- Email -->
 				<div class="form-group">
 					<label for="validationTooltip06">Email</label>
-					<input type="email" class="form-control" id="validationTooltip06" placeholder= "johnsmith@email.com" required>
+					<input type="email" class="form-control" id="validationTooltip06" placeholder="johnsmith@email.com"
+						required>
 				</div>
 				<!--Password & Confirm Password-->
 				<div class="form-row">
@@ -233,51 +242,58 @@
 					<div class="form-check">
 						<input class="form-check-input" type="checkbox" id="gridCheck" required>
 						<label class="form-check-label" for="gridCheck">
-						I have read and understood the <a href data-target="#termsconditions" data-toggle="modal">terms and conditions</a>
+							I have read and understood the <a href data-target="#termsconditions"
+								data-toggle="modal">terms and conditions</a>
 						</label>
 					</div>
 				</div>
 				<!-- Terms and Conditions Modal -->
-				<div class="modal fade" id="termsconditions" tabindex="-1" role="dialog" aria-labelledby="termsconditions" aria-hidden="true">
+				<div class="modal fade" id="termsconditions" tabindex="-1" role="dialog"
+					aria-labelledby="termsconditions" aria-hidden="true">
 					<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-						<h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>.
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>.
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna
+								mattis auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius
+								mattis in non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut
+								sem lorem, viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante.
+								Praesent metus turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus
+								neque.
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							</div>
 						</div>
-						<div class="modal-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna mattis auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius mattis in non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut sem lorem, viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante. Praesent metus turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus neque.
-						</div>
-						<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						</div>
-					</div>
 					</div>
 				</div>
 				<p><em>Note: This information must be verified before you can get access to the platform.</em></p>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
-	{% else %}
-	<div class="row align-items-center">
-		<div class="col">
-			<p class="text-center display-4">Choose your Account Type</p>
-			<hr />
+		{% else %}
+		<div class="row align-items-center">
+			<div class="col">
+				<p class="text-center display-4">Choose your Account Type</p>
+				<hr />
+			</div>
 		</div>
+		<div class="row justify-content-center align-items-center">
+			<div class="col-4">
+				<a href="/register?type=user"><img class="img-fluid rounded mx-auto d-block login-cards"
+						src="{{ url_for('static', filename='user.png') }}" /></a>
+			</div>
+			<div class="col-4">
+				<a href="/register?type=org"><img class="img-fluid rounded mx-auto d-block login-cards"
+						src="{{ url_for('static', filename='org.png') }}" /></a>
+			</div>
+		</div>
+		{% endif %}
 	</div>
-	<div class="row justify-content-center align-items-center">
-		<div class="col-4">
-			<a href="/register?type=user"><img class="img-fluid rounded mx-auto d-block login-cards"
-					src="{{ url_for('static', filename='user.png') }}" /></a>
-		</div>
-		<div class="col-4">
-			<a href="/register?type=org"><img class="img-fluid rounded mx-auto d-block login-cards"
-					src="{{ url_for('static', filename='org.png') }}" /></a>
-		</div>
-	</div>
-	{% endif %}
-</div>
 
-{% endblock %}
+	{% endblock %}
