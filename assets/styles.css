@@ -12,6 +12,7 @@ body {
   margin-bottom: 60px; /* Margin bottom by footer height */
   height: 100%;
   background-color: #F4F5F1;
+  font-family: 'Nunito', sans-serif;
 }
 
 .footer {
@@ -27,7 +28,7 @@ body {
 /*All jumbotrons will
 have a background size like that*/
 .JumboHeaderHome,
-JumboHeaderProfile {
+.JumboHeaderProfile {
   background-size: cover;
 }
 
@@ -39,20 +40,6 @@ JumboHeaderProfile {
 /*User Profile Jumbotron*/
 .JumboHeaderProfile {
   background-image: url(profileBanner.jpg);
-}
-
-/*Form Background*/
-.FormBackground {
-  background-image: url(/assets/FormBackground2.jpg);
-  background-size: cover;
-
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .login-cards {
@@ -72,6 +59,10 @@ JumboHeaderProfile {
   font-weight: bolder;
 }
 
+.card-body {
+  padding-top: 0px;
+}
+
 #registration {
   margin-bottom: 10rem !important;
 }
@@ -81,10 +72,54 @@ JumboHeaderProfile {
   color: #F4F5F1;
 }
 
-#loginButton {
-
+.colorSchemeWhite {
+  color: #F4F5F1
 }
 
-#registerButton {
-  
+.colorSchemePink {
+  color: #BE9991
+}
+
+.colorSchemeRed {
+  color: #EC3035
+}
+
+.colorSchemeBrown {
+  color: #A58C73
+}
+
+.colorSchemeDarkBlue {
+  color: #232D3D
+}
+
+.bgColorSchemeWhite {
+  background-color: #F4F5F1
+}
+
+.bgColorSchemePink {
+  background-color: #BE9991
+}
+
+.bgColorSchemeRed {
+  background-color: #EC3035
+}
+
+.bgColorSchemeBrown {
+  background-color: #A58C73
+}
+
+.bgColorSchemeDarkBlue {
+  background-color: #232D3D
+}
+
+.btn-primary {
+  border-color: #232D3D;
+  background-color: #232D3D;
+  color: #F4F5F1;
+}
+
+.btn-info {
+  border-color: #415470;
+  background-color: #415470;
+  color: #F4F5F1;
 }
