@@ -38,7 +38,7 @@ def orgProfile():
 
 @app.route('/userProfile', methods=['GET'])
 def userProfile():
-    return render_template('userProfileTemp.html')
+    return render_template('userProfile.html')
 
 # Custom 404 page
 @app.errorhandler(404)

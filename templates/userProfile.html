@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+	<div class="container">
+		<h2 class="display-1">Hello, Elon!</h2>
+        <p class="lead" id=intro>This is your profile page. Organizations can view this page.</p>
+	</div>
+</div>
+<div class="container pb-5 center-block">
+    <div class="card mb-3 bg-light">
+        <h3 class="card-header font-weight-bold text-center">My Account</h3>
+        <div class="card-body">
+            <h5 class="text-muted text-left">User Information</h5>
+            <hr />
+            <div class="row">
+                <!--First Name-->
+                <div class="col">
+                    <label class ="font-weight-bold text-muted">First Name</label>
+                    <p>Elon</p>
+                </div>
+                <!--Last Name-->
+                <div class="col">
+                    <label class ="font-weight-bold text-muted">Last Name</label>
+                    <p>Musk</p>
+                </div>
+                <!--Birthdate-->
+                <div class="col">
+                    <label class ="font-weight-bold text-muted">Date of Birth</label>
+                    <p>6/28/1971</p>
+                </div>
+            </div>
+            <h5 class="text-muted text-left pt-3">Contact Information</h5>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <label class="font-weight-bold text-muted">Phone Number</label>
+                    <p>059765467890865</p>
+                </div>
+                <div class="col">
+                    <label class="font-weight-bold text-muted">Email</label>
+                    <p>elonMuskIsBoss@tesla.com</p>
+                </div>
+            </div>
+            <div class="row">
+                <!--City-->
+                <div class="col">
+                    <label class ="font-weight-bold text-muted">City</label>
+                    <p>Downtown Dubai</p>
+                </div>
+                <!--Emirate-->
+                <div class="col">
+                    <label class ="font-weight-bold text-muted">Emirate</label>
+                    <p>Dubai</p>
+                </div>
+                <!--PO BOX-->
+                <div class="col">
+                    <label class ="font-weight-bold text-muted">PO BOX</label>
+                    <p>12345</p>
+                </div>
+            </div>
+            <!--Address Line 1-->
+            <div class="row">
+                <div class="col-md-3">
+                    <label class ="font-weight-bold text-muted">Address #1</label>
+                </div>
+                <div class="col-md-9">
+                    <p>1 Sheikh Mohammed bin Rashid Blvd</p>
+                </div>
+            </div>
+            <!--Address Line 1-->
+            <div class="row">
+                <div class="col-md-3">
+                    <label class ="font-weight-bold text-muted">Address #2</label>
+                </div>
+                <div class="col-md-9">
+                    <p>Burj Khalifa</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-right">
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#edit">Edit Profile</a>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#changePassword">Change Password</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Change Password Modal -->
+<div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <!--Password-->
+                    <div class="col-md-6 mb-3">
+                        <label for="validationTooltip07">Password</label>
+                        <input type="password" class="form-control" id="validationTooltip07" required>
+                    </div>
+                    <!--Confrim Password-->
+                    <div class="col-md-6 mb-3">
+                        <label for="validationTooltip08">Confirm Password</label>
+                        <input type="password" class="form-control" id="validationTooltip08" required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Information Modal -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form">
+                    <div class="form-row">
+                        <!-- First Name -->
+                        <div class="col-md-6 mb-3">
+                            <label for="validationTooltip01">First name</label>
+                            <input type="text" class="form-control" id="validationTooltip01" value="Elon" required>
+                            <div class="valid-tooltip">Looks good!</div>
+                        </div>
+                        <!-- Last Name -->
+                        <div class="col-md-6 mb-3">
+                            <label for="validationTooltip02">Last name</label>
+                            <input type="text" class="form-control" id="validationTooltip02" value="Musk" required>
+                            <div class="valid-tooltip">Looks good!</div>
+                        </div>
+        
+                    </div>
+                    <!--Birth date-->
+                    <div class="form-group">
+                        <label for="Birthdate">Date of Birth</label>
+                        <input type="date" class="form-control" id="exampleFormControlInput1" value="6/28/1971">
+                    </div>
+                    <!-- Address -->
+                    <div class="form-row">
+                        <!-- City -->
+                        <div class="col-md-4 mb-3">
+                            <label for="validationTooltip03">City</label>
+                            <input type="text" class="form-control" id="validationTooltip03" value="Downtown Dubai" required>
+                            <div class="invalid-tooltip">Please provide a valid city.</div>
+                        </div>
+                        <!--Emirate Drop-Down-->
+                        <div class="col-md-4 mb-3">
+                            <label for="validationTooltip04">Emirate</label>
+                            <select class="custom-select" id="validationTooltip04" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>Abu Dhabi</option>
+                                <option>Dubai</option>
+                                <option>Sharjah</option>
+                                <option>Ajman</option>
+                                <option>Fujairah</option>
+                                <option>Ras al Khaimah</option>
+                                <option>Umm al Quwain</option>
+                            </select>
+                            <div class="invalid-tooltip">Please select a valid Emirate.</div>
+                        </div>
+        
+                        <!--PO BOX-->
+                        <div class="col-md-4 mb-3">
+                            <label for="PO-BOX">PO Box</label>
+                            <input type="text" class="form-control" id="PO-BOX" value="12345">
+                        </div>
+                    </div>
+                    <!--2 complete address lines-->
+                    <div class="form-group">
+                        <label for="Address1">Address #1</label>
+                        <input type="text" class="form-control" value="1 Sheikh Mohammed bin Rashid Blvd" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Address2">Address #2</label>
+                        <input type="text" class="form-control" value="Burj Khalifa" required>
+                    </div>
+        
+                    <!-- Phone number -->
+                    <div class="form-group">
+                        <label for="validationTooltip05">Phone Number</label>
+                        <input type="tel" class="form-control" id="validationTooltip05" value="059765467890865" required>
+                    </div>
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="validationTooltip06">Email</label>
+                        <input type="email" class="form-control" id="validationTooltip06" value="elonMuskIsBoss@tesla.com"
+                            required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
