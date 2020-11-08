@@ -57,6 +57,7 @@ have a background size like that*/
 
 .card-title {
   font-weight: bolder;
+  margin-bottom: 0px;
 }
 
 .card-body {

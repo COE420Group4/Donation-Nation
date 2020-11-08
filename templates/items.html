@@ -9,62 +9,320 @@
 			<hr />
 		</div>
 	</div>
-	<div class="row">
-		<div class="col table-responsive">
-			<!-- TODO: FINISH THIS TABLE -->
-			<table class="table table-bordered table-hover">
-				<thead class="thead-dark">
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">Donation ID</th>
-						<th scope="col">Item Name</th>
-						<th scope="col">Category</th>
-						<th scope="col">Condition</th>
-						<th scope="col">Description</th>
-						<th scope="col">Image</th>
-						<th scope="col">Receiving Organization</th>
-						<th scope="col">Status</th>
-						<th scope="col">Pickup Time</th>
-					</tr>
-				</thead>
-				<tbody>
-					<th scope="row">1</th>
-					<td>aaaa-bbb-ccc-dddd</td>
-					<td>Used Hoodies</td>
-					<td>Clothes</td>
-					<td>Lightly Used</td>
-					<td>A used red hoodie that is really good at keeping the wearer warm. It has a few loose strings on
-						the inside but other than that it is in perfect condition.</td>
-					<td><a href="#">View</a></td>
-					<td>Red Crescent</td>
-					<td><span class="badge badge-success">Accepted</span></td>
-					<td>10/11/2020 - 10:30 AM</td>
-				</tbody>
-				<tbody>
-					<th scope="row">1</th>
-					<td>aaaa-bbb-ccc-dddd</td>
-					<td>Used Pillow Cases</td>
-					<td>Linens</td>
-					<td>New</td>
-					<td>It's pretty cool.</td>
-					<td><a href="#">View</a></td>
-					<td>Red Crescent</td>
-					<td><span class="badge badge-danger">Rejected</span></td>
-					<td>11/11/2020 - 5:30 AM</td>
-				</tbody>
-				<tbody>
-					<th scope="row">1</th>
-					<td>aaaa-bbb-ccc-dddd</td>
-					<td>Used Hotwheels Track</td>
-					<td>Toys</td>
-					<td>Lightly Used</td>
-					<td>The name of the item is self explanatory.</td>
-					<td><a href="#">View</a></td>
-					<td>Red Crescent</td>
-					<td><span class="badge badge-warning">Needs Approval</span></td>
-					<td>1/1/2020 - 2:30 PM</td>
-				</tbody>
-			</table>
+	<div class="row align-items-center justify-content-center">
+		<div class="card-deck padded-top">
+			<div class="card border-dark mb-3 org-cards text-center">
+				<div class="container-fluid">
+					<img class="card-img-top"
+						src="https://images-na.ssl-images-amazon.com/images/I/41S6RuziD8L._AC_UX385_.jpg"
+						style="width: 100%; height: 300px; object-fit: scale-down;">
+				</div>
+				<hr />
+				<div class="card-body">
+					<span class="badge badge-success">Accepted by Red Crescent</span>
+					<h4 class="card-title">Used Hoodie</h4>
+					<p class="text-muted">aaaa-bbb-ccc-dddd</p>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#aaaa-bbb-ccc-dddd">View More</button>
+				</div>
+				<div class="card-footer">
+					<p class="card-text"><small class="text-muted">Donated on 24/11/2020</small></p>
+				</div>
+			</div>
+			<div class="modal" id="aaaa-bbb-ccc-dddd" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Detailed Information</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table class="table table-borderless">
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th class="text-left font-weight-bold">Name</th>
+										<th>Used Hoodie</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">ID</th>
+										<th>aaaa-bbb-ccc-dddd</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Category</th>
+										<th>Clothes</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Condition</th>
+										<th>Lightly Used</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Description</th>
+										<th>A red slightly used hoodie that has "New York" written on it. It also has a
+											few loose strings.</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Donated Organization</th>
+										<th>Dubai Cares</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Time Submitted</th>
+										<th>3:29pm 24/11/2020</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Proposed Pickup Time</th>
+										<th>4:30pm 26/11/2020</th>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card border-dark mb-3 org-cards text-center">
+				<div class="container-fluid">
+					<img class="card-img-top"
+						src="https://5.imimg.com/data5/XH/XD/OF/ANDROID-10893791/product-jpeg-500x500.jpg"
+						style="width: 100%; height: 300px; object-fit: scale-down;">
+				</div>
+				<hr />
+				<div class="card-body">
+					<span class="badge badge-danger">Rejected by Red Crescent</span>
+					<h4 class="card-title">Toy Car</h4>
+					<p class="text-muted">aaaa-bbb-ccc-dddd</p>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#aaaa-bbb-ccc-dddd">View More</button>
+				</div>
+				<div class="card-footer">
+					<p class="card-text"><small class="text-muted">Donated on 24/11/2020</small></p>
+				</div>
+			</div>
+			<div class="modal" id="aaaa-bbb-ccc-dddd" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Detailed Information</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table class="table table-borderless">
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th class="text-left font-weight-bold">Name</th>
+										<th>Used Hoodie</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">ID</th>
+										<th>aaaa-bbb-ccc-dddd</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Category</th>
+										<th>Clothes</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Condition</th>
+										<th>Lightly Used</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Description</th>
+										<th>A red slightly used hoodie that has "New York" written on it. It also has a
+											few loose strings.</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Donated Organization</th>
+										<th>Dubai Cares</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Time Submitted</th>
+										<th>3:29pm 24/11/2020</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Proposed Pickup Time</th>
+										<th>4:30pm 26/11/2020</th>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card border-dark mb-3 org-cards text-center">
+				<div class="container-fluid">
+					<img class="card-img-top"
+						src="https://images-na.ssl-images-amazon.com/images/I/51Zg7FM2f2L._SX258_BO1,204,203,200_.jpg"
+						style="width: 100%; height: 300px; object-fit: scale-down;">
+				</div>
+				<hr />
+				<div class="card-body">
+					<span class="badge badge-info">Awaiting Approval</span>
+					<h4 class="card-title">KG Arabic Books</h4>
+					<p class="text-muted">aaaa-bbb-ccc-dddd</p>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#aaaa-bbb-ccc-dddd">View More</button>
+				</div>
+				<div class="card-footer">
+					<p class="card-text"><small class="text-muted">Donated on 24/11/2020</small></p>
+				</div>
+			</div>
+			<div class="modal" id="aaaa-bbb-ccc-dddd" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Detailed Information</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table class="table table-borderless">
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th class="text-left font-weight-bold">Name</th>
+										<th>Used Hoodie</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">ID</th>
+										<th>aaaa-bbb-ccc-dddd</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Category</th>
+										<th>Clothes</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Condition</th>
+										<th>Lightly Used</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Description</th>
+										<th>A red slightly used hoodie that has "New York" written on it. It also has a
+											few loose strings.</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Donated Organization</th>
+										<th>Dubai Cares</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Time Submitted</th>
+										<th>3:29pm 24/11/2020</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Proposed Pickup Time</th>
+										<th>4:30pm 26/11/2020</th>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card border-dark mb-3 org-cards text-center">
+				<div class="container-fluid">
+					<img class="card-img-top"
+						src="https://4.imimg.com/data4/CQ/XH/MY-14786456/power-tool-spare-part-500x500.jpg"
+						style="width: 100%; height: 300px; object-fit: scale-down;">
+				</div>
+				<hr />
+				<div class="card-body">
+					<span class="badge badge-warning">Needs Pickup Time Approval</span>
+					<h4 class="card-title">Spare Tools</h4>
+					<p class="text-muted">aaaa-bbb-ccc-dddd</p>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#aaaa-bbb-ccc-dddd">View More</button>
+				</div>
+				<div class="card-footer">
+					<p class="card-text"><small class="text-muted">Donated on 24/11/2020</small></p>
+				</div>
+			</div>
+			<div class="modal" id="aaaa-bbb-ccc-dddd" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Detailed Information</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table class="table table-borderless">
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th class="text-left font-weight-bold">Name</th>
+										<th>Used Hoodie</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">ID</th>
+										<th>aaaa-bbb-ccc-dddd</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Category</th>
+										<th>Clothes</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Condition</th>
+										<th>Lightly Used</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Description</th>
+										<th>A red slightly used hoodie that has "New York" written on it. It also has a
+											few loose strings.</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Donated Organization</th>
+										<th>Dubai Cares</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Time Submitted</th>
+										<th>3:29pm 24/11/2020</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Proposed Pickup Time</th>
+										<th>4:30pm 26/11/2020</th>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
