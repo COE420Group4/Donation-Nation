@@ -49,7 +49,7 @@ def viewUser():
 @app.route('/viewOrg', methods=['GET'])
 def viewOrg():
     return render_template('viewOrg.html')
-    
+
 # Custom 404 page
 @app.errorhandler(404)
 def page_not_found(e):
