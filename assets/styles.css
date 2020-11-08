@@ -28,7 +28,7 @@ body {
 /*All jumbotrons will
 have a background size like that*/
 .JumboHeaderHome,
-.JumboHeaderProfile {
+.JumboHeaderProfile, JumboHeaderView {
   background-size: cover;
 }
 
@@ -39,9 +39,13 @@ have a background size like that*/
 
 /*User Profile Jumbotron*/
 .JumboHeaderProfile {
-  background-image: url(profileBanner.jpg);
+  background-image: url(jumbotron2.jpg);
 }
+/*View Profile Jumbotron*/
+.JumboHeaderView{
+  background-image: url(jumbotron3.jpg);
 
+}
 .login-cards {
   width: 300px;
 }
