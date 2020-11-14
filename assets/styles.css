@@ -130,6 +130,22 @@ have a background size like that*/
   color: #F4F5F1;
 }
 
+
+.btn-primary:hover {
+  background-color: #B22222;
+  border: none;
+  color: white;
+}
+.btn-primary:active{
+  background: #232D3D;
+  border: none;
+}
+
+.btn-primary:focus{
+  background: #232D3D;
+  border: none;
+}
+
 .img-size {
   height: 200px;
   width: 280px;
