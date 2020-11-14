@@ -53,17 +53,17 @@
 	{% else %}
 	<div class="row align-items-center">
 		<div class="col">
-			<p class="text-center display-4">Choose your Account Type</p>
+			<p class="text-center display-4">Choose Your Account Type</p>
 			<hr />
 		</div>
 	</div>
 	<div class="row justify-content-center align-items-center">
 		<div class="col-4">
-			<a href="/login?type=user"><img class="img-fluid rounded mx-auto d-block login-cards"
+			<a href="/login?type=user"><img class="img-fluid rounded mx-auto d-block login-cards card-size-login"
 					src="{{ url_for('static', filename='user.png') }}" /></a>
 		</div>
 		<div class="col-4">
-			<a href="/login?type=org"><img class="img-fluid rounded mx-auto d-block login-cards"
+			<a href="/login?type=org"><img class="img-fluid rounded mx-auto d-block login-cards card-size-login"
 					src="{{ url_for('static', filename='org.png') }}" /></a>
 		</div>
 	</div>
