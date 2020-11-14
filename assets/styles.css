@@ -20,8 +20,9 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #b9b9b9;
+  background-color: #232D3D;
   text-align: center;
+  color: #F4F5F1;
 }
 
 /*Inheritance*/
@@ -86,7 +87,7 @@ have a background size like that*/
 }
 
 .colorSchemeRed {
-  color: #EC3035
+  color: #b22222
 }
 
 .colorSchemeBrown {
@@ -127,4 +128,9 @@ have a background size like that*/
   border-color: #415470;
   background-color: #415470;
   color: #F4F5F1;
+}
+
+.img-size {
+  height: 200px;
+  width: 280px;
 }

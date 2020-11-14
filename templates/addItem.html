@@ -8,143 +8,147 @@
         <p class="lead" id=intro>Giving is the greatest act of grace.</p>
 	</div>
 </div>
-
-<div class = "pb-5">
-        <div class="row justify-content-center align-items-center">
-            <form>
-                <div>
-                    <h2>Item Details</h2>
-                </div>
-                <div class="form-row">
-                    <!--Name of Item-->
-                    <div class="col-md-6 mb-3">
-                        <label for="validationTooltip01">Name of Item</label>
-                        <input type="text" class="form-control" id="validationTooltip01"
-                            placeholder="eg. Calculus Textbook" required>
-                        <div class="valid-tooltip">Looks good!</div>
-                    </div>
-                    <!--Category of Item-->
-                    <div class="col-md-3 mb-3">
-                        <label for="validationTooltip02">Category</label>
-                        <select class="custom-select" id="validationTooltip02" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Books</option>
-                            <option>Clothes</option>
-                            <option>Toys</option>
-                            <option>Linens</option>
-                            <option>Other</option>
-                        </select>
-                        <script>
-                            $(document).ready(function () {
-                                $('#specify').hide();
-                                $('#validationTooltip02').on('change', function () {
-                                    if (this.value === 'Other') {
-                                        $('#specify').show();
-                                    } else {
-                                        $('#specify').hide();
-                                    }
-                                });
-                            });
-                        </script>
-                        <div class="invalid-tooltip">Please select a valid category.</div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label for="validationTooltip03">Condition</label>
-                        <select class="custom-select" id="validationTooltip03" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Heavily used</option>
-                            <option>Lightly used</option>
-                            <option>New</option>
-                        </select>
-                        <div class="invalid-tooltip">Please select a valid condition.</div>
-                    </div>
-                </div>
-                <!--IF USER CHOOSES OTHER, ASK HIM/HER TO SPECIFY-->
-                <!--TODO: Hide this from the user unless they choose "Other"-->
-                <div class="form-group" id="specify">
-                    <label for="validationTooltip04">Specify:</label>
-                    <input type="text" class="form-control" id="validationTooltip04"
-                        placeholder="What is your item's category?" required>
+<!--CARD START-->
+<div class="container pb-5 center-block">
+    <div class="card mb-3 bg-light">
+        <h5 class="card-header font-weight-bold text-center colorSchemeWhite bgColorSchemeDarkBlue mb-3">Donation Form</h5>
+        <div class="card-body">
+            <h5 class="text-muted text-left">Item Details</h5>
+            <!--Item Details Begin-->
+            <div class="form-row">
+                <!--Name of Item-->
+                <div class="col-md-6 mb-3">
+                    <label for="validationTooltip01">Name of Item</label>
+                    <input type="text" class="form-control" id="validationTooltip01"
+                        placeholder="eg. Calculus Textbook" required>
                     <div class="valid-tooltip">Looks good!</div>
                 </div>
-                <!--Item Description-->
-                <div class="form-group">
-                    <label for="validationTooltip05">Item Description</label>
-                    <textarea class="form-control" id="validationTooltip05" rows="3"
-                        placeholder="Enter a short description of your item." required></textarea>
+                <!--Category of Item-->
+                <div class="col-md-3 mb-3">
+                    <label for="validationTooltip02">Category</label>
+                    <select class="custom-select" id="validationTooltip02" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>Books</option>
+                        <option>Clothes</option>
+                        <option>Toys</option>
+                        <option>Linens</option>
+                        <option>Other</option>
+                    </select>
+                    <script>
+                        $(document).ready(function () {
+                            $('#specify').hide();
+                            $('#validationTooltip02').on('change', function () {
+                                if (this.value === 'Other') {
+                                    $('#specify').show();
+                                } else {
+                                    $('#specify').hide();
+                                }
+                            });
+                        });
+                    </script>
+                    <div class="invalid-tooltip">Please select a valid category.</div>
                 </div>
-                <!--Image Upload-->
-                <div class="form-group">
-                    <label for="validationTooltip06">Upload image(s) of your item</label>
-                    <input type="file" class="form-control-file" id="validationTooltip06">
-                    <hr />
+                <div class="col-md-3 mb-3">
+                    <label for="validationTooltip03">Condition</label>
+                    <select class="custom-select" id="validationTooltip03" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>Heavily used</option>
+                        <option>Lightly used</option>
+                        <option>New</option>
+                    </select>
+                    <div class="invalid-tooltip">Please select a valid condition.</div>
                 </div>
-                <h2>Organization & Pickup Details</h2>
-                <div class="form-row">
-                    <!--Select an Organization-->
-                    <div class="col-md-8 mb-3">
-                        <label for="validationTooltip07">Name of Organization</label>
-                        <select class="custom-select" id="validationTooltip07" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Red Crescent </option>
-                            <option>The Zayed Bin Sultan Al Nahyan Charitable and Humanitarian Foundation</option>
-                            <option>Dubai Cares</option>
-                            <option>Dar Al Ber Society</option>
-                            <option>Zayed Giving Initiative</option>
-                        </select>
-                        <div class="invalid-tooltip">Please select a valid organization.</div>
-                    </div>
-                    <!--Preferred Pickup Time-->
-                    <div class="col-md-4 mb-3">
-                        <label for="validationTooltip08">Preffered pickup time</label>
-                        <select class="custom-select" id="validationTooltip08" aria-describedby="timeHelp" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>Morning (8:00 AM - 11:00 AM)</option>
-                            <option>Afternoon (2:00 PM - 5:00 PM)</option>
-                            <option>Evening (7:00 PM - 9:00 PM)</option>
-                        </select>
-                        <small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
-                    </div>
+            </div>
+            <!--IF USER CHOOSES OTHER, ASK HIM/HER TO SPECIFY-->
+            <!--TODO: Hide this from the user unless they choose "Other"-->
+            <div class="form-group" id="specify">
+                <label for="validationTooltip04">Specify:</label>
+                <input type="text" class="form-control" id="validationTooltip04"
+                    placeholder="What is your item's category?" required>
+                <div class="valid-tooltip">Looks good!</div>
+            </div>
+            <!--Item Description-->
+            <div class="form-group">
+                <label for="validationTooltip05">Item Description</label>
+                <textarea class="form-control" id="validationTooltip05" rows="3"
+                    placeholder="Enter a short description of your item." required></textarea>
+            </div>
+            <!--Image Upload-->
+            <div class="form-group">
+                <label for="validationTooltip06">Upload image(s) of your item</label>
+                <input type="file" class="form-control-file" id="validationTooltip06">
+                <hr />
+            </div>
+            <!--Item Details End-->
+            <h5 class="text-muted text-left">Organization and Pickup Details</h5>
+            <!--Item Details Begin-->
+            <div class="form-row">
+                <!--Select an Organization-->
+                <div class="col-md-8 mb-3">
+                    <label for="validationTooltip07">Name of Organization</label>
+                    <select class="custom-select" id="validationTooltip07" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>Red Crescent </option>
+                        <option>The Zayed Bin Sultan Al Nahyan Charitable and Humanitarian Foundation</option>
+                        <option>Dubai Cares</option>
+                        <option>Dar Al Ber Society</option>
+                        <option>Zayed Giving Initiative</option>
+                    </select>
+                    <div class="invalid-tooltip">Please select a valid organization.</div>
                 </div>
-                <!-- Check box - T&Cs -->
-                <div class="form-row">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                        <label class="form-check-label" for="gridCheck">
-                            I have read and understood the <a href data-target="#termsconditions"
-                                data-toggle="modal">terms and conditions</a>.
-                        </label>
-                    </div>
+                <!--Preferred Pickup Time-->
+                <div class="col-md-4 mb-3">
+                    <label for="validationTooltip08">Preffered pickup time</label>
+                    <select class="custom-select" id="validationTooltip08" aria-describedby="timeHelp" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>Morning (8:00 AM - 11:00 AM)</option>
+                        <option>Afternoon (2:00 PM - 5:00 PM)</option>
+                        <option>Evening (7:00 PM - 9:00 PM)</option>
+                    </select>
+                    <small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
                 </div>
-                <!-- Terms and Conditions Modal -->
-                <div class="modal fade" id="termsconditions" tabindex="-1" role="dialog"
-                    aria-labelledby="termsconditions" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna
-                                mattis auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius
-                                mattis in non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut
-                                sem lorem, viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante.
-                                Praesent metus turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus
-                                neque.
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <!-- Check box - T&Cs -->
+            <div class="form-row">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                        I have read and understood the <a href data-target="#termsconditions"
+                            data-toggle="modal">terms and conditions</a>.
+                    </label>
                 </div>
-                <p><em>Note: Your chosen organization will get notified of your donation. They may either accept or
-                        reject it. Please monitor your dashboard for any updates.</em></p>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
+            <!--Item Details End-->
+            <p><em>Note: Your chosen organization will get notified of your donation. They may either accept or
+                reject it. Please monitor your dashboard for any updates.</em></p>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</div>
+<!--CARD END-->
+
+<!-- Terms and Conditions Modal -->
+<div class="modal fade" id="termsconditions" tabindex="-1" role="dialog"
+    aria-labelledby="termsconditions" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="termsconditions">Terms and Conditions</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in orci ut urna
+                mattis auctor. Proin porta justo vitae gravida auctor. Vivamus ut sapien at metus varius
+                mattis in non nibh. Proin feugiat fermentum quam vel luctus. In eu ullamcorper diam. Ut
+                sem lorem, viverra et est ac, convallis interdum arcu. Nullam tempus ultrices ante.
+                Praesent metus turpis, imperdiet vel venenatis ut, feugiat id ligula. Sed id risus
+                neque.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
