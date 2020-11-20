@@ -1,9 +1,10 @@
 # DataHandler
+from werkzeug.utils import redirect
 from DataHandler import User, UserException
 
 # Library imports
 import os
-from flask import Flask, session, render_template, request, abort
+from flask import Flask, session, render_template, request, abort, redirect
 app = Flask(__name__, static_url_path='/assets', static_folder='assets')
 app.secret_key = os.urandom(64)
 
@@ -19,7 +20,7 @@ def login():
 			if request.form.get('type') == 'user':
 				try:
 					data = User.login(request.form)
-					session['isLoggedIn'] = True
+					session['isLoggedIn'] = data
 					return 'Success'
 				except UserException as ue:
 					# TODO: Add flask flashing
@@ -74,7 +75,11 @@ def orgProfile():
 
 @app.route('/userProfile', methods=['GET'])
 def userProfile():
-	return render_template('userProfile.html')
+	if 'isLoggedIn' in session:
+		return render_template('userProfile.html', userData=session['isLoggedIn'])
+	else:
+		# TODO: flask flashing
+		return redirect('/login')
 
 # The user information page from organization's perspective
 @app.route('/viewUser', methods=['GET'])

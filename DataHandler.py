@@ -84,8 +84,9 @@ class User:
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
 				cur.execute("SELECT * FROM users WHERE email=? AND password=?", (form['email'], hash))
-				if cur.fetchone() is not None:
-					pass # TODO: return data?
+				data = cur.fetchone()
+				if data is not None:
+					return data
 				else:
 					raise UserException("Invalid email or password. Please try again.")
 			except UserException as e:

@@ -4,7 +4,7 @@
 {% block content %}
 <div class="jumbotron jumbotron-fluid bgColorSchemeBrown">
 	<div class="container">
-		<h2 class="display-1">Hello, Elon!</h2>
+		<h2 class="display-1">Hello, {{userData[1]}}!</h2>
         <p class="lead" id=intro>This is your profile page. Organizations can view this page.</p>
 	</div>
 </div>
@@ -18,17 +18,17 @@
                 <!--First Name-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">First Name</label>
-                    <p>Elon</p>
+                    <p>{{userData[1]}}</p>
                 </div>
                 <!--Last Name-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">Last Name</label>
-                    <p>Musk</p>
+                    <p>{{userData[2]}}</p>
                 </div>
                 <!--Birthdate-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">Date of Birth</label>
-                    <p>6/28/1971</p>
+                    <p>{{userData[3]}}</p>
                 </div>
             </div>
             <h5 class="text-muted text-left pt-3">Contact Information</h5>
@@ -36,11 +36,11 @@
             <div class="row">
                 <div class="col">
                     <label class="font-weight-bold text-muted">Phone Number</label>
-                    <p>059765467890865</p>
+                    <p>{{userData[9]}}</p>
                 </div>
                 <div class="col">
                     <label class="font-weight-bold text-muted">Email</label>
-                    <p>elonMuskIsBoss@tesla.com</p>
+                    <p>{{userData[10]}}</p>
                 </div>
             </div>
             <hr />
@@ -48,17 +48,17 @@
                 <!--City-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">City</label>
-                    <p>Downtown Dubai</p>
+                    <p>{{userData[4]}}</p>
                 </div>
                 <!--Emirate-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">Emirate</label>
-                    <p>Dubai</p>
+                    <p>{{userData[5]}}</p>
                 </div>
                 <!--PO BOX-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">PO BOX</label>
-                    <p>12345</p>
+                    <p>{{userData[6]}}</p>
                 </div>
             </div>
             <!--Address Line 1-->
@@ -67,7 +67,7 @@
                     <label class ="font-weight-bold text-muted">Address #1</label>
                 </div>
                 <div class="col-md-9">
-                    <p>1 Sheikh Mohammed bin Rashid Blvd</p>
+                    <p>{{userData[7]}}</p>
                 </div>
             </div>
             <!--Address Line 1-->
@@ -76,7 +76,7 @@
                     <label class ="font-weight-bold text-muted">Address #2</label>
                 </div>
                 <div class="col-md-9">
-                    <p>Burj Khalifa</p>
+                    <p>{{userData[8]}}</p>
                 </div>
             </div>
             <div class="row">
