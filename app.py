@@ -1,7 +1,9 @@
+# DataHandler
+from DataHandler import User
+
 # Library imports
 from flask import Flask, render_template, request
 app = Flask(__name__, static_url_path='/assets', static_folder='assets')
-
 
 # Flask routes
 @app.route('/', methods=['GET'])
