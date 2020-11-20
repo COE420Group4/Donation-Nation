@@ -15,7 +15,8 @@
 	<div class="card mb-3 bg-light">
 		<div class="card-header font-weight-bold text-center colorSchemeWhite bgColorSchemeDarkBlue mb-3">Registration Form</div>
 		<div class="card-body">
-			<form>
+			<form method="POST" action="/register">
+				<input type="hidden" name="type" value="user" />
 				<h5>User Information</h5>
 				<p><em>We will never share this information with anyone!</em></p>
 				<hr />
@@ -32,7 +33,6 @@
 						<input type="text" class="form-control" id="validationTooltip02" placeholder="Smith" name="lastName" required>
 						<div class="valid-tooltip">Looks good!</div>
 					</div>
-	
 				</div>
 				<!--Birth date-->
 				<div class="form-group">
