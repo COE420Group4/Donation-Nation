@@ -2,45 +2,45 @@
 {% block title %}Organizations{% endblock %}
 
 {% block content %}
-<div class="container padded-top">
-	<div class="row align-items-center justify-content-center">
-		<div class="col m-2">
-			<p class="display-4 mx-auto text-center">List of Organizations</p>
-			<hr />
-		</div>
+<div class="jumbotron jumbotron-fluid bgColorSchemeRed colorSchemeWhite">
+	<div class="container">
+		<h2 class="display-1">List of Organizations</h2>
+        <p class="lead" id=intro>Organizations you can donate to.</p>
 	</div>
+</div>
+<div class="container pt-5 mb-5">
 	<div class="row align-items-center justify-content-center">
 		<div class="card-deck padded-top">
 			<div class="card border-dark mb-3 text-center org-cards">
-				<img class="card-img-top"
+				<img class="card-img-top img-size"
 					src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Flag_of_the_Red_Crescent.svg/800px-Flag_of_the_Red_Crescent.svg.png">
 					<hr />
 				<div class="card-body">
 					<h5 class="card-title">UAE Red Crescent</h5>
-					<a class="btn btn-primary" href="#">View Profile</a>
+					<a class="btn btn-primary mt-3" href="/viewOrg">View Profile</a>
 				</div>
 				<div class="card-footer">
 					<p class="card-text"><small class="text-muted">Member since June, 2019</small></p>
 				</div>
 			</div>
 			<div class="card border-dark mb-3 text-center org-cards">
-				<img class="card-img-top" src="https://www.globalgiving.org/share/dfltpict.jpg?t=1425052995000">
+				<img class="card-img-top img-size" src="https://www.globalgiving.org/share/dfltpict.jpg?t=1425052995000">
 				<hr />
 				<div class="card-body">
 					<h5 class="card-title">Global Giving</h5>
-					<a class="btn btn-primary" href="#">View Profile</a>
+					<a class="btn btn-primary mt-3" href="#">View Profile</a>
 				</div>
 				<div class="card-footer">
 					<p class="card-text"><small class="text-muted">Member since June, 2019</small></p>
 				</div>
 			</div>
 			<div class="card border-dark mb-3 text-center org-cards">
-				<img class="card-img-top"
+				<img class="card-img-top img-size"
 					src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ18h1_UAcJl5YUl3rjgQmLby7gV8Hl3joTEg&usqp=CAU">
 					<hr />
 				<div class="card-body">
 					<h5 class="card-title">Charities Aid Foundation</h5>
-					<a class="btn btn-primary" href="#">View Profile</a>
+					<a class="btn btn-primary mt-3" href="#">View Profile</a>
 				</div>
 				<div class="card-footer">
 					<p class="card-text"><small class="text-muted">Member since June, 2019</small></p>
@@ -48,5 +48,6 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 {% endblock %}
