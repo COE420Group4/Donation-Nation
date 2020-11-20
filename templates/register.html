@@ -23,13 +23,13 @@
 					<!-- First Name -->
 					<div class="col-md-6 mb-3">
 						<label for="validationTooltip01">First name</label>
-						<input type="text" class="form-control" id="validationTooltip01" placeholder="John" required>
+						<input type="text" class="form-control" id="validationTooltip01" placeholder="John" name="firstName" required>
 						<div class="valid-tooltip">Looks good!</div>
 					</div>
 					<!-- Last Name -->
 					<div class="col-md-6 mb-3">
 						<label for="validationTooltip02">Last name</label>
-						<input type="text" class="form-control" id="validationTooltip02" placeholder="Smith" required>
+						<input type="text" class="form-control" id="validationTooltip02" placeholder="Smith" name="lastName" required>
 						<div class="valid-tooltip">Looks good!</div>
 					</div>
 	
@@ -37,7 +37,7 @@
 				<!--Birth date-->
 				<div class="form-group">
 					<label for="Birthdate">Date of Birth</label>
-					<input type="date" class="form-control" id="exampleFormControlInput1" placeholder="mm/dd/yyyy">
+					<input type="date" class="form-control" id="exampleFormControlInput1" placeholder="mm/dd/yyyy" name="dob" required>
 				</div>
 				<!-- Check box - confirm I am 18+ -->
 				<div class="form-group">
@@ -55,13 +55,13 @@
 					<!-- City -->
 					<div class="col-md-4 mb-3">
 						<label for="validationTooltip03">City</label>
-						<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland" required>
+						<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland" name="city" required>
 						<div class="invalid-tooltip">Please provide a valid city.</div>
 					</div>
 					<!--Emirate Drop-Down-->
 					<div class="col-md-4 mb-3">
 						<label for="validationTooltip04">Emirate</label>
-						<select class="custom-select" id="validationTooltip04" required>
+						<select class="custom-select" id="validationTooltip04" name="emirate" required>
 							<option selected disabled value="">Choose...</option>
 							<option>Abu Dhabi</option>
 							<option>Dubai</option>
@@ -77,41 +77,40 @@
 					<!--PO BOX-->
 					<div class="col-md-4 mb-3">
 						<label for="PO-BOX">PO Box</label>
-						<input type="text" class="form-control" id="PO-BOX" placeholder="xxxxx">
+						<input type="text" class="form-control" id="PO-BOX" placeholder="xxxxx" name="POBox" required>
 					</div>
 				</div>
 				<!--2 complete address lines-->
 				<div class="form-group">
 					<label for="Address1">Address #1</label>
-					<input type="text" class="form-control" placeholder="Street 1, Building 3, Apartment 55" required>
+					<input type="text" class="form-control" placeholder="Street 1, Building 3, Apartment 55" name="address1" required>
 				</div>
 				<div class="form-group">
 					<label for="Address2">Address #2</label>
-					<input type="text" class="form-control" placeholder="Behind AUS" required>
+					<input type="text" class="form-control" placeholder="Behind AUS" name="address2" required>
 				</div>
 	
 				<!-- Phone number -->
 				<div class="form-group">
 					<label for="validationTooltip05">Phone Number</label>
-					<input type="tel" class="form-control" id="validationTooltip05" placeholder="05x xxxxxxx" required>
+					<input type="tel" class="form-control" id="validationTooltip05" placeholder="05x xxxxxxx" name="phone" required>
 				</div>
 				<!-- Email -->
 				<div class="form-group">
 					<label for="validationTooltip06">Email</label>
-					<input type="email" class="form-control" id="validationTooltip06" placeholder="johnsmith@email.com"
-						required>
+					<input type="email" class="form-control" id="validationTooltip06" placeholder="johnsmith@email.com" name="email" required>
 				</div>
 				<!--Password & Confirm Password-->
 				<div class="form-row">
 					<!--Password-->
 					<div class="col-md-6 mb-3">
 						<label for="validationTooltip07">Password</label>
-						<input type="password" class="form-control" id="validationTooltip07" required>
+						<input type="password" class="form-control" id="validationTooltip07" name="password" required>
 					</div>
 					<!--Confrim Password-->
 					<div class="col-md-6 mb-3">
 						<label for="validationTooltip08">Confirm Password</label>
-						<input type="password" class="form-control" id="validationTooltip08" required>
+						<input type="password" class="form-control" id="validationTooltip08" name="confirmPassword" required>
 					</div>
 				</div>
 				<!-- Check box - terms and conditions -->
@@ -171,15 +170,14 @@
 				<hr />
 				<div class="form-group">
 					<label for="validationTooltip01">Organization Name</label>
-					<input type="text" class="form-control" id="validationTooltip01" placeholder="Charity Organization"
-						required>
+					<input type="text" class="form-control" id="validationTooltip01" placeholder="Charity Organization" name="name" required>
 					<div class="valid-tooltip">Looks good!</div>
 				</div>
 				<!-- Registration number-->
 				<div class="form-group">
 					<label for="validationTooltip02">Charity License Number</label>
 					<input type="text" class="form-control" id="validationTooltip01" aria-describedby="regNumHelp"
-						placeholder="123456789" required>
+						placeholder="123456789" name="registrationNumber" required>
 					<small id="regNumHelp" class="form-text text-muted">
 						This number is the official government-issued charity license number for your organization.
 					</small>
@@ -192,14 +190,13 @@
 					<!-- City -->
 					<div class="col-md-4 mb-3">
 						<label for="validationTooltip03">City</label>
-						<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland"
-							required>
+						<input type="text" class="form-control" id="validationTooltip03" placeholder="Neverland" name="city" required>
 						<div class="invalid-tooltip">Please provide a valid city.</div>
 					</div>
 					<!--Emirate Drop-Down-->
 					<div class="col-md-4 mb-3">
 						<label for="validationTooltip04">Emirate</label>
-						<select class="custom-select" id="validationTooltip04" required>
+						<select class="custom-select" id="validationTooltip04" name="emirate" required>
 							<option selected disabled value="">Choose...</option>
 							<option>Abu Dhabi</option>
 							<option>Dubai</option>
@@ -215,41 +212,40 @@
 					<!--PO BOX-->
 					<div class="col-md-4 mb-3">
 						<label for="PO-BOX">PO Box</label>
-						<input type="text" class="form-control" id="PO-BOX" placeholder="xxxxx">
+						<input type="text" class="form-control" id="PO-BOX" placeholder="xxxxx" name="POBox" required>
 					</div>
 				</div>
 				<!--2 complete address lines-->
 				<div class="form-group">
 					<label for="Address1">Address #1</label>
-					<input type="text" class="form-control" placeholder="Street 1, Building 3, Apartment 55" required>
+					<input type="text" class="form-control" placeholder="Street 1, Building 3, Apartment 55" name="address1" required>
 				</div>
 				<div class="form-group">
 					<label for="Address2">Address #2</label>
-					<input type="text" class="form-control" placeholder="Behind AUS" required>
+					<input type="text" class="form-control" placeholder="Behind AUS" name="address2" required>
 				</div>
 
 				<!-- Phone number -->
 				<div class="form-group">
 					<label for="validationTooltip05">Phone Number</label>
-					<input type="tel" class="form-control" id="validationTooltip05" placeholder="05x xxxxxxx" required>
+					<input type="tel" class="form-control" id="validationTooltip05" placeholder="05x xxxxxxx" name="phone" required>
 				</div>
 				<!-- Email -->
 				<div class="form-group">
 					<label for="validationTooltip06">Email</label>
-					<input type="email" class="form-control" id="validationTooltip06" placeholder="johnsmith@email.com"
-						required>
+					<input type="email" class="form-control" id="validationTooltip06" placeholder="johnsmith@email.com" name="email" required>
 				</div>
 				<!--Password & Confirm Password-->
 				<div class="form-row">
 					<!--Password-->
 					<div class="col-md-6 mb-3">
 						<label for="validationTooltip07">Password</label>
-						<input type="password" class="form-control" id="validationTooltip07" required>
+						<input type="password" class="form-control" id="validationTooltip07" name="password" required>
 					</div>
 					<!--Confrim Password-->
 					<div class="col-md-6 mb-3">
 						<label for="validationTooltip08">Confirm Password</label>
-						<input type="password" class="form-control" id="validationTooltip08" required>
+						<input type="password" class="form-control" id="validationTooltip08" name="confirmPassword" required>
 					</div>
 				</div>
 				<!-- Check box - terms and conditions -->
