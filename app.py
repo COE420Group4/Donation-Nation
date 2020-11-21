@@ -82,9 +82,16 @@ def userProfile():
 		return redirect('/login')
 
 # The user information page from organization's perspective
-@app.route('/viewUser', methods=['GET'])
-def viewUser():
-	return render_template('viewUser.html')
+# * This is an example of how we pass variables in the URL path
+@app.route('/user/<uuid>', methods=['GET'])
+def viewUser(uuid):
+	# TODO: only organizations can see this page
+	# Fetch user info
+	user_info = User.fetchByUUID(uuid)
+	if user_info is not False:
+		return render_template('viewUser.html', userData=user_info)
+	else:
+		abort(404)
 
 #The organization information page from user's perspective
 @app.route('/viewOrg', methods=['GET'])

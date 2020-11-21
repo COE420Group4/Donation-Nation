@@ -2,8 +2,10 @@
 from db import DB
 import re
 import hashlib
+import uuid
 
 sql = DB()
+sql.init_db()
 
 # Checker function to check all form variables
 # check_form(form, ['email', 'password'])
@@ -54,9 +56,10 @@ class User:
 				raise UserException('Both password fields must be the same.')
 			else:
 				hash = hashlib.sha256(form['password'].encode('utf-8')).hexdigest()
+				user_uuid = str(uuid.uuid4())
 			try:
 				dbcon = sql.connect()
-				dbcon.execute("INSERT INTO users (first_name, last_name, dob, city, emirate, po_box, address_1, address_2, phone, email, password, isAdmin) VALUES (?,?,?,?,?,?,?,?,?,?,?,0)", (form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], form['email'], hash))
+				dbcon.execute("INSERT INTO users (UUID, first_name, last_name, dob, city, emirate, po_box, address_1, address_2, phone, email, password, isAdmin) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0)", (user_uuid,form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], form['email'], hash))
 				dbcon.commit()
 				dbcon.close()
 			except Exception as e:
@@ -74,8 +77,22 @@ class User:
 		except Exception as e:
 			pass
 
-	def fetchByID():
-		pass
+	# Get user information by supplying their UUID
+	def fetchByUUID(user_uuid):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT * FROM users WHERE UUID=?", (user_uuid,))
+			res = cur.fetchone()
+			cur.close()
+			dbcon.close()
+			if res is not None:
+				return res
+			else:
+				return False
+		except Exception as e:
+			print(e)
+			return False
 
 	def login(form):
 		if check_form(form, ['email', 'password']):
