@@ -6,7 +6,7 @@ You need **Python 3** to get started.
 To install the libraries used in the project, run the following command:
 
 ```bash
-pip install flask sqlite3 simplejson hashlib
+pip install flask sqlite3 hashlib
 ```
 
 ## Routes
@@ -43,15 +43,15 @@ Routes marked with (!) are visited by the user
 
 ## Functional Requirements
 
-- [ ] **R1: Login to system**
+- [x] **R1: Login to system**
   - [x] Frontend (NEEDS BEAUTIFYING)
-  - [ ] Database setup
-  - [ ] Verifying credentials + session setup
+  - [x] Database setup
+  - [x] Verifying credentials + session setup
 - [ ] **R2: User Sign up**
   - [x] Frontend
-  - [ ] Database setup
+  - [x] Database setup
   - [ ] Verifying information
-  - [ ] Insertion into database
+  - [x] Insertion into database
   - [ ] Sending verification email
 - [ ] **R3: Organization Request access**
   - [x] Frontend
@@ -70,21 +70,21 @@ Routes marked with (!) are visited by the user
   - [ ] Verifying information
   - [ ] Inserting item into db
   - [ ] Sending notification email
-- [ ] **R6: View donor info**
-  - [ ] Frontend
-  - [ ] Database setup
-  - [ ] Fetching info from database
+- [x] **R6: View donor info**
+  - [x] Frontend
+  - [x] Database setup
+  - [x] Fetching info from database
 - [ ] **R7: Remove Item**
   - [ ] Frontend
   - [ ] Verifying information
   - [ ] Logical checks
   - [ ] Removing item from db
 - [ ] **R8: List Donated items**
-  - [ ] Frontend
+  - [x] Frontend
   - [ ] Database setup
   - [ ] Fetching info from database
 - [ ] **R9: List Offered Items**
-  - [ ] Frontend
+  - [x] Frontend
   - [ ] Database setup
   - [ ] Fetching info from database
 - [ ] **R10: Approve Donated Item**
