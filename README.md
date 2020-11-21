@@ -138,12 +138,12 @@ Routes marked with (!) are visited by the user
 
 - [x] Setup files
 - [x] Build flask skeleton
-- [ ] Setup flask templates
+- [x] Setup flask templates
 - [x] Finish planning routes
 - [ ] Finish database structure
 - [ ] Finish db.py
 - [ ] Finish all the frontend
-- [ ] Finish login/signup for users
+- [x] Finish login/signup for users
 - [ ] Finish organization signup
 - [ ] Finish email sending code
 - [ ] Finish the listing functional requirements
