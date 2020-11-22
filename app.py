@@ -20,7 +20,7 @@ def login():
 				try:
 					data = User.login(request.form)
 					session['isLoggedIn'] = data
-					return 'Success'
+					return redirect('/dashboard')
 				except UserException as ue:
 					flash(ue.reason, 'error')
 					return redirect('/login?type=user')
@@ -57,6 +57,10 @@ def register():
 			abort(400)
 	else:
 		return render_template('register.html', type=request.args.get('type'))
+
+@app.route('/dashboard')
+def dashboard():
+	return render_template('dashboard.html', userData=session['isLoggedIn'])
 
 @app.route('/orgs', methods=['GET'])
 def orgs():

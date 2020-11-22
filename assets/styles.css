@@ -150,3 +150,9 @@ have a background size like that*/
   height: 200px;
   width: 280px;
 }
+
+.img-thumbnail {
+  max-width: 75%;
+  border: none;
+  background-color: #F4F5F1 ;
+}
