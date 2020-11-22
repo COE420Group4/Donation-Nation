@@ -39,7 +39,7 @@ def is_all_numeric(form, paramters):
 	return True
 
 def is_email(form, parameter):
-	regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+	regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
 	if re.search(regex, form[parameter]):
 		pass
 	else:
