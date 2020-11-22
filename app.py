@@ -88,7 +88,7 @@ def userProfile():
 		return render_template('userProfile.html', userData=session['isLoggedIn'])
 	else:
 		flash('You are not logged in yet! Please login then try again', 'error')
-		return redirect('/login')
+		return redirect('/login?type=user')
 
 # The user information page from organization's perspective
 # * This is an example of how we pass variables in the URL path
@@ -107,7 +107,6 @@ def viewUser(uuid):
 def verifyUser(verify_uuid):
 	try:
 		User.verify(verify_uuid)
-
 		# If no exceptions happen, redirect them to the login page with success
 		flash('You have successfully verified your email. You may now log in.', 'success')
 		return  redirect('/login?type=user')

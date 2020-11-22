@@ -1,11 +1,43 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 
+<!--When the user is logged in-->
+{% block navbar %}
+<li class="nav-item active">
+	<a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/dashboard"><i class="fas fa-book-open"></i> Dashboard</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/userProfile"><i class="far fa-user"></i> My Profile</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/addItem"><i class="fas fa-hand-holding-usd"></i> Donate</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/orgs"><i class="far fa-building"></i> Organizations</a>
+</li>
+{% endblock %}
+
+<!--When the user is not logged in-->
+{% block navbar_nologin %}
+<li class="nav-item active">
+	<a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/orgs"><i class="far fa-building"></i> Organizations</a>
+</li>
+{% endblock %}
+
 {% block content %}
 <!-- * Jumbotron * -->
 <div class="jumbotron jumbotron-fluid JumboHeaderHome">
 	<div class="container">
-		<h2 class="display-1">Give Back</h2>
+		<h2 class="display-1">Donation Nation</h2>
 		<p class="lead" id=intro>Give back to your community. Donate today!</p>
 	</div>
 </div>

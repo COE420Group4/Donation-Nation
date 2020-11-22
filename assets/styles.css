@@ -151,7 +151,7 @@ have a background size like that*/
   width: 280px;
 }
 
-.img-thumbnail {
+.img-thumbnail-dashboard {
   max-width: 75%;
   border: none;
   background-color: #F4F5F1 ;

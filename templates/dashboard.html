@@ -1,6 +1,27 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard{% endblock %}
 
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="/dashboard"><i class="fas fa-book-open"></i> Dashboard</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/userProfile"><i class="far fa-user"></i> My Profile</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/addItem"><i class="fas fa-hand-holding-usd"></i> Donate</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/orgs"><i class="far fa-building"></i> Organizations</a>
+</li>
+{% endblock %}
+
 {% block content %}
 <div class="jumbotron jumbotron-fluid colorSchemeDarkBlue bgColorSchemePink">
     <div class="container">
@@ -12,7 +33,7 @@
     <div class="row mb-3">
         <!--View Profile-->
         <div class="col-md-2">
-            <img src="/assets/viewProfile.png" class="img-thumbnail">
+            <img src="/assets/viewProfile.png" class="img-thumbnail-dashboard">
         </div>
         <div class="col-md-4">
             <h3>View Your Profile</h3>
@@ -22,7 +43,7 @@
 
         <!--View Items-->
         <div class="col-md-2">
-            <img src="/assets/viewItems.png" class="img-thumbnail">
+            <img src="/assets/viewItems.png" class="img-thumbnail-dashboard">
         </div>
         <div class="col-md-4">
             <h3>View Your Items</h3>
@@ -34,7 +55,7 @@
     <div class="row mb-3">
             <!--Donate Item-->
         <div class="col-md-2">
-            <img src="/assets/donateItem.png" class="img-thumbnail">
+            <img src="/assets/donateItem.png" class="img-thumbnail-dashboard">
         </div>
         <div class="col-md-4">
             <h3>Donate an Item</h3>
@@ -42,7 +63,7 @@
             <a class="btn btn-primary" href="/addItem">Donate Item</a>
         </div>
         <div class="col-md-2">
-            <img src="/assets/viewOrgs.png" class="img-thumbnail">
+            <img src="/assets/viewOrgs.png" class="img-thumbnail-dashboard">
         </div>
         <!--View Organizations-->
         <div class="col-md-4">
