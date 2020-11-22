@@ -30,7 +30,39 @@
 </head>
 
 <body>
-	<!--TODO: NAVBAR-->
+	{% if  session['isLoggedIn'] %}
+	<nav class="animate__animated animate_fadeInDown navbar navbar-dark shadow navbar-expand flex-column flex-md-row bd-navbar" id="navbar">
+		<div class="container">
+			<a class="navbar-brand" href="/" style="outline: none; color: #F4F5F1;">
+				<img src="{{ url_for('static', filename='transparentLogo.png') }}" width="30" height="30"
+					class="d-inline-block align-top" alt="" loading="lazy">
+				Donation Nation</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav mr-auto">
+				{% block navbar %}
+				<li class="nav-item">
+					<a class="nav-link" href="/">Dashboard</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/userProfile"><i class="far fa-user"></i> My Profile</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
+				</li>
+				{% endblock %}
+			</ul>
+			<form class="form-inline">
+				<a class="btn btn-secondary my-2 my-sm-0 ml-1" id="logoutButton" href="/logout">
+					<i class="fas fa-sign-out-alt"></i>
+					Logout
+				</a>
+			</form>
+		</div>
+	</nav>
+	{% else %}
 	<nav class="animate__animated animate_fadeInDown navbar navbar-dark shadow" id="navbar">
 		<div class="container">
 			<a class="navbar-brand" href="/" style="outline: none; color: #F4F5F1;">
@@ -50,6 +82,8 @@
 			</form>
 		</div>
 	</nav>
+	{% endif %}
+	<!--Flashing errors-->
 	<div id="main" class="pb-5">
 		{% with errors = get_flashed_messages(category_filter=["error"]) %}
 			{% if errors %}
