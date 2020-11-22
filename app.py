@@ -1,10 +1,9 @@
 # DataHandler
-from werkzeug.utils import redirect
 from DataHandler import User, UserException
 
 # Library imports
 import os
-from flask import Flask, session, render_template, request, abort, redirect
+from flask import Flask, session, render_template, request, abort, redirect, flash
 app = Flask(__name__, static_url_path='/assets', static_folder='assets')
 app.secret_key = os.urandom(64)
 
@@ -23,9 +22,8 @@ def login():
 					session['isLoggedIn'] = data
 					return 'Success'
 				except UserException as ue:
-					# TODO: Add flask flashing
-					print(ue)
-					abort(400) # ! CHANGE ME
+					flash(ue.reason, 'error')
+					return redirect('/login?type=user')
 			elif request.form.get('type') == 'org':
 				abort(404)
 			else:
@@ -43,9 +41,8 @@ def register():
 				User.insert(request.form)
 				return 'Success'
 			except UserException as ue:
-				# TODO: Add flask flashing
-				print(ue)
-				abort(400) # ! CHANGE ME
+				flash(ue.reason, 'error')
+				return redirect('/register?type=user')
 		elif request.form.get('type') == 'org':
 			pass
 		else:
@@ -93,6 +90,21 @@ def viewUser(uuid):
 	else:
 		abort(404)
 
+# Verifying users' emails
+@app.route('/verify/<verify_uuid>', methods=['GET'])
+def verifyUser(verify_uuid):
+	try:
+		User.verify(verify_uuid)
+
+		# If no exceptions happen, redirect them to the login page with success
+		redirect('/login?type=user')
+	except UserException:
+		# This means we didn't find the verification
+		abort(404)
+	except Exception:
+		# This means an error happened, most probably something SQL
+		abort(500)
+
 #The organization information page from user's perspective
 @app.route('/viewOrg', methods=['GET'])
 def viewOrg():
@@ -103,3 +115,4 @@ def viewOrg():
 def page_not_found(e):
 	return render_template('404.html'), 404
 
+# TODO: ADD MORE ERROR HANDLERS

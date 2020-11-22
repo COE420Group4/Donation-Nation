@@ -36,9 +36,9 @@ CREATE TABLE IF NOT EXISTS organizations (
 
 -- For email verification. It is in its own table so we can delete the rows after the user verifies their email.
 CREATE TABLE IF NOT EXISTS verifications (
-	user_id INTEGER PRIMARY KEY,
+	user_uuid TEXT PRIMARY KEY,
 	verification_uuid TEXT UNIQUE NOT NULL,
-	FOREIGN KEY (user_id) REFERENCES users (id)
+	FOREIGN KEY (user_uuid) REFERENCES users (UUID)
 );
 
 CREATE TABLE IF NOT EXISTS items (
