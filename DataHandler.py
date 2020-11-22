@@ -44,13 +44,18 @@ def is_email(form, parameter):
 		raise UserException(f'{parameter.capitalize()} must be a valid email.')
 
 class User:
-	def insert(form):
+	def __init__(self):
+		pass
+
+	def insert(self, form):
 		# Check that all information is here
 		if check_form(form, ['firstName', 'lastName', 'dob', 'city', 'emirate', 'POBox', 'address1', 'address2', 'phone', 'email', 'password', 'confirmPassword']):
 			is_all_alpha(form, ['firstName', 'lastName', 'city', 'emirate'])
 			is_all_alnum(form, ['POBox'])
 			is_all_numeric(form, ['phone'])
 			is_email(form, 'email')
+			self.check_phone_exists(form['phone'])
+			self.check_email_exists(form['phone'])
 			hash = ''
 			if form['password'] != form['confirmPassword']:
 				raise UserException('Both password fields must be the same.')
@@ -68,17 +73,44 @@ class User:
 		else:
 			raise UserException("Invalid or missing information!")
 
-	# TODO: later
-	def check_phone_exists(value):
+	def check_phone_exists(self, value):
 		try:
 			dbcon = sql.connect()
-			dbcon.execute("SELECT id FROM users WHERE phone=?", (value))
-			dbcon.close()
+			cur = dbcon.cursor()
+			cur.execute("SELECT id FROM users WHERE phone=?", (value))
+			if cur.fetchone() is not None:
+				cur.close()
+				dbcon.close()
+				raise UserException("A user with that phone number already exists.")
+			else:
+				cur.close()
+				dbcon.close()
+		except UserException as e:
+			raise e
 		except Exception as e:
-			pass
+			print(e)
+			raise UserException("Something went wrong. Contact an admin.")
+
+	def check_email_exists(self, value):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT id FROM users WHERE email=?", (value))
+			if cur.fetchone() is not None:
+				cur.close()
+				dbcon.close()
+				raise UserException("A user with that email already exists.")
+			else:
+				cur.close()
+				dbcon.close()
+		except UserException as e:
+			raise e
+		except Exception as e:
+			print(e)
+			raise UserException("Something went wrong. Contact an admin.")
 
 	# Get user information by supplying their UUID
-	def fetchByUUID(user_uuid):
+	def fetchByUUID(self, user_uuid):
 		try:
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
@@ -94,7 +126,7 @@ class User:
 			print(e)
 			return False
 
-	def login(form):
+	def login(self, form):
 		if check_form(form, ['email', 'password']):
 			hash = hashlib.sha256(form['password'].encode('utf-8')).hexdigest()
 			try:
@@ -111,6 +143,9 @@ class User:
 			except Exception as e:
 				print(e)
 				raise UserException("Something went wrong. Contact an admin.")
+
+	def verify(self, verify_uuid):
+		pass
 
 class UserException(Exception):
 	def __init__(self, message):
