@@ -16,55 +16,30 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Org. Name</th>
+						<th scope="col">Status</th>
 						<th scope="col">License No.</th>
 						<th scope="col">City</th>
 						<th scope="col">PO. Box</th>
 						<th scope="col">Email</th>
 						<th scope="col">Phone No.</th>
-						<th scope="col">Request Date</th>
 						<th scope="col">View Info</th>
 						<th scope="col">Approve?</th>
 					</tr>
 				</thead>
+				{%- for org in orgData %}
 				<tbody>
-					<th scope="row">1</th>
-					<td>Red Cross</td>
-					<td>1234-666-11231</td>
-					<td>Sharjah</td>
-					<td>58172</td>
-					<td><a href="mailto:contact@redcross.org">contact@redcross.org</a></td>
-					<td>0501234567</td>
-					<td>20/5/2020</td>
-					<td><a href="#">View</a></td>
-					<td class="text-center"><button class="btn btn-success text-white m-1">✓</button><button
-							class="btn btn-danger text-white m-1">✗</button></td>
+					<th scope="row">{{org[0]}}</th>
+					<td>{{org[2]}}</td>
+					<td>{% if org[3] == 2 %}Verified{% elif org[3] == 1 %}Awaiting Verification{% else %}Unverified Email{% endif %}</td>
+					<td>{{org[5]}}</td>
+					<td>{{org[6]}}</td>
+					<td>{{org[8]}}</td>
+					<td><a href="mailto:{{org[12]}}">{{org[12]}}</a></td>
+					<td>{{org[10]}}</td>
+					<td><a href="/org/{{org[1]}}">View</a></td>
+					<td class="text-center"><a class="btn btn-success text-white m-1">✓</a><a class="btn btn-danger text-white m-1">✗</a></td>
 				</tbody>
-				<tbody>
-					<th scope="row">2</th>
-					<td>Red Cross</td>
-					<td>1234-666-11231</td>
-					<td>Sharjah</td>
-					<td>58172</td>
-					<td><a href="mailto:contact@redcross.org">contact@redcross.org</a></td>
-					<td>0501234567</td>
-					<td>13/8/2020</td>
-					<td><a href="#">View</a></td>
-					<td class="text-center"><button class="btn btn-success text-white m-1">✓</button><button
-							class="btn btn-danger text-white m-1">✗</button></td>
-				</tbody>
-				<tbody>
-					<th scope="row">3</th>
-					<td>Red Cross</td>
-					<td>1234-666-11231</td>
-					<td>Sharjah</td>
-					<td>58172</td>
-					<td><a href="mailto:contact@redcross.org">contact@redcross.org</a></td>
-					<td>0501234567</td>
-					<td>5/11/2020</td>
-					<td><a href="#">View</a></td>
-					<td class="text-center"><button class="btn btn-success text-white m-1">✓</button><button
-							class="btn btn-danger text-white m-1">✗</button></td>
-				</tbody>
+				{% endfor -%}
 			</table>
 		</div>
 	</div>

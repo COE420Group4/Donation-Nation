@@ -1,5 +1,5 @@
 # DataHandler
-from DataHandler import User, UserException
+from DataHandler import OrgException, Organization, User, UserException
 
 # Library imports
 import os
@@ -20,12 +20,19 @@ def login():
 				try:
 					data = User.login(request.form)
 					session['isLoggedIn'] = data
-					return redirect('/dashboard')
+					session['type'] = 'user'
+					return 'Success'
 				except UserException as ue:
 					flash(ue.reason, 'error')
 					return redirect('/login?type=user')
 			elif request.form.get('type') == 'org':
-				abort(404)
+				try:
+					data = Organization.login(request.form)
+					session['isLoggedIn'] = data
+					session['type'] = 'org'
+				except OrgException as ue:
+					flash(ue.reason, 'error')
+					return redirect('/login?type=org')
 			else:
 				abort(400)
 		else:
@@ -52,7 +59,13 @@ def register():
 				flash(ue.reason, 'error')
 				return redirect('/register?type=user')
 		elif request.form.get('type') == 'org':
-			pass
+			try:
+				data = Organization.insert(request.form, request.files)
+				session['isLoggedIn'] = data
+				session['type'] = 'org'
+			except OrgException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/register?type=org')
 		else:
 			abort(400)
 	else:
@@ -72,7 +85,20 @@ def items():
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
-	return render_template('admin.html')
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user' and session['isLoggedIn'][13] == 1:
+			try:
+				orgs = Organization.getAll()
+				return render_template('admin.html', orgData=orgs)
+			except OrgException as oe:
+				flash(oe.reason, 'error')
+				return redirect('/dashboard')
+		else:
+			flash('You are not authorized to be here!', 'error')
+			return redirect('/login?type=user')
+	else:
+		flash('You are not logged in yet! Please login then try again', 'error')
+		return redirect('/login?type=user')
 
 @app.route('/addItem', methods=['GET', 'POST'])
 def donate():
@@ -94,16 +120,28 @@ def userProfile():
 # * This is an example of how we pass variables in the URL path
 @app.route('/user/<uuid>', methods=['GET'])
 def viewUser(uuid):
-	# TODO: only organizations can see this page
+	if session['type'] == 'org':
+		# Fetch user info
+		user_info = User.fetchByUUID(uuid)
+		if user_info is not False:
+			return render_template('viewUser.html', userData=user_info)
+		else:
+			abort(404)
+	else:
+		abort(404)
+
+@app.route('/org/<uuid>', methods=['GET'])
+def viewOrg(uuid):
 	# Fetch user info
-	user_info = User.fetchByUUID(uuid)
-	if user_info is not False:
-		return render_template('viewUser.html', userData=user_info)
+	org_data = Organization.fetchByUUID(uuid)
+	if org_data is not False:
+		# TODO: Actually fix this template
+		return render_template('viewOrg.html', orgData=org_data)
 	else:
 		abort(404)
 
 # Verifying users' emails
-@app.route('/verify/<verify_uuid>', methods=['GET'])
+@app.route('/verify_user/<verify_uuid>', methods=['GET'])
 def verifyUser(verify_uuid):
 	try:
 		User.verify(verify_uuid)
@@ -117,10 +155,20 @@ def verifyUser(verify_uuid):
 		# This means an error happened, most probably something SQL
 		abort(500)
 
-#The organization information page from user's perspective
-@app.route('/viewOrg', methods=['GET'])
-def viewOrg():
-	return render_template('viewOrg.html')
+@app.route('/verify_org/<verify_uuid>', methods=['GET'])
+def verifyOrg(verify_uuid):
+	try:
+		Organization.verify(verify_uuid)
+
+		# If no exceptions happen, redirect them to the login page with success
+		flash('You have successfully verified your email. Now please wait for an administrator to accept your access request.', 'success')
+		return  redirect('/login?type=org')
+	except UserException:
+		# This means we didn't find the verification
+		abort(404)
+	except Exception:
+		# This means an error happened, most probably something SQL
+		abort(500)
 
 # Custom 404 page
 @app.errorhandler(404)
