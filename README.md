@@ -42,7 +42,7 @@ Routes marked with (!) are visited by the user
 ## Functional Requirements
 
 - [x] **R1: Login to system**
-  - [x] Frontend (NEEDS BEAUTIFYING)
+  - [x] Frontend
   - [x] Database setup
   - [x] Verifying credentials + session setup
 - [x] **R2: User Sign up**
@@ -53,10 +53,10 @@ Routes marked with (!) are visited by the user
   - [x] Sending verification email
 - [ ] **R3: Organization Request access**
   - [x] Frontend
-  - [ ] Database setup
-  - [ ] Verifying information
-  - [ ] Insertion into database
-  - [ ] Sending verification email
+  - [x] Database setup
+  - [x] Verifying information
+  - [x] Insertion into database
+  - [x] Sending verification email
   - [ ] Being verified by admin
 - [x] **R4: Verify Email**
   - [x] Frontend

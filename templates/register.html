@@ -73,7 +73,6 @@
 						</select>
 						<div class="invalid-tooltip">Please select a valid Emirate.</div>
 					</div>
-	
 					<!--PO BOX-->
 					<div class="col-md-4 mb-3">
 						<label for="PO-BOX">PO Box</label>
@@ -89,7 +88,6 @@
 					<label for="Address2">Address #2</label>
 					<input type="text" class="form-control" placeholder="Behind AUS" name="address2" required>
 				</div>
-	
 				<!-- Phone number -->
 				<div class="form-group">
 					<label for="validationTooltip05">Phone Number</label>
@@ -164,7 +162,8 @@
 	<div class="card mb-3 bg-light">
 		<div class="card-header font-weight-bold text-center colorSchemeWhite bgColorSchemeDarkBlue mb-3">Registration Form</div>
 		<div class="card-body">
-			<form>
+			<form method="POST" action="/register" enctype="multipart/form-data">
+				<input type="hidden" name="type" value="org" />
 				<!--Organization Name-->
 				<h5>Organization Information</h5>
 				<hr />
@@ -182,6 +181,12 @@
 						This number is the official government-issued charity license number for your organization.
 					</small>
 					<div class="valid-tooltip">Looks good!</div>
+				</div>
+				<!--Image Upload-->
+				<div class="form-group">
+					<label for="validationTooltip06">Upload organization logo</label>
+					<input type="file" class="form-control-file" id="validationTooltip06" name="logo">
+					<hr />
 				</div>
 				<!-- Address -->
 				<h5>Contact Information</h5>

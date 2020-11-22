@@ -19,8 +19,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS organizations (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	UUID TEXT NOT NULL UNIQUE,
-	org_name TEXT NOT NULL,
-	req_id INTEGER NOT NULL,
+	name TEXT NOT NULL,
 	status INTEGER NOT NULL,
 	license_no INTEGER NOT NULL,
 	city TEXT NOT NULL,
@@ -29,7 +28,7 @@ CREATE TABLE IF NOT EXISTS organizations (
 	address_1 TEXT NOT NULL,
 	address_2 TEXT NOT NULL,
 	phone TEXT NOT NULL UNIQUE,
-	logo BLOB NOT NULL,
+	logo TEXT NOT NULL,
 	email TEXT NOT NULL UNIQUE,
 	password TEXT NOT NULL
 );
@@ -51,7 +50,7 @@ CREATE TABLE IF NOT EXISTS items (
 	user_id TEXT NOT NULL,
 	time_submitted TEXT NOT NULL,
 	pickup_time TEXT NOT NULL,
-	image BLOB NOT NULL,
+	image TEXT NOT NULL,
 	FOREIGN KEY (org_id) REFERENCES organizations (UUID),
 	FOREIGN KEY (user_id) REFERENCES users (UUID)
 );
