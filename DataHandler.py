@@ -64,7 +64,7 @@ class User:
 				user_uuid = str(uuid.uuid4())
 			try:
 				dbcon = sql.connect()
-				dbcon.execute("INSERT INTO users (UUID, first_name, last_name, dob, city, emirate, po_box, address_1, address_2, phone, email, password, isAdmin) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0)", (user_uuid,form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], form['email'], hash))
+				dbcon.execute("INSERT INTO users (UUID, first_name, last_name, dob, city, emirate, po_box, address_1, address_2, phone, email, password, isAdmin) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0,0)", (user_uuid,form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], form['email'], hash))
 				dbcon.commit()
 				dbcon.close()
 			except Exception as e:
