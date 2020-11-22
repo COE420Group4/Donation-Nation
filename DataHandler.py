@@ -1,9 +1,10 @@
 # Import our database and initialize it
-from os import stat
 from db import DB
+import send_email
 import re
 import hashlib
 import uuid
+import traceback
 
 sql = DB()
 sql.init_db()
@@ -65,10 +66,16 @@ class User:
 				dbcon.execute("INSERT INTO users (UUID, first_name, last_name, dob, city, emirate, po_box, address_1, address_2, phone, email, password, isAdmin, isVerified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0,0)", (user_uuid,form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], form['email'], hash))
 				verification_uuid = str(uuid.uuid4())
 				dbcon.execute("INSERT INTO verifications VALUES (?,?)", (user_uuid, verification_uuid))
+
+				# Send email to user for verification
+				print("Sending email...")
+				send_email.send('Email Verification', f'Hi {form["firstName"].strip()}!\n\n\nThank you for signing up for DonationNation!\n\nTo complete your registration and enable your account, please verify your email by visiting the link: http://127.0.0.1:5000/verify/{verification_uuid}\n\nRegards,\nDonationNation', [form['email'],])
+
+				# Commit changes and close the db connection
 				dbcon.commit()
 				dbcon.close()
-			except Exception as e:
-				print(e)
+			except Exception:
+				traceback.print_exc()
 				raise UserException("Something went wrong. Contact an admin.")
 		else:
 			raise UserException("Invalid or missing information!")
@@ -87,8 +94,8 @@ class User:
 				dbcon.close()
 		except UserException as e:
 			raise e
-		except Exception as e:
-			print(e)
+		except Exception:
+			traceback.print_exc()
 			raise UserException("Something went wrong. Contact an admin.")
 
 	def check_email_exists(value):
@@ -105,8 +112,8 @@ class User:
 				dbcon.close()
 		except UserException as e:
 			raise e
-		except Exception as e:
-			print(e)
+		except Exception:
+			traceback.print_exc()
 			raise UserException("Something went wrong. Contact an admin.")
 
 	# Get user information by supplying their UUID
@@ -122,8 +129,8 @@ class User:
 				return res
 			else:
 				return False
-		except Exception as e:
-			print(e)
+		except Exception:
+			traceback.print_exc()
 			return False
 
 	def login(form):
@@ -135,13 +142,15 @@ class User:
 				cur.execute("SELECT * FROM users WHERE email=? AND password=?", (form['email'], hash))
 				data = cur.fetchone()
 				if data is not None:
+					if data[14] == 0:
+						raise UserException("You haven't verified your email yet! Please verify it then try again.")
 					return data
 				else:
 					raise UserException("Invalid email or password. Please try again.")
 			except UserException as e:
 				raise e
-			except Exception as e:
-				print(e)
+			except Exception:
+				traceback.print_exc()
 				raise UserException("Something went wrong. Contact an admin.")
 
 	def verify(verify_uuid):
@@ -150,23 +159,26 @@ class User:
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
 			cur.execute("SELECT user_uuid FROM verifications WHERE verification_uuid=?", (verify_uuid,))
-			id = cur.fetchone()
-			if id is None:
+			uuid = cur.fetchone()
+			print(uuid)
+			if uuid is None:
 				raise UserException("NotFound") # Generic name so that we can catch it in flask
 
 			# If we're here, then the verification exists and we should verify the user
-			cur.execute("UPDATE users SET isVerified=1 WHERE uuid=?", (id,))
+			cur.execute("UPDATE users SET isVerified=1 WHERE UUID=?", (uuid[0],))
 
 			# Remove the verification from the database
-			cur.execute("DELETE verifications WHERE user_uuid=?", (id,))
+			cur.execute("DELETE FROM verifications WHERE user_uuid=?", (uuid[0],))
 
 			# Commit the changes and close connections
 			dbcon.commit()
 			cur.close()
 			dbcon.close()
+		except UserException as e:
+			raise e
 		except Exception as e:
 			# We raise any exception so that the flask app can handle it
-			print(e)
+			traceback.print_exc()
 			raise e
 
 class UserException(Exception):
