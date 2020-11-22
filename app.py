@@ -3,7 +3,7 @@ from DataHandler import User, UserException
 
 # Library imports
 import os
-from flask import Flask, session, render_template, request, abort, redirect, flash
+from flask import Flask, session, render_template, request, abort, redirect, flash, url_for
 app = Flask(__name__, static_url_path='/assets', static_folder='assets')
 app.secret_key = os.urandom(64)
 
@@ -32,6 +32,14 @@ def login():
 			return render_template('login.html', type=request.args.get('type'))
 	else:
 		return 'Success'
+
+@app.route('/logout')
+def logout():
+	# remove the username from the session if it's there
+	session.pop('isLoggedIn', None)
+	session.pop('type', None)
+	flash('You were logged out successfully.','success')
+	return redirect('/')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
