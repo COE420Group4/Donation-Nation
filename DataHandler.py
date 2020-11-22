@@ -5,6 +5,9 @@ import re
 import hashlib
 import uuid
 import traceback
+from datetime import datetime
+
+
 
 sql = DB()
 sql.init_db()
@@ -132,6 +135,7 @@ class User:
 		except Exception:
 			traceback.print_exc()
 			return False
+	
 
 	def login(form):
 		if check_form(form, ['email', 'password']):
@@ -180,6 +184,23 @@ class User:
 			# We raise any exception so that the flask app can handle it
 			traceback.print_exc()
 			raise e
+	
+	def addItem(form,session):
+		if check_form(form, ['name','category','condition','description','image','organization','time']):
+			item_uuid = str(uuid.uuid4())
+			user_uuid = session[0]
+			current_time = datetime.now().strftime("%H:%M:%S")
+
+			try:
+				dbcon = sql.connect()
+				cur = dbcon.cursor()
+				print(user_uuid)
+				cur.execute("INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image) VALUES(?,?,?,?,?,?,?,?,?,?)",(item_uuid,form['name'],form['category'],form['description'],form['organization'], user_uuid, current_time ,form['time'],form['image']))
+			except Exception as e:
+				# We raise any exception so that the flask app can handle it
+				traceback.print_exc()
+				raise e
+	
 
 class UserException(Exception):
 	def __init__(self, message):

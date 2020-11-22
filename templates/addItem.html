@@ -13,115 +13,114 @@
     <div class="card mb-3 bg-light">
         <h5 class="card-header font-weight-bold text-center colorSchemeWhite bgColorSchemeDarkBlue mb-3">Donation Form</h5>
         <div class="card-body">
-            <h5 class="text-muted text-left">Item Details</h5>
-            <!--Item Details Begin-->
-            <div class="form-row">
-                <!--Name of Item-->
-                <div class="col-md-6 mb-3">
-                    <label for="validationTooltip01">Name of Item</label>
-                    <input type="text" class="form-control" id="validationTooltip01"
-                        placeholder="eg. Calculus Textbook" required>
+            <form method="POST" action="/addItem">
+                <h5 class="text-muted text-left">Item Details</h5>
+                <!--Item Details Begin-->
+                <div class="form-row">
+                    <!--Name of Item-->
+                    <div class="col-md-6 mb-3">
+                        <label for="validationTooltip01">Name of Item</label>
+                        <input type="text" class="form-control" id="validationTooltip01" name="name"
+                            placeholder="eg. Calculus Textbook" required >
+                        <div class="valid-tooltip">Looks good!</div>
+                    </div>
+                    <!--Category of Item-->
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip02">Category</label>
+                        <select class="custom-select" id="validationTooltip02" name="category" required> 
+                            <option selected disabled value="">Choose...</option>
+                            <option>Books</option>
+                            <option>Clothes</option>
+                            <option>Toys</option>
+                            <option>Linens</option>
+                            <option>Other</option>
+                        </select>
+                        <script>
+                            $(document).ready(function () {
+                                $('#specify').hide();
+                                $('#validationTooltip02').on('change', function () {
+                                    if (this.value === 'Other') {
+                                        $('#specify').show();
+                                    } else {
+                                        $('#specify').hide();
+                                    }
+                                });
+                            });
+                        </script>
+                        <div class="invalid-tooltip">Please select a valid category.</div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="validationTooltip03">Condition</label>
+                        <select class="custom-select" id="validationTooltip03" required name = 'condition'> 
+                            <option selected disabled value="">Choose...</option>
+                            <option>Heavily used</option>
+                            <option>Lightly used</option>
+                            <option>New</option>
+                        </select>
+                        <div class="invalid-tooltip">Please select a valid condition.</div>
+                    </div>
+                </div>
+                <!--IF USER CHOOSES OTHER, ASK HIM/HER TO SPECIFY-->
+                <!--TODO: Hide this from the user unless they choose "Other"-->
+                <div class="form-group" id="specify">
+                    <label for="validationTooltip04">Specify:</label>
+                    <input type="text" class="form-control" id="validationTooltip04" name="category"
+                        placeholder="What is your item's category?" required>
                     <div class="valid-tooltip">Looks good!</div>
                 </div>
-                <!--Category of Item-->
-                <div class="col-md-3 mb-3">
-                    <label for="validationTooltip02">Category</label>
-                    <select class="custom-select" id="validationTooltip02" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>Books</option>
-                        <option>Clothes</option>
-                        <option>Toys</option>
-                        <option>Linens</option>
-                        <option>Other</option>
-                    </select>
-                    <script>
-                        $(document).ready(function () {
-                            $('#specify').hide();
-                            $('#validationTooltip02').on('change', function () {
-                                if (this.value === 'Other') {
-                                    $('#specify').show();
-                                } else {
-                                    $('#specify').hide();
-                                }
-                            });
-                        });
-                    </script>
-                    <div class="invalid-tooltip">Please select a valid category.</div>
+                <!--Item Description-->
+                <div class="form-group">
+                    <label for="validationTooltip05">Item Description</label>
+                    <textarea class="form-control" id="validationTooltip05" rows="3" name = "description"
+                        placeholder="Enter a short description of your item." required></textarea>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <label for="validationTooltip03">Condition</label>
-                    <select class="custom-select" id="validationTooltip03" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>Heavily used</option>
-                        <option>Lightly used</option>
-                        <option>New</option>
-                    </select>
-                    <div class="invalid-tooltip">Please select a valid condition.</div>
+                <!--Image Upload-->
+                <div class="form-group">
+                    <label for="validationTooltip06">Upload image(s) of your item</label>
+                    <input type="file" class="form-control-file" id="validationTooltip06" name = "image"> 
+                    <hr />
                 </div>
-            </div>
-            <!--IF USER CHOOSES OTHER, ASK HIM/HER TO SPECIFY-->
-            <!--TODO: Hide this from the user unless they choose "Other"-->
-            <div class="form-group" id="specify">
-                <label for="validationTooltip04">Specify:</label>
-                <input type="text" class="form-control" id="validationTooltip04"
-                    placeholder="What is your item's category?" required>
-                <div class="valid-tooltip">Looks good!</div>
-            </div>
-            <!--Item Description-->
-            <div class="form-group">
-                <label for="validationTooltip05">Item Description</label>
-                <textarea class="form-control" id="validationTooltip05" rows="3"
-                    placeholder="Enter a short description of your item." required></textarea>
-            </div>
-            <!--Image Upload-->
-            <div class="form-group">
-                <label for="validationTooltip06">Upload image(s) of your item</label>
-                <input type="file" class="form-control-file" id="validationTooltip06">
-                <hr />
-            </div>
-            <!--Item Details End-->
-            <h5 class="text-muted text-left">Organization and Pickup Details</h5>
-            <!--Item Details Begin-->
-            <div class="form-row">
-                <!--Select an Organization-->
-                <div class="col-md-8 mb-3">
-                    <label for="validationTooltip07">Name of Organization</label>
-                    <select class="custom-select" id="validationTooltip07" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>Red Crescent </option>
-                        <option>The Zayed Bin Sultan Al Nahyan Charitable and Humanitarian Foundation</option>
-                        <option>Dubai Cares</option>
-                        <option>Dar Al Ber Society</option>
-                        <option>Zayed Giving Initiative</option>
-                    </select>
-                    <div class="invalid-tooltip">Please select a valid organization.</div>
+                <!--Item Details End-->
+                <h5 class="text-muted text-left">Organization and Pickup Details</h5>
+                <!--Item Details Begin-->
+                <div class="form-row">
+                    <!--Select an Organization-->
+                    <div class="col-md-8 mb-3">
+                        <label for="validationTooltip07">Name of Organization</label>
+                        <select class="custom-select" id="validationTooltip07" required name = "organization">
+                            {%for i in range(0, total_orgs)%} 
+                                <option value = "{{orgs_details[0]}}">{{orgs_details[1]}}</option> 
+                            {%endfor%}
+                        </select>
+                        <div class="invalid-tooltip">Please select a valid organization.</div>
+                    </div>
+                    <!--Preferred Pickup Time-->
+                    <div class="col-md-4 mb-3">
+                        <label for="validationTooltip08">Preffered pickup time</label>
+                        <select class="custom-select" id="validationTooltip08" name = "time" aria-describedby="timeHelp" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option>Morning (8:00 AM - 11:00 AM)</option>
+                            <option>Afternoon (2:00 PM - 5:00 PM)</option>
+                            <option>Evening (7:00 PM - 9:00 PM)</option>
+                        </select>
+                        <small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
+                    </div>
                 </div>
-                <!--Preferred Pickup Time-->
-                <div class="col-md-4 mb-3">
-                    <label for="validationTooltip08">Preffered pickup time</label>
-                    <select class="custom-select" id="validationTooltip08" aria-describedby="timeHelp" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>Morning (8:00 AM - 11:00 AM)</option>
-                        <option>Afternoon (2:00 PM - 5:00 PM)</option>
-                        <option>Evening (7:00 PM - 9:00 PM)</option>
-                    </select>
-                    <small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
+                <!-- Check box - T&Cs -->
+                <div class="form-row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                        <label class="form-check-label" for="gridCheck">
+                            I have read and understood the <a href data-target="#termsconditions"
+                                data-toggle="modal">terms and conditions</a>.
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <!-- Check box - T&Cs -->
-            <div class="form-row">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
-                    <label class="form-check-label" for="gridCheck">
-                        I have read and understood the <a href data-target="#termsconditions"
-                            data-toggle="modal">terms and conditions</a>.
-                    </label>
-                </div>
-            </div>
-            <!--Item Details End-->
-            <p><em>Note: Your chosen organization will get notified of your donation. They may either accept or
-                reject it. Please monitor your dashboard for any updates.</em></p>
-            <button type="submit" class="btn btn-primary">Submit</button>
+                <!--Item Details End-->
+                <p><em>Note: Your chosen organization will get notified of your donation. They may either accept or
+                    reject it. Please monitor your dashboard for any updates.</em></p>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form> 
         </div>
     </div>
 </div>
