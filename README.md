@@ -34,8 +34,6 @@ Routes marked with (!) are visited by the user
 
 ## Database Structure
 
-***NEEDS WORK @Youssef + @Mariam***
-
 - USERS
 - ITEMS
 - ORGS (if user.type == 2)
@@ -47,12 +45,12 @@ Routes marked with (!) are visited by the user
   - [x] Frontend (NEEDS BEAUTIFYING)
   - [x] Database setup
   - [x] Verifying credentials + session setup
-- [ ] **R2: User Sign up**
+- [x] **R2: User Sign up**
   - [x] Frontend
   - [x] Database setup
-  - [ ] Verifying information
+  - [x] Verifying information
   - [x] Insertion into database
-  - [ ] Sending verification email
+  - [x] Sending verification email
 - [ ] **R3: Organization Request access**
   - [x] Frontend
   - [ ] Database setup
@@ -60,10 +58,10 @@ Routes marked with (!) are visited by the user
   - [ ] Insertion into database
   - [ ] Sending verification email
   - [ ] Being verified by admin
-- [ ] **R4: Verify Email**
-  - [ ] Frontend
-  - [ ] Database setup
-  - [ ] Backend logic to verify account
+- [x] **R4: Verify Email**
+  - [x] Frontend
+  - [x] Database setup
+  - [x] Backend logic to verify account
 - [ ] **R5: Offer item**
   - [x] Frontend
   - [ ] Database setup
@@ -145,6 +143,6 @@ Routes marked with (!) are visited by the user
 - [ ] Finish all the frontend
 - [x] Finish login/signup for users
 - [ ] Finish organization signup
-- [ ] Finish email sending code
+- [x] Finish email sending code
 - [ ] Finish the listing functional requirements
 - [ ] Add more TODOs
