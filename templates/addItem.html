@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 {% block title %}Donate Item{% endblock %}
 
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/dashboard"><i class="fas fa-book-open"></i> Dashboard</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/userProfile"><i class="far fa-user"></i> My Profile</a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="/addItem"><i class="fas fa-hand-holding-usd"></i> Donate</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/orgs"><i class="far fa-building"></i> Organizations</a>
+</li>
+{% endblock %}
 {% block content %}
 <div class="jumbotron jumbotron-fluid colorSchemeDarkBlue bgColorSchemePink">
 	<div class="container">
@@ -120,7 +140,7 @@
             <!--Item Details End-->
             <p><em>Note: Your chosen organization will get notified of your donation. They may either accept or
                 reject it. Please monitor your dashboard for any updates.</em></p>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" >Submit</button>
         </div>
     </div>
 </div>

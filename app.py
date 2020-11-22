@@ -3,7 +3,7 @@ from DataHandler import OrgException, Organization, User, UserException
 
 # Library imports
 import os
-from flask import Flask, session, render_template, request, abort, redirect, flash
+from flask import Flask, session, render_template, request, abort, redirect, flash, url_for
 app = Flask(__name__, static_url_path='/assets', static_folder='assets')
 app.secret_key = os.urandom(64)
 
@@ -40,6 +40,14 @@ def login():
 	else:
 		return 'Success'
 
+@app.route('/logout')
+def logout():
+	# remove the username from the session if it's there
+	session.pop('isLoggedIn', None)
+	session.pop('type', None)
+	flash('You were logged out successfully.','success')
+	return redirect('/')
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	if request.method == 'POST':
@@ -62,6 +70,10 @@ def register():
 			abort(400)
 	else:
 		return render_template('register.html', type=request.args.get('type'))
+
+@app.route('/dashboard')
+def dashboard():
+	return render_template('dashboard.html', userData=session['isLoggedIn'])
 
 @app.route('/orgs', methods=['GET'])
 def orgs():
@@ -102,7 +114,7 @@ def userProfile():
 		return render_template('userProfile.html', userData=session['isLoggedIn'])
 	else:
 		flash('You are not logged in yet! Please login then try again', 'error')
-		return redirect('/login')
+		return redirect('/login?type=user')
 
 # The user information page from organization's perspective
 # * This is an example of how we pass variables in the URL path
