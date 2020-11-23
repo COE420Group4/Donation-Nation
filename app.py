@@ -21,7 +21,7 @@ def login():
 					data = User.login(request.form)
 					session['isLoggedIn'] = data
 					session['type'] = 'user'
-					return 'Success'
+					return redirect('/dashboard')
 				except UserException as ue:
 					flash(ue.reason, 'error')
 					return redirect('/login?type=user')
@@ -30,6 +30,7 @@ def login():
 					data = Organization.login(request.form)
 					session['isLoggedIn'] = data
 					session['type'] = 'org'
+					return redirect('/dashboard')
 				except OrgException as ue:
 					flash(ue.reason, 'error')
 					return redirect('/login?type=org')
@@ -54,15 +55,16 @@ def register():
 		if request.form.get('type') == 'user':
 			try:
 				User.insert(request.form)
-				return 'Success'
+				flash('You have successfully registered. Please click the link in your email to verify your account and get access.', 'success')
+				return redirect('/login?type=user')
 			except UserException as ue:
 				flash(ue.reason, 'error')
 				return redirect('/register?type=user')
 		elif request.form.get('type') == 'org':
 			try:
 				data = Organization.insert(request.form, request.files)
-				session['isLoggedIn'] = data
-				session['type'] = 'org'
+				flash('You have successfully registered. Please click the link in your email to verify your account and get access.', 'success')
+				return redirect('/login?type=org')
 			except OrgException as ue:
 				flash(ue.reason, 'error')
 				return redirect('/register?type=org')
