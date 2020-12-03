@@ -51,13 +51,13 @@ Routes marked with (!) are visited by the user
   - [x] Verifying information
   - [x] Insertion into database
   - [x] Sending verification email
-- [ ] **R3: Organization Request access**
+- [x] **R3: Organization Request access**
   - [x] Frontend
   - [x] Database setup
   - [x] Verifying information
   - [x] Insertion into database
   - [x] Sending verification email
-  - [ ] Being verified by admin
+  - [x] Being verified by admin
 - [x] **R4: Verify Email**
   - [x] Frontend
   - [x] Database setup
@@ -105,22 +105,22 @@ Routes marked with (!) are visited by the user
   - [ ] Verifying information
   - [ ] Mark new pickup time as rejected
   - [ ] Send email with new suggested time
-- [ ] **R14: List Organizations**
+- [x] **R14: List Organizations**
   - [x] Frontend
-  - [ ] Fetch information from db
+  - [x] Fetch information from db
 - [x] **R15: List Organization Access Requests**
   - [x] Frontend
   - [x] Fetch information from db
-- [ ] **R16: Approve Organization Access Request**
+- [x] **R16: Approve Organization Access Request**
   - [x] Frontend
   - [x] Verifying information
-  - [ ] Mark organization as approved
-  - [ ] Send email
-- [ ] **R17: Reject Organization Access Request**
+  - [x] Mark organization as approved
+  - [x] Send email
+- [x] **R17: Reject Organization Access Request**
   - [x] Frontend
   - [x] Verifying information
-  - [ ] Mark organization as rejected
-  - [ ] Send email
+  - [x] Mark organization as rejected
+  - [x] Send email
 
 ### Components
 
