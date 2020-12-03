@@ -158,13 +158,13 @@
                     <div class="form-row">
                         <!-- First Name -->
                         <div class="col-md-6 mb-3">
-                            <label for="validationTooltip01">First name</label>
+                            <label for="validationTooltip01" name="firstName">First name</label>
                             <input type="text" class="form-control" id="validationTooltip01" value="Elon" required>
                             <div class="valid-tooltip">Looks good!</div>
                         </div>
                         <!-- Last Name -->
                         <div class="col-md-6 mb-3">
-                            <label for="validationTooltip02">Last name</label>
+                            <label for="validationTooltip02" name="lastName">Last name</label>
                             <input type="text" class="form-control" id="validationTooltip02" value="Musk" required>
                             <div class="valid-tooltip">Looks good!</div>
                         </div>
@@ -173,7 +173,7 @@
                     <!--Birth date-->
                     <div class="form-group">
                         <label for="Birthdate">Date of Birth</label>
-                        <input type="date" class="form-control" id="exampleFormControlInput1" value="6/28/1971">
+                        <input type="date" class="form-control" id="exampleFormControlInput1" name="dob">
                     </div>
                     <!-- Address -->
                     <p class="text-center font-weight-bold">Contact Information</p>
@@ -182,13 +182,13 @@
                         <!-- City -->
                         <div class="col-md-4 mb-3">
                             <label for="validationTooltip03">City</label>
-                            <input type="text" class="form-control" id="validationTooltip03" value="Downtown Dubai" required>
+                            <input type="text" class="form-control" id="validationTooltip03" value="Downtown Dubai" name="city" required>
                             <div class="invalid-tooltip">Please provide a valid city.</div>
                         </div>
                         <!--Emirate Drop-Down-->
                         <div class="col-md-4 mb-3">
                             <label for="validationTooltip04">Emirate</label>
-                            <select class="custom-select" id="validationTooltip04" required>
+                            <select class="custom-select" id="validationTooltip04" name="emirate" required>
                                 <option selected disabled value="">Choose...</option>
                                 <option>Abu Dhabi</option>
                                 <option>Dubai</option>
@@ -204,29 +204,28 @@
                         <!--PO BOX-->
                         <div class="col-md-4 mb-3">
                             <label for="PO-BOX">PO Box</label>
-                            <input type="text" class="form-control" id="PO-BOX" value="12345">
+                            <input type="text" class="form-control" id="PO-BOX" value="12345" name="POBox">
                         </div>
                     </div>
                     <!--2 complete address lines-->
                     <div class="form-group">
                         <label for="Address1">Address #1</label>
-                        <input type="text" class="form-control" value="1 Sheikh Mohammed bin Rashid Blvd" required>
+                        <input type="text" class="form-control" value="1 Sheikh Mohammed bin Rashid Blvd" name="address1" required>
                     </div>
                     <div class="form-group">
                         <label for="Address2">Address #2</label>
-                        <input type="text" class="form-control" value="Burj Khalifa" required>
+                        <input type="text" class="form-control" value="Burj Khalifa" name="address2" required>
                     </div>
         
                     <!-- Phone number -->
                     <div class="form-group">
                         <label for="validationTooltip05">Phone Number</label>
-                        <input type="tel" class="form-control" id="validationTooltip05" value="059765467890865" required>
+                        <input type="tel" class="form-control" id="validationTooltip05" value="059765467890865" name="phone" required>
                     </div>
                     <!-- Email -->
                     <div class="form-group">
                         <label for="validationTooltip06">Email</label>
-                        <input type="email" class="form-control" id="validationTooltip06" value="elonMuskIsBoss@tesla.com"
-                            required>
+                        <input type="email" class="form-control" id="validationTooltip06" value="elonMuskIsBoss@tesla.com" name="email" required>
                     </div>
                 </div>
             </div>
