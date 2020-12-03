@@ -93,11 +93,12 @@ def items():
 		if session['type'] == 'user':
 			try:
 				items = User.getAllItems(session['isLoggedIn'][1])
+				print(items)
 				return render_template('itemsUser.html', items_list=items)
 			except UserException as ue:
 				flash(ue.reason, 'error')
 				# WHERE DO I REDIRECT IF THE USER HAS NO ITEMS. SHOUlD BE THE SAME PAGE RIGHT?
-				return redirect('/addItem')
+				return redirect('/dashboard')
 		else:
 			try:
 				items = Organization.getAllItems(session['isLoggedIn'][1])

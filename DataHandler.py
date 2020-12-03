@@ -208,16 +208,18 @@ class User:
 		try:
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
-			cur.execute("SELECT * FROM items WHERE user_id=?", (user_uuid))
+			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, org_id, user_id, time_submitted, pickup_time, image, items.status, organizations.name FROM items, organizations WHERE organizations.UUID=items.org_id AND user_id=?", (user_uuid,))
 			items = cur.fetchall()
 			cur.close()
 			dbcon.close()
-			if items is not None:
+			if len(items) > 0:
 				return items
 			else:
 				raise UserException("No items exist for this user.")
+		except UserException as ue:
+			raise ue
 		except Exception as e:
-			raise e
+			raise UserException("Something went wrong. Please contact an admin.")
 
 
 class UserException(Exception):

@@ -41,10 +41,10 @@
 	</div>
 </div>
 <div class="container pt-5 mb-5">
-	{% for org in orgData | batch(3, '&nbsp;') %}
+	{% for orgs in orgData | batch(3, '&nbsp;') %}
 	<div class="row align-items-center justify-content-center">
 		<div class="card-deck padded-top">
-		{% for org in orgData %}
+		{% for org in orgs %}
 		<div class="card border-dark mb-3 text-center org-cards">
 			<img class="card-img-top img-size"
 				src="data:image/jpeg;base64, {{org[11].decode('utf-8') | safe}}">

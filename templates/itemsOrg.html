@@ -26,7 +26,7 @@
 <div class="jumbotron jumbotron-fluid colorSchemeDarkBlue bgColorSchemePink">
 	<div class="container">
 		<h2 class="display-1">Donated Items</h2>
-        <p class="lead" id=intro>View your donated items.</p>
+        <p class="lead" id=intro>View items donated to your organization.</p>
 	</div>
 </div>
 
@@ -43,7 +43,7 @@
 				</div>
 				<hr />
 				<div class="card-body">
-					{% if item[11] == 0 %}
+					{% if item[11] == 0 %}   
 					<span class="badge badge-info">Awaiting Approval</span>
 					{% elif item[11] == 1 %}
 					<span class="badge badge-success">Accepted by {{item[12]}}</span>
@@ -102,8 +102,8 @@
 										<th>{{item[5]}}</th>
 									</tr>
 									<tr>
-										<th class="text-left font-weight-bold">Donated Organization</th>
-										<th>{{item[12]}}</th>
+										<th class="text-left font-weight-bold">User ID</th>
+										<th>{{item[7]}}</th>
 									</tr>
 									<tr>
 										<th class="text-left font-weight-bold">Time Submitted</th>
