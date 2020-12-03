@@ -474,7 +474,7 @@ class Item:
 	
 			try:
 				dbcon = sql.connect()
-				dbcon.execute("INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image) VALUES(?,?,?,?,?,?,?,?,?,?)", (item_uuid, form['name'], form['category'], form['description'], form['organization'], user_uuid, current_time, form['time'], image))
+				dbcon.execute("INSERT INTO items (UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, status) VALUES(?,?,?,?,?,?,?,?,?,?,0)", (item_uuid, form['name'], form['category'], form['description'], form['organization'], user_uuid, current_time, form['time'], image))
 				
 				# Commit changes and close the db connection
 				dbcon.commit()
