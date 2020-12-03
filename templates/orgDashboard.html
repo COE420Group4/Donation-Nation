@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block navbar %}
+    <li class="nav-item">
+        <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/dashboard"><i class="fas fa-book-open"></i> Dashboard</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/orgProfile"><i class="far fa-user"></i> My Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
+    </li>
+{% endblock %}
+
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid colorSchemeDarkBlue bgColorSchemePink">
+    <div class="container">
+        <h2 class="display-1">Dashboard</h2>
+        <p class="lead" id=intro>Hello, {{orgData[2]}}!</p>
+    </div>
+</div>
+<div class="container pb-5 center-block">
+    <div class="row mb-3">
+        <!--View Profile-->
+        <div class="col-md-2">
+            <img src="/assets/viewProfile.png" class="img-thumbnail-dashboard">
+        </div>
+        <div class="col-md-4">
+            <h3>View Your Profile</h3>
+            <p>View how users see your profile. Edit your profile or change your password. </p>
+            <a class="btn btn-primary" href="/orgProfile">View Profile</a>
+        </div>
+
+        <!--View Items-->
+        <div class="col-md-2">
+            <img src="/assets/viewItems.png" class="img-thumbnail-dashboard">
+        </div>
+        <div class="col-md-4">
+            <h3>View Your Items</h3>
+            <p>View items donated to you and their status.</p>
+            <a class="btn btn-primary" href="/items">View Items</a>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
