@@ -203,7 +203,22 @@ class User:
 				# We raise any exception so that the flask app can handle it
 				traceback.print_exc()
 				raise e
-	
+	def getAllItems(user_uuid):
+		# Connect to the database
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT * FROM items WHERE user_id=?", (user_uuid))
+			items = cur.fetchall()
+			cur.close()
+			dbcon.close()
+			if items is not None:
+				return items
+			else:
+				raise UserException("No items exist for this user.")
+		except Exception as e:
+			raise e
+
 
 class UserException(Exception):
 	def __init__(self, message):
@@ -407,6 +422,22 @@ class Organization:
 				return False
 		except Exception as e:
 			return False
+
+	def getAllItems(org_uuid):
+		# Connect to the database
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT * FROM items WHERE org_id=?", (org_uuid))
+			items = cur.fetchall()
+			cur.close()
+			dbcon.close()
+			if items is not None:
+				return items
+			else:
+				raise OrgException("No items exist for this organization.")
+		except Exception as e:
+			raise e
 
 class OrgException(Exception):
 	def __init__(self, message):

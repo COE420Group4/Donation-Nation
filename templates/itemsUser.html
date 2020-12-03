@@ -29,6 +29,95 @@
         <p class="lead" id=intro>View your donated items.</p>
 	</div>
 </div>
+
+<div class="container pt-5 mb-5">
+	<div class="row align-items-center justify-content-center">
+		<div class="card-deck padded-top">
+			{% for item in items %}
+			<div class="card border-dark mb-3 org-cards text-center">
+				<div class="container-fluid">
+					<img class="card-img-top"
+						src={{item[9]}}
+						style="width: 100%; height: 300px; object-fit: scale-down;">
+				</div>
+				<hr />
+				<div class="card-body">
+					{%%}
+					<span class="badge badge-success">Accepted by Red Crescent</span>
+					<h4 class="card-title">Used Hoodie</h4>
+					<p class="text-muted">aaaa-bbb-ccc-dddd</p>
+					<button type="button" class="btn btn-primary" data-toggle="modal"
+						data-target="#aaaa-bbb-ccc-dddd">View More</button>
+				</div>
+				<div class="card-footer">
+					<p class="card-text"><small class="text-muted">Donated on 24/11/2020</small></p>
+				</div>
+			</div>
+			<div class="modal" id="aaaa-bbb-ccc-dddd" tabindex="-1">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Detailed Information</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<table class="table table-borderless">
+								<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th class="text-left font-weight-bold">Name</th>
+										<th>Used Hoodie</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">ID</th>
+										<th>aaaa-bbb-ccc-dddd</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Category</th>
+										<th>Clothes</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Condition</th>
+										<th>Lightly Used</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Description</th>
+										<th>A red slightly used hoodie that has "New York" written on it. It also has a
+											few loose strings.</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Donated Organization</th>
+										<th>Dubai Cares</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Time Submitted</th>
+										<th>3:29pm 24/11/2020</th>
+									</tr>
+									<tr>
+										<th class="text-left font-weight-bold">Proposed Pickup Time</th>
+										<th>4:30pm 26/11/2020</th>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
 <div class="container pt-5 mb-5">
 	<div class="row align-items-center justify-content-center">
 		<div class="card-deck padded-top">

@@ -81,7 +81,23 @@ def orgs():
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():
-	return render_template('items.html', type=request.args.get('type'))
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user':
+			try:
+				items = User.getAllItems(session['isLoggedIn'][1])
+				return render_template('itemsUser.html', items_list=items)
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				# WHERE DO I REDIRECT IF THE USER HAS NO ITEMS. SHOUlD BE THE SAME PAGE RIGHT?
+				return redirect('/addItem')
+		else:
+			try:
+				items = Organization.getAllItems(session['isLoggedIn'][1])
+				return render_template('itemsOrg.html', items_list=items)
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				# WHERE DO I REDIRECT IF THE USER HAS NO ITEMS. SHOUlD BE THE SAME PAGE RIGHT?
+				return redirect('/addItem')
 
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
