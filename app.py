@@ -75,7 +75,16 @@ def register():
 
 @app.route('/dashboard')
 def dashboard():
-	return render_template('dashboard.html', userData=session['isLoggedIn'])
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user':
+			return render_template('userDashboard.html', userData=session['isLoggedIn'])
+		else:
+			return render_template('orgDashboard.html', orgData=session['isLoggedIn'])
+	else:
+		flash('Something went wrong', 'error')
+		return redirect('/login')
+
+
 
 @app.route('/orgs', methods=['GET'])
 def orgs():
@@ -175,7 +184,7 @@ def donate():
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():
-	return render_template('orgProfile.html')
+	return render_template('orgProfile.html', orgData = session['isLoggedIn'])
 
 @app.route('/userProfile', methods=['GET'])
 def userProfile():
