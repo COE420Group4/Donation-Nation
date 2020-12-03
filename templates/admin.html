@@ -11,6 +11,7 @@
 	</div>
 	<div class="row">
 		<div class="col table-responsive">
+			{% if orgDataLen != 0 %}
 			<table class="table table-bordered table-hover">
 				<thead class="thead-dark">
 					<tr>
@@ -37,10 +38,16 @@
 					<td><a href="mailto:{{org[12]}}">{{org[12]}}</a></td>
 					<td>{{org[10]}}</td>
 					<td><a href="/org/{{org[1]}}">View</a></td>
-					<td class="text-center"><a class="btn btn-success text-white m-1" href="/admin/approve/{{org[1]}}">✓</a><a class="btn btn-danger text-white m-1" href="/admin/reject/{{org[1]}}">✗</a></td>
+					<td class="text-center">
+						<a class="btn btn-success text-white m-1" href="/admin/approve/{{org[1]}}">✓</a>
+						<a class="btn btn-danger text-white m-1" href="/admin/reject/{{org[1]}}">✗</a>
+					</td>
 				</tbody>
 				{% endfor -%}
 			</table>
+			{% else %}
+			<p class="text-center">There are no pending organization requests.</p>
+			{% endif %}
 		</div>
 	</div>
 </div>

@@ -223,7 +223,7 @@ class User:
 			raise ue
 		except Exception as e:
 			raise UserException("Something went wrong. Please contact an admin.")
-	
+
 	def changePassword(form, session):
 		if check_form(form, ['password', 'confirmPassword']):
 			hash = ''
@@ -470,6 +470,21 @@ class Organization:
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
 			cur.execute("SELECT * FROM organizations WHERE status=2")
+			data = cur.fetchall()
+			cur.close()
+			dbcon.close()
+			if data is not None:
+				return data
+			else:
+				raise OrgException("There are no organizations registered yet.")
+		except Exception as e:
+			raise e
+
+	def getAllPending():
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT * FROM organizations WHERE status!=2")
 			data = cur.fetchall()
 			cur.close()
 			dbcon.close()

@@ -65,7 +65,7 @@ def register():
 				return redirect('/register?type=user')
 		elif request.form.get('type') == 'org':
 			try:
-				data = Organization.insert(request.form, request.files)
+				Organization.insert(request.form, request.files)
 				flash('You have successfully registered. Please click the link in your email to verify your account and get access.', 'success')
 				return redirect('/login?type=org')
 			except OrgException as ue:
@@ -125,11 +125,11 @@ def admin():
 	if 'isLoggedIn' in session:
 		if session['type'] == 'user' and session['isLoggedIn'][13] == 1:
 			try:
-				orgs = Organization.getAll()
-				return render_template('admin.html', orgData=orgs)
+				orgs = Organization.getAllPending()
+				return render_template('admin.html', orgDataLen=len(orgs), orgData=orgs)
 			except OrgException as oe:
 				flash(oe.reason, 'error')
-				return redirect('/dashboard')
+				return redirect('/')
 		else:
 			flash('You are not authorized to be here!', 'error')
 			return redirect('/login?type=user')

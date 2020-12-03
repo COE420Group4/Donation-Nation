@@ -64,7 +64,7 @@ Routes marked with (!) are visited by the user
   - [x] Backend logic to verify account
 - [ ] **R5: Offer item**
   - [x] Frontend
-  - [ ] Database setup
+  - [x] Database setup
   - [ ] Verifying information
   - [ ] Inserting item into db
   - [ ] Sending notification email
@@ -127,7 +127,6 @@ Routes marked with (!) are visited by the user
 - Bootstrap v4 for the design/framework
 - FontAwesome for the icons
 - Animate.css for the animations
-- SweetAlert2 for the alerts
 - Jinja2 for the templates
 
 ## TODO
@@ -136,11 +135,10 @@ Routes marked with (!) are visited by the user
 - [x] Build flask skeleton
 - [x] Setup flask templates
 - [x] Finish planning routes
-- [ ] Finish database structure
-- [ ] Finish db.py
+- [x] Finish database structure
+- [x] Finish db.py
 - [ ] Finish all the frontend
 - [x] Finish login/signup for users
-- [ ] Finish organization signup
+- [x] Finish organization signup
 - [x] Finish email sending code
 - [ ] Finish the listing functional requirements
-- [ ] Add more TODOs
