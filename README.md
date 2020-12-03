@@ -108,21 +108,19 @@ Routes marked with (!) are visited by the user
 - [ ] **R14: List Organizations**
   - [x] Frontend
   - [ ] Fetch information from db
-- [ ] **R15: List Organization Access Requests**
+- [x] **R15: List Organization Access Requests**
   - [x] Frontend
-  - [ ] Fetch information from db
+  - [x] Fetch information from db
 - [ ] **R16: Approve Organization Access Request**
-  - [ ] Frontend
-  - [ ] Verifying information
+  - [x] Frontend
+  - [x] Verifying information
   - [ ] Mark organization as approved
   - [ ] Send email
 - [ ] **R17: Reject Organization Access Request**
-  - [ ] Frontend
-  - [ ] Verifying information
+  - [x] Frontend
+  - [x] Verifying information
   - [ ] Mark organization as rejected
   - [ ] Send email
-
-## Frontend
 
 ### Components
 
