@@ -104,7 +104,15 @@ def admin():
 
 @app.route('/addItem', methods=['GET', 'POST'])
 def donate():
-	return render_template('addItem.html', method=['GET', 'POST'])
+	if request.method == 'POST':
+		try:
+			User.addItem(request.form, session)
+			return 'Success'
+		except UserException as ue:
+			flash(ue.reason, 'error')
+			return redirect('/addItem')
+	else:
+		return render_template('addItem.html',total_orgs =len(Organization.getAll()), orgs_details = Organization.getAll(), method=['GET', 'POST'])
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():
