@@ -40,6 +40,12 @@ CREATE TABLE IF NOT EXISTS verifications (
 	FOREIGN KEY (user_uuid) REFERENCES users (UUID)
 );
 
+-- we need a status for the item
+-- 0 -> awaiting approval
+-- 1 -> approved
+-- -1 ->  rejected
+-- 2 -> awaiting pickup time approval from user
+-- 3 -> awaiting pickup time approval from organization
 CREATE TABLE IF NOT EXISTS items (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	item_name TEXT NOT NULL,
@@ -51,6 +57,7 @@ CREATE TABLE IF NOT EXISTS items (
 	time_submitted TEXT NOT NULL,
 	pickup_time TEXT NOT NULL,
 	image TEXT NOT NULL,
+	status INTEGER NOT NULL,
 	FOREIGN KEY (org_id) REFERENCES organizations (UUID),
 	FOREIGN KEY (user_id) REFERENCES users (UUID)
 );
