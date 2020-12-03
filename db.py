@@ -43,7 +43,6 @@ class DB:
 		dbcon.commit()
 
 		# Let's create some organizations
-		# TODO: profile pictures
 		red_cresent_uuid = str(uuid.uuid4())
 		dubai_cares_uuid = str(uuid.uuid4())
 		uae_aid_uuid = str(uuid.uuid4())

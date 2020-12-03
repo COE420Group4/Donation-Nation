@@ -214,7 +214,7 @@ def viewOrg(uuid):
 	# Fetch user info
 	org_data = Organization.fetchByUUID(uuid)
 	if org_data is not False:
-		return render_template('viewOrg.html', orgData=org_data)
+		return render_template('viewOrg.html', orgData=org_data, type=session['type'])
 	else:
 		abort(404)
 
@@ -290,5 +290,3 @@ def editInfo():
 @app.errorhandler(404)
 def page_not_found(e):
 	return render_template('404.html'), 404
-
-# TODO: ADD MORE ERROR HANDLERS
