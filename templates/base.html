@@ -30,7 +30,7 @@
 </head>
 
 <body>
-	{% if  session['isLoggedIn'] %}
+	{% if session['isLoggedIn'] %}
 	<nav class="animate__animated animate_fadeInDown navbar navbar-dark shadow navbar-expand flex-column flex-md-row bd-navbar" id="navbar">
 		<div class="container">
 			<a class="navbar-brand" href="/" style="outline: none; color: #F4F5F1;">
@@ -44,15 +44,6 @@
 			<ul class="navbar-nav mr-auto">
 				<!--Just to specify which link is active-->
 				{% block navbar %}
-				<li class="nav-item">
-					<a class="nav-link" href="/"> Dashboard</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/userProfile"><i class="far fa-user"></i> My Profile</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
-				</li>
 				{% endblock %}
 			</ul>
 			<form class="form-inline">
@@ -64,12 +55,23 @@
 		</div>
 	</nav>
 	{% else %}
-	<nav class="animate__animated animate_fadeInDown navbar navbar-dark shadow" id="navbar">
+	<nav class="animate__animated animate_fadeInDown navbar navbar-dark shadow navbar-expand flex-column flex-md-row bd-navbar" id="navbar">
 		<div class="container">
 			<a class="navbar-brand" href="/" style="outline: none; color: #F4F5F1;">
 				<img src="{{ url_for('static', filename='transparentLogo.png') }}" width="30" height="30"
 					class="d-inline-block align-top" alt="" loading="lazy">
 				Donation Nation</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav mr-auto">
+					<!--Just to specify which link is active-->
+					{% block navbar_nologin %}
+					{% endblock %}
+				</ul>
+			</div>
+
 			<form class="form-inline">
 				<!-- TODO: ADD DYNAMIC CODE FOR LOGIN-->
 				<a class="btn btn-info my-2 my-sm-0 mr-1" id="loginButton" href="/login">
