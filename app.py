@@ -78,7 +78,16 @@ def register():
 
 @app.route('/dashboard')
 def dashboard():
-	return render_template('dashboard.html', userData=session['isLoggedIn'])
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user':
+			return render_template('userDashboard.html', userData=session['isLoggedIn'])
+		else:
+			return render_template('orgDashboard.html', orgData=session['isLoggedIn'])
+	else:
+		flash('Something went wrong', 'error')
+		return redirect('/login')
+
+
 
 @app.route('/orgs', methods=['GET'])
 def orgs():
@@ -96,11 +105,12 @@ def items():
 		if session['type'] == 'user':
 			try:
 				items = User.getAllItems(session['isLoggedIn'][1])
+				print(items)
 				return render_template('itemsUser.html', items_list=items)
 			except UserException as ue:
 				flash(ue.reason, 'error')
 				# WHERE DO I REDIRECT IF THE USER HAS NO ITEMS. SHOUlD BE THE SAME PAGE RIGHT?
-				return redirect('/addItem')
+				return redirect('/dashboard')
 		else:
 			try:
 				items = Organization.getAllItems(session['isLoggedIn'][1])
@@ -178,7 +188,7 @@ def donate():
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():
-	return render_template('orgProfile.html')
+	return render_template('orgProfile.html', orgData = session['isLoggedIn'])
 
 @app.route('/userProfile', methods=['GET'])
 def userProfile():

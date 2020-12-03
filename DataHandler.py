@@ -207,20 +207,45 @@ class User:
 				raise e
 
 	def getAllItems(user_uuid):
-			# Connect to the database
-			try:
+		# Connect to the database
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, org_id, user_id, time_submitted, pickup_time, image, items.status, organizations.name FROM items, organizations WHERE organizations.UUID=items.org_id AND user_id=?", (user_uuid,))
+			items = cur.fetchall()
+			cur.close()
+			dbcon.close()
+			if len(items) > 0:
+				return items
+			else:
+				raise UserException("No items exist for this user.")
+		except UserException as ue:
+			raise ue
+		except Exception as e:
+			raise UserException("Something went wrong. Please contact an admin.")
+
+	def changePassword(form):
+		if check_form(form, ['password', 'confirmPassword']):
+			hash = ''
+			if form['password'] != form['confirmPassword']:
+				raise UserException('Both password fields must be the same.')
+			else:
+				hash = hashlib.sha256(form['password'].encode('utf-8')).hexdigest()
+				user_uuid = str(uuid.uuid4())
+				try:
 				dbcon = sql.connect()
-				cur = dbcon.cursor()
-				cur.execute("SELECT * FROM items WHERE user_id=?", (user_uuid))
-				items = cur.fetchall()
-				cur.close()
+				dbcon.execute("INSERT INTO users (UUID, first_name, last_name, dob, city, emirate, po_box, address_1, address_2, phone, email, password, isAdmin, isVerified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0,0)", (user_uuid,form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], form['email'], hash))
+				verification_uuid = str(uuid.uuid4())
+				dbcon.execute("INSERT INTO verifications VALUES (?,?)", (user_uuid, verification_uuid))
+
+				# Commit changes and close the db connection
+				dbcon.commit()
 				dbcon.close()
-				if items is not None:
-					return items
-				else:
-					raise UserException("No items exist for this user.")
-			except Exception as e:
-				raise e
+			except Exception:
+				traceback.print_exc()
+				raise UserException("Something went wrong. Contact an admin.")
+		else:
+			raise UserException("Invalid or missing information!")
 
 
 class UserException(Exception):
