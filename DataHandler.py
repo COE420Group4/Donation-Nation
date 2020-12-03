@@ -10,7 +10,9 @@ from base64 import standard_b64encode
 
 
 sql = DB()
+sql.clear_db()
 sql.init_db()
+sql.populate()
 
 # Checker function to check all form variables
 def check_form(form, paramters):
@@ -203,21 +205,22 @@ class User:
 				# We raise any exception so that the flask app can handle it
 				traceback.print_exc()
 				raise e
+
 	def getAllItems(user_uuid):
-		# Connect to the database
-		try:
-			dbcon = sql.connect()
-			cur = dbcon.cursor()
-			cur.execute("SELECT * FROM items WHERE user_id=?", (user_uuid))
-			items = cur.fetchall()
-			cur.close()
-			dbcon.close()
-			if items is not None:
-				return items
-			else:
-				raise UserException("No items exist for this user.")
-		except Exception as e:
-			raise e
+			# Connect to the database
+			try:
+				dbcon = sql.connect()
+				cur = dbcon.cursor()
+				cur.execute("SELECT * FROM items WHERE user_id=?", (user_uuid))
+				items = cur.fetchall()
+				cur.close()
+				dbcon.close()
+				if items is not None:
+					return items
+				else:
+					raise UserException("No items exist for this user.")
+			except Exception as e:
+				raise e
 
 
 class UserException(Exception):

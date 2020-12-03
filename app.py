@@ -21,7 +21,10 @@ def login():
 					data = User.login(request.form)
 					session['isLoggedIn'] = data
 					session['type'] = 'user'
-					return redirect('/dashboard')
+					if data[13]:
+						return redirect('/admin')
+					else:
+						return redirect('/dashboard')
 				except UserException as ue:
 					flash(ue.reason, 'error')
 					return redirect('/login?type=user')
