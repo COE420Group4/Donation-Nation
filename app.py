@@ -21,7 +21,7 @@ def login():
 					data = User.login(request.form)
 					session['isLoggedIn'] = data
 					session['type'] = 'user'
-					return 'Success'
+					return redirect('/dashboard')
 				except UserException as ue:
 					flash(ue.reason, 'error')
 					return redirect('/login?type=user')
@@ -30,6 +30,7 @@ def login():
 					data = Organization.login(request.form)
 					session['isLoggedIn'] = data
 					session['type'] = 'org'
+					return redirect('/dashboard')
 				except OrgException as ue:
 					flash(ue.reason, 'error')
 					return redirect('/login?type=org')
@@ -54,15 +55,16 @@ def register():
 		if request.form.get('type') == 'user':
 			try:
 				User.insert(request.form)
-				return 'Success'
+				flash('You have successfully registered. Please click the link in your email to verify your account and get access.', 'success')
+				return redirect('/login?type=user')
 			except UserException as ue:
 				flash(ue.reason, 'error')
 				return redirect('/register?type=user')
 		elif request.form.get('type') == 'org':
 			try:
 				data = Organization.insert(request.form, request.files)
-				session['isLoggedIn'] = data
-				session['type'] = 'org'
+				flash('You have successfully registered. Please click the link in your email to verify your account and get access.', 'success')
+				return redirect('/login?type=org')
 			except OrgException as ue:
 				flash(ue.reason, 'error')
 				return redirect('/register?type=org')
@@ -77,7 +79,13 @@ def dashboard():
 
 @app.route('/orgs', methods=['GET'])
 def orgs():
-	return render_template('orgs.html')
+	try:
+		orgs = Organization.getAllVerified()
+		return render_template('orgs.html', orgData=orgs)
+	except OrgException as ue:
+		flash(ue.reason, 'error')
+		return redirect('/')
+
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():
@@ -99,7 +107,7 @@ def items():
 				# WHERE DO I REDIRECT IF THE USER HAS NO ITEMS. SHOUlD BE THE SAME PAGE RIGHT?
 				return redirect('/addItem')
 
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin', methods=['GET'])
 def admin():
 	if 'isLoggedIn' in session:
 		if session['type'] == 'user' and session['isLoggedIn'][13] == 1:
@@ -109,6 +117,42 @@ def admin():
 			except OrgException as oe:
 				flash(oe.reason, 'error')
 				return redirect('/dashboard')
+		else:
+			flash('You are not authorized to be here!', 'error')
+			return redirect('/login?type=user')
+	else:
+		flash('You are not logged in yet! Please login then try again', 'error')
+		return redirect('/login?type=user')
+
+@app.route('/admin/reject/<uuid>', methods=['GET'])
+def reject_org(uuid):
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user' and session['isLoggedIn'][13] == 1:
+			try:
+				Organization.reject(uuid)
+				flash('Successfully rejected the organization.', 'success')
+				return redirect('/admin')
+			except OrgException as oe:
+				flash(oe.reason, 'error')
+				return redirect('/admin')
+		else:
+			flash('You are not authorized to be here!', 'error')
+			return redirect('/login?type=user')
+	else:
+		flash('You are not logged in yet! Please login then try again', 'error')
+		return redirect('/login?type=user')
+
+@app.route('/admin/approve/<uuid>', methods=['GET'])
+def approve_org(uuid):
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user' and session['isLoggedIn'][13] == 1:
+			try:
+				Organization.accept(uuid)
+				flash('Successfully approved the organization.', 'success')
+				return redirect('/admin')
+			except OrgException as oe:
+				flash(oe.reason, 'error')
+				return redirect('/admin')
 		else:
 			flash('You are not authorized to be here!', 'error')
 			return redirect('/login?type=user')
@@ -134,7 +178,7 @@ def orgProfile():
 
 @app.route('/userProfile', methods=['GET'])
 def userProfile():
-	if 'isLoggedIn' in session:
+	if 'isLoggedIn' in session and session['type'] == 'user':
 		return render_template('userProfile.html', userData=session['isLoggedIn'])
 	else:
 		flash('You are not logged in yet! Please login then try again', 'error')
@@ -159,7 +203,6 @@ def viewOrg(uuid):
 	# Fetch user info
 	org_data = Organization.fetchByUUID(uuid)
 	if org_data is not False:
-		# TODO: Actually fix this template
 		return render_template('viewOrg.html', orgData=org_data)
 	else:
 		abort(404)

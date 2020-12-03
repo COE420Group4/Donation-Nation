@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS organizations (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	UUID TEXT NOT NULL UNIQUE,
 	name TEXT NOT NULL,
-	status INTEGER NOT NULL,
+	status INTEGER NOT NULL, -- 0 = unverified email, 1 = verified email but not approved, 2 = approved
 	license_no INTEGER NOT NULL,
 	city TEXT NOT NULL,
 	emirate TEXT NOT NULL,
@@ -36,8 +36,7 @@ CREATE TABLE IF NOT EXISTS organizations (
 -- For email verification. It is in its own table so we can delete the rows after the user verifies their email.
 CREATE TABLE IF NOT EXISTS verifications (
 	user_uuid TEXT PRIMARY KEY,
-	verification_uuid TEXT UNIQUE NOT NULL,
-	FOREIGN KEY (user_uuid) REFERENCES users (UUID)
+	verification_uuid TEXT UNIQUE NOT NULL
 );
 
 -- we need a status for the item
@@ -48,6 +47,7 @@ CREATE TABLE IF NOT EXISTS verifications (
 -- 3 -> awaiting pickup time approval from organization
 CREATE TABLE IF NOT EXISTS items (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	UUID TEXT NOT NULL UNIQUE,
 	item_name TEXT NOT NULL,
 	category TEXT NOT NULL,
 	condition TEXT NOT NULL,

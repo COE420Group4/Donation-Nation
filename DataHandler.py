@@ -137,7 +137,7 @@ class User:
 		except Exception:
 			traceback.print_exc()
 			return False
-	
+
 
 	def login(form):
 		if check_form(form, ['email', 'password']):
@@ -187,7 +187,7 @@ class User:
 			# We raise any exception so that the flask app can handle it
 			traceback.print_exc()
 			raise e
-	
+
 	def addItem(form,session):
 		if check_form(form, ['name','category','condition','description','image','organization','time']):
 			item_uuid = str(uuid.uuid4())
@@ -298,12 +298,12 @@ class Organization:
 	def login(form):
 		try:
 			if check_form(form, ['email', 'password']):
-				hash = hashlib.sha256(form['password'])
+				hash = hashlib.sha256(form['password'].encode('utf-8')).hexdigest()
 
 				# Verify the creds
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
-				cur.execute("SELECT * FROM organizations WHERE email=? password=?", (form['email'], hash))
+				cur.execute("SELECT id,UUID,name,status,license_no,city,emirate,po_box,address_1,address_2,phone,1,email,password FROM organizations WHERE email=? AND password=?", (form['email'], hash))
 				org_data = cur.fetchone()
 				if org_data is not None:
 					# Check that the user is verified
@@ -358,12 +358,12 @@ class Organization:
 			if org_data[3] == 2:
 				raise OrgException("Organization already accepted!")
 			else:
-				# TODO: Send email
+				send_email.send('Application Accepted', f'Hi {org_data[2].strip()}!\n\n\nWe are pleased to inform you that your application ({org_data[1]}) for being an organization registered with us has been accepted. You can now log in to the application and begin accepting donations.\n\nRegards,\nDonationNation', [org_data[12],])
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
-				cur.execute("UPDATE organizations SET status=2 WHERE UUID=?", (org_data[3],))
-				cur.commit()
+				cur.execute("UPDATE organizations SET status=2 WHERE UUID=?", (org_data[1],))
 				cur.close()
+				dbcon.commit()
 				dbcon.close()
 		except OrgException as e:
 			raise e
@@ -374,18 +374,18 @@ class Organization:
 	def reject(org_uuid):
 		try:
 			org_data = Organization.fetchByUUID(org_uuid)
-
+			print(org_data)
 			# Check their status
 			if org_data[3] == 2:
 				raise OrgException("Organization already accepted!")
 			else:
-				# TODO: Send email
+				send_email.send('Application Rejected', f'Hi {org_data[2].strip()}!\n\n\nWe regret to inform you that your application ({org_data[1]}) for being an organization registered with us has been rejected. You can contact us at tips@fbi.gov to repeal your rejection.\n\nRegards,\nDonationNation', [org_data[12],])
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
-				cur.execute("DELETE FROM organizations WHERE UUID=?", (org_data[3],))
+				cur.execute("DELETE FROM organizations WHERE UUID=?", (org_data[1],))
 				cur.fetchone()
-				cur.commit()
 				cur.close()
+				dbcon.commit()
 				dbcon.close()
 		except OrgException as e:
 			raise e
@@ -439,6 +439,20 @@ class Organization:
 		except Exception as e:
 			raise e
 
+	def getAllVerified():
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT * FROM organizations WHERE status=2")
+			data = cur.fetchall()
+			cur.close()
+			dbcon.close()
+			if data is not None:
+				return data
+			else:
+				raise OrgException("There are no organizations registered yet.")
+		except Exception as e:
+			raise e
 class OrgException(Exception):
 	def __init__(self, message):
 		self.reason = message

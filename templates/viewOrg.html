@@ -4,8 +4,8 @@
 {% block content %}
 <div class="jumbotron jumbotron-fluid bgColorSchemeRed colorSchemeWhite">
 	<div class="container">
-		<h2 class="display-1">Red Crescent</h2>
-        <p class="lead" id=intro>You are viewing <strong> Red Crescent's</strong> details.</p>
+		<h2 class="display-1">{{orgData[2]}}</h2>
+        <p class="lead" id=intro>You are viewing <strong> {{orgData[2]}}'s</strong> details.</p>
 	</div>
 </div>
 <div class="container pb-5 center-block">
@@ -18,12 +18,12 @@
                 <!--Organization Name-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">Registered Organization Name</label>
-                    <p>Emirates Red Crescent Authority</p>
+                    <p>{{orgData[2]}}</p>
                 </div>
                 <!--License Number-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">Government Issued Chairty Registration Number</label>
-                    <p>123-456-789-241199</p>
+                    <p>{{orgData[4]}}</p>
                 </div>
 
             </div>
@@ -32,11 +32,11 @@
             <div class="row">
                 <div class="col">
                     <label class="font-weight-bold text-muted">Phone Number</label>
-                    <p>800RED - 800733</p>
+                    <p>{{orgData[10]}}</p>
                 </div>
                 <div class="col">
                     <label class="font-weight-bold text-muted">Email</label>
-                    <p>hilal@rcuae.ae</p>
+                    <p>{{orgData[12]}}</p>
                 </div>
             </div>
             <hr />
@@ -44,17 +44,17 @@
                 <!--City-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">City</label>
-                    <p>Zayed Sports City</p>
+                    <p>{{orgData[5]}}</p>
                 </div>
                 <!--Emirate-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">Emirate</label>
-                    <p>Abu Dhabi</p>
+                    <p>{{orgData[6]}}</p>
                 </div>
                 <!--PO BOX-->
                 <div class="col">
                     <label class ="font-weight-bold text-muted">PO BOX</label>
-                    <p>633 111</p>
+                    <p>{{orgData[7]}}</p>
                 </div>
             </div>
             <!--Address Line 1-->
@@ -63,16 +63,16 @@
                     <label class ="font-weight-bold text-muted">Address #1</label>
                 </div>
                 <div class="col-md-9">
-                    <p>Boulevard Abu Dhabi, Abu Dhabi Palace, Sea</p>
+                    <p>{{orgData[8]}}</p>
                 </div>
             </div>
-            <!--Address Line 1-->
+            <!--Address Line 2-->
             <div class="row">
                 <div class="col-md-3">
                     <label class ="font-weight-bold text-muted">Address #2</label>
                 </div>
                 <div class="col-md-9">
-                    <p>Behind Mall of Arabs</p>
+                    <p>{{orgData[9]}}</p>
                 </div>
             </div>
             <div class="row">
