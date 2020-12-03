@@ -220,6 +220,29 @@ class User:
 			raise ue
 		except Exception as e:
 			raise UserException("Something went wrong. Please contact an admin.")
+	
+	def changePassword(form):
+		if check_form(form, ['password', 'confirmPassword']):
+			hash = ''
+			if form['password'] != form['confirmPassword']:
+				raise UserException('Both password fields must be the same.')
+			else:
+				hash = hashlib.sha256(form['password'].encode('utf-8')).hexdigest()
+				user_uuid = str(uuid.uuid4())
+				try:
+				dbcon = sql.connect()
+				dbcon.execute("INSERT INTO users (UUID, first_name, last_name, dob, city, emirate, po_box, address_1, address_2, phone, email, password, isAdmin, isVerified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,0,0)", (user_uuid,form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], form['email'], hash))
+				verification_uuid = str(uuid.uuid4())
+				dbcon.execute("INSERT INTO verifications VALUES (?,?)", (user_uuid, verification_uuid))
+
+				# Commit changes and close the db connection
+				dbcon.commit()
+				dbcon.close()
+			except Exception:
+				traceback.print_exc()
+				raise UserException("Something went wrong. Contact an admin.")
+		else:
+			raise UserException("Invalid or missing information!")
 
 
 class UserException(Exception):
