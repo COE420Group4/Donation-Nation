@@ -40,8 +40,8 @@
         <p class="lead" id=intro>Organizations you can donate to.</p>
 	</div>
 </div>
-<div class="container pt-5 mb-5">
-	{% for orgs in orgData | batch(3, '&nbsp;') %}
+<div class="container pt-5 pb-5 mb-5">
+	{% for orgs in orgData | batch(3) %}
 	<div class="row align-items-center justify-content-center">
 		<div class="card-deck padded-top">
 		{% for org in orgs %}
@@ -57,7 +57,7 @@
 		{% endfor %}
 		</div>
 	</div>
-	{% endfor %}
+	{%- endfor %}
 </div>
 </div>
 {% endblock %}

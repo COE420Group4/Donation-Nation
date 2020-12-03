@@ -1,5 +1,6 @@
 import sqlite3
-
+import uuid
+import hashlib
 class DB:
 	def connect(self):
 		return sqlite3.connect('app.db')
@@ -25,28 +26,31 @@ class DB:
 	def execute_p(self, query, paramters):
 		self.dbcon.execute(query, paramters)
 
+	def populate(self):
+		# Let's create some users
+		dbcon = self.connect()
+		cur = dbcon.cursor()
+		passwd = hashlib.sha256(b'a').hexdigest()
+		john_uuid = str(uuid.uuid4())
+		donald_uuid = str(uuid.uuid4())
+		rich_uuid = str(uuid.uuid4())
+		margeret_uuid = str(uuid.uuid4())
+		cur.execute('INSERT INTO users (UUID,first_name,last_name,dob,city,emirate,po_box,address_1,address_2,phone,email,password,isAdmin,isVerified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (john_uuid, "John", "Doe", "24/11/1999", "Sharjah", "Sharjah", "75362", "Al Mamzar Building 1, Al Taawun", "Besides Burger King", "0502345671", "admin@email.com", passwd, 1, 1)) # admin user
+		cur.execute('INSERT INTO users (UUID,first_name,last_name,dob,city,emirate,po_box,address_1,address_2,phone,email,password,isAdmin,isVerified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (donald_uuid, "Donald", "Duck", "3/1/1947", "Muweileh", "Dubai", "66634", "House 374B. Muweileh Street", "Besides McDonalds", "0508764563", "john@email.com", passwd, 0, 1))
+		cur.execute('INSERT INTO users (UUID,first_name,last_name,dob,city,emirate,po_box,address_1,address_2,phone,email,password,isAdmin,isVerified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (rich_uuid, "Richy", "McRich", "24/11/1999", "Jumeira", "Dubai", "133700", "Burj Khalifa, Apartment 9405", "In Burj Khalifa, yo", "0501111111", "rich@email.com", passwd, 0, 1))
+		cur.execute('INSERT INTO users (UUID,first_name,last_name,dob,city,emirate,po_box,address_1,address_2,phone,email,password,isAdmin,isVerified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (margeret_uuid, "Margeret", "Thatcher", "1/1/1200", "Al Ain", "Abu Dhabi", "12345", "Some building with some number", "Next to a road somewhere", "0506666666", "margeret@email.com", passwd, 0, 1))
+		dbcon.commit()
 
-	# def populate_org(self):
-	# 	#Populate the organizations table with values
-	# 	dbcon = self.connect()
-	# 	RC_info = (1, 'd7163a6d-ebf9-4b12-90c8-ba91db375c7c', 'Red Crescent', 1,
-	# 	0, 111111111, 'Abu Dhabi', 'Abu Dhabi', '11111', 'Abu Dhabi', 'Al Nahyan', '800733','RC_Logo',
-	# 	'redcrescent@gmail.com', 'redcrescentpwd')
-	# 	EC_info = (2, '4c43606c-6a42-482d-a195-615b4efcc9a3', 'Emirates Charity',
-	# 	2, 0, 222222222, 'Abu Dhabi', 'Abu Dhabi', '22222', 'Abu Dhabi', 'Mushrif', '800600','EC_Logo',
-	# 	'emiratescharity@gmail.com', 'emiratescharitypwd')
-	# 	KBZ_info = (3, '70815c4e-c816-4fb8-913e-72f20056d1e4', 'Khalifa Bin Zayed'
-	# 	Al Nahyan Foundation', 3, 0, 333333333, 'Abu Dhabi', 'Abu Dhabi', '22222', 'Abu Dhabi', 'Al
-	# 	Bateen', '028855588','KBZ_Logo', 'kbz@gmail.com', 'kbzpwd')
-	# 	dbcon.execute("INSERT INTO organizations (id, UUID, org_name, req_id,
-	# 	status, license_no, city, emirate, po_box, address_1, address_2, phone, logo, email, password)
-	# 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", RC_info)
-	# 	dbcon.execute("INSERT INTO organizations (id, UUID, org_name, req_id,
-	# 	status, license_no, city, emirate, po_box, address_1, address_2, phone, logo, email, password)
-	# 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", EC_info)
-	# 	dbcon.execute("INSERT INTO organizations (id, UUID, org_name, req_id,
-	# 	status, license_no, city, emirate, po_box, address_1, address_2, phone, logo, email, password)
-	# 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", KBZ_info)
-	# 	dbcon.commit()
-	# 	dbcon.close()
-	# 	print('Populated organizations database.')
+		# Let's create some organizations
+		# TODO: profile pictures
+		red_cresent_uuid = str(uuid.uuid4())
+		dubai_cares_uuid = str(uuid.uuid4())
+		uae_aid_uuid = str(uuid.uuid4())
+		cur.execute('INSERT INTO organizations (UUID,name,status,license_no,city,emirate,po_box,address_1,address_2,phone,logo,email,password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', (red_cresent_uuid, 'Red Crescent', 2, '222-333-444', 'Jumeira', 'Dubai', '112233', 'Somewhere', 'Someplace', '062224444', b'', 'contact@redcrescent.org', passwd))
+		cur.execute('INSERT INTO organizations (UUID,name,status,license_no,city,emirate,po_box,address_1,address_2,phone,logo,email,password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', (dubai_cares_uuid, 'Dubai Cares', 2, '555-777-666', 'Sharjah', 'Sharjah', '56473', 'Somewhere', 'Someplace', '065559999', b'', 'contact@dubaicares.org', passwd))
+		cur.execute('INSERT INTO organizations (UUID,name,status,license_no,city,emirate,po_box,address_1,address_2,phone,logo,email,password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', (uae_aid_uuid, 'UAE Aid', 2, '111-999-888', 'Al Ain', 'Abu Dhabi', '74573', 'Somewhere', 'Someplace', '063331111', b'', 'contact@uaeaid.org', passwd))
+		cur.execute('INSERT INTO organizations (UUID,name,status,license_no,city,emirate,po_box,address_1,address_2,phone,logo,email,password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', (str(uuid.uuid4()), 'Testing Org 1', 0, '333-333-333', 'Al Ain', 'Abu Dhabi', '23451', 'Somewhere', 'Someplace', '061231231', b'', 'contact@somewhere.org', passwd))
+		cur.execute('INSERT INTO organizations (UUID,name,status,license_no,city,emirate,po_box,address_1,address_2,phone,logo,email,password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', (str(uuid.uuid4()), 'Testing Org 2', 1, '333-333-333', 'Al Ain', 'Abu Dhabi', '523456', 'Somewhere', 'Someplace', '064564563', b'', 'contact@nowhere.org', passwd))
+		dbcon.commit()
+
+		# Let's create some items

@@ -10,7 +10,9 @@ from base64 import standard_b64encode
 
 
 sql = DB()
+sql.clear_db()
 sql.init_db()
+sql.populate()
 
 # Checker function to check all form variables
 def check_form(form, paramters):
@@ -203,6 +205,7 @@ class User:
 				# We raise any exception so that the flask app can handle it
 				traceback.print_exc()
 				raise e
+
 	def getAllItems(user_uuid):
 		# Connect to the database
 		try:
