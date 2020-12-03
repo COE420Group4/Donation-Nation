@@ -235,7 +235,7 @@ class User:
 				try:
 					dbcon = sql.connect()
 					dbcon.execute("UPDATE users set password = ? where UUID = ?", (hash, session['isLoggedIn'][1]))
-					
+
 					# Commit changes and close the db connection
 					dbcon.commit()
 					dbcon.close()
@@ -245,32 +245,26 @@ class User:
 		else:
 			raise UserException("Invalid or missing information!")
 
-	
+
 	def editInformation(form, session):
 		# Check that all information is here
-		if check_form(form, ['firstName', 'lastName', 'dob', 'city', 'emirate', 'POBox', 'address1', 'address2', 'phone', 'email']):
-			is_all_alpha(form, ['firstName', 'lastName', 'city', 'emirate'])
+		if check_form(form, ['city', 'emirate', 'POBox', 'address1', 'address2', 'phone']):
+			is_all_alpha(form, ['city', 'emirate'])
 			is_all_alnum(form, ['POBox'])
 			is_all_numeric(form, ['phone'])
-			is_email(form, 'email')
-			User.check_phone_exists(form['phone'])
-			User.check_email_exists(form['email'])
 			try:
 				dbcon = sql.connect()
-				dbcon.execute("UPDATE INTO users set first_name = ?, last_name = ?, dob = ?, city = ?, emirate = ?, po_box = ?, address_1 = ?, address_2 = ?, email = ?, phone = ? WHERE UUID = ?", (form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['email'], form['phone'],session['isLoggedIn'][1]))
-
-				# Send email to user for verification
-				send_email.send('Email Verification', f'Hi {form["firstName"].strip()}!\n\n\nThank you for signing up for DonationNation!\n\nTo complete your registration and enable your account, please verify your email by visiting the link: http://127.0.0.1:5000/verify_user/{verification_uuid}\n\nRegards,\nDonationNation', [form['email'],])
-
-				# Commit changes and close the db connection
+				cur = dbcon.cursor()
+				cur.execute("UPDATE users SET city = ?, emirate = ?, po_box = ?, address_1 = ?, address_2 = ?, phone = ? WHERE UUID = ?", (form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['phone'], session['isLoggedIn'][1]))
 				dbcon.commit()
+				cur.execute("SELECT * FROM users WHERE UUID=?", (session['isLoggedIn'][1],))
+				data = cur.fetchone()
+				cur.close()
 				dbcon.close()
+				return data
 			except Exception:
 				traceback.print_exc()
 				raise UserException("Something went wrong. Contact an admin.")
-
-
-
 class UserException(Exception):
 	def __init__(self, message):
 		self.reason = message
@@ -519,11 +513,32 @@ class Organization:
 				raise OrgException("There are no organizations registered yet.")
 		except Exception as e:
 			raise e
+
+	def changePassword(form, session):
+		if check_form(form, ['password', 'confirmPassword']):
+			hash = ''
+			if form['password'] != form['confirmPassword']:
+				raise OrgException('Both password fields must be the same.')
+			else:
+				hash = hashlib.sha256(form['password'].encode('utf-8')).hexdigest()
+				user_uuid = str(uuid.uuid4())
+				try:
+					dbcon = sql.connect()
+					dbcon.execute("UPDATE organizations set password = ? where UUID = ?", (hash, session['isLoggedIn'][1]))
+
+					# Commit changes and close the db connection
+					dbcon.commit()
+					dbcon.close()
+				except Exception:
+					traceback.print_exc()
+					raise OrgException("Something went wrong. Contact an admin.")
+		else:
+			raise OrgException("Invalid or missing information!")
+
 class OrgException(Exception):
 	def __init__(self, message):
 		self.reason = message
 		super().__init__(self, self.reason)
-
 class Item:
 	# validate information then insert into database
 	def insert(form):
@@ -551,7 +566,6 @@ class Item:
 				raise ItemException("Something went wrong. Contact an admin.")
 		else:
 			raise ItemException("Invalid or missing information!")
-
 class ItemException(Exception):
 	def __init__(self, message):
 		self.reason = message

@@ -42,7 +42,7 @@ def login():
 		else:
 			return render_template('login.html', type=request.args.get('type'))
 	else:
-		return 'Success'
+		return redirect('/dashboard')
 
 @app.route('/logout')
 def logout():
@@ -87,8 +87,6 @@ def dashboard():
 		flash('Something went wrong', 'error')
 		return redirect('/login')
 
-
-
 @app.route('/orgs', methods=['GET'])
 def orgs():
 	try:
@@ -97,7 +95,6 @@ def orgs():
 	except OrgException as ue:
 		flash(ue.reason, 'error')
 		return redirect('/')
-
 
 @app.route('/items', methods=['GET', 'POST'])
 def items():
@@ -250,6 +247,44 @@ def verifyOrg(verify_uuid):
 	except Exception:
 		# This means an error happened, most probably something SQL
 		abort(500)
+
+@app.route('/changePassword', methods=['POST'])
+def changePwd():
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user':
+			try:
+				User.changePassword(request.form, session)
+				flash('Successfully changed password.', 'success')
+				return redirect('/userProfile')
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/userProfile')
+		else:
+			try:
+				Organization.changePassword(request.form, session)
+				flash('Successfully changed password.', 'success')
+				return redirect('/orgProfile')
+			except OrgException as oe:
+				flash(oe.reason, 'error')
+				return redirect('/orgProfile')
+	else:
+		flash('You must be logged in to do that!', 'error')
+		return redirect('/login')
+
+@app.route('/editInfo', methods=['GET', 'POST'])
+def editInfo():
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user':
+			try:
+				session['isLoggedIn'] = User.editInformation(request.form, session)
+				flash('Successfully changed information.', 'success')
+				return redirect('/userProfile')
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/userProfile')
+	else:
+		flash('You must be logged in to do that!', 'error')
+		return redirect('/login')
 
 # Custom 404 page
 @app.errorhandler(404)
