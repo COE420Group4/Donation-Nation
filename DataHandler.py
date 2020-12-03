@@ -235,7 +235,7 @@ class User:
 				try:
 					dbcon = sql.connect()
 					dbcon.execute("UPDATE users set password = ? where UUID = ?", (hash, session['isLoggedIn'][1]))
-					verification_uuid = str(uuid.uuid4())
+					
 					# Commit changes and close the db connection
 					dbcon.commit()
 					dbcon.close()
@@ -244,6 +244,31 @@ class User:
 					raise UserException("Something went wrong. Contact an admin.")
 		else:
 			raise UserException("Invalid or missing information!")
+
+	
+	def editInformation(form, session):
+		# Check that all information is here
+		if check_form(form, ['firstName', 'lastName', 'dob', 'city', 'emirate', 'POBox', 'address1', 'address2', 'phone', 'email']):
+			is_all_alpha(form, ['firstName', 'lastName', 'city', 'emirate'])
+			is_all_alnum(form, ['POBox'])
+			is_all_numeric(form, ['phone'])
+			is_email(form, 'email')
+			User.check_phone_exists(form['phone'])
+			User.check_email_exists(form['email'])
+			try:
+				dbcon = sql.connect()
+				dbcon.execute("UPDATE INTO users set first_name = ?, last_name = ?, dob = ?, city = ?, emirate = ?, po_box = ?, address_1 = ?, address_2 = ?, email = ?, phone = ? WHERE UUID = ?", (form['firstName'], form['lastName'], form['dob'], form['city'], form['emirate'], form['POBox'], form['address1'], form['address2'], form['email'], form['phone'],session['isLoggedIn'][1]))
+
+				# Send email to user for verification
+				send_email.send('Email Verification', f'Hi {form["firstName"].strip()}!\n\n\nThank you for signing up for DonationNation!\n\nTo complete your registration and enable your account, please verify your email by visiting the link: http://127.0.0.1:5000/verify_user/{verification_uuid}\n\nRegards,\nDonationNation', [form['email'],])
+
+				# Commit changes and close the db connection
+				dbcon.commit()
+				dbcon.close()
+			except Exception:
+				traceback.print_exc()
+				raise UserException("Something went wrong. Contact an admin.")
+
 
 
 class UserException(Exception):
