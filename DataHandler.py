@@ -457,9 +457,9 @@ class OrgException(Exception):
 	def __init__(self, message):
 		self.reason = message
 		super().__init__(self, self.reason)
-						
+
 class Item:
-		# validate information then insert into database 
+	# validate information then insert into database
 	def insert(form):
 		# Check that all information is here
 		if check_form(form, ['name', 'category', 'condition', 'description', 'organization', 'time']) and (files['image'] is not None):
@@ -471,11 +471,11 @@ class Item:
 			item_uuid = str(uuid.uuid4())
 			user_uuid = session[0]
 			current_time = datetime.now().strftime("%H:%M:%S")
-	
+
 			try:
 				dbcon = sql.connect()
 				dbcon.execute("INSERT INTO items (UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, status) VALUES(?,?,?,?,?,?,?,?,?,?,0)", (item_uuid, form['name'], form['category'], form['description'], form['organization'], user_uuid, current_time, form['time'], image))
-				
+
 				# Commit changes and close the db connection
 				dbcon.commit()
 				dbcon.close()

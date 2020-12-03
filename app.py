@@ -170,7 +170,8 @@ def donate():
 			flash(ue.reason, 'error')
 			return redirect('/addItem')
 	else:
-		return render_template('addItem.html',total_orgs =len(Organization.getAll()), orgs_details = Organization.getAll(), method=['GET', 'POST'])
+		print(Organization.getAllVerified())
+		return render_template('addItem.html', orgs_details=Organization.getAllVerified())
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():
