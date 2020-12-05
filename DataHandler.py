@@ -221,6 +221,34 @@ class User:
 		except Exception:
 			traceback.print_exc()
 			raise UserException('An issue has occurred. Please contact an admin.')
+	
+	def changePickupTime(form, uuid):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute('UPDATE items SET pickup_time=?, status=? WHERE UUID=?', (form['time'], 3, uuid))
+			dbcon.commit()
+			cur.close()
+			dbcon.close()
+		except UserException as ue:
+			raise ue
+		except Exception:
+			traceback.print_exc()
+			raise UserException('An issue has occurred. Please contact an admin.')
+	
+	def accept(uuid):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute('UPDATE items SET status=? WHERE UUID=?', (1, uuid))
+			dbcon.commit()
+			cur.close()
+			dbcon.close()
+		except UserException as ue:
+			raise ue
+		except Exception:
+			traceback.print_exc()
+			raise UserException('An issue has occurred. Please contact an admin.')
 
 	def getAllItems(user_uuid):
 		# Connect to the database

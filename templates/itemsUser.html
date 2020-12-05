@@ -63,7 +63,9 @@
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeItem-{{item[1]}}">Remove Item</button>
 					<!-- Item awaiting pickup time approval from user -->
 					{% elif item[11] == 2 %}
-					<button type="button" class="btn btn-success">Accept</button>
+					<form method="POST" action="/item/{{item[1]}}/accept">
+						<button type="submit" class="btn btn-success">Accept</button>
+					</form>
 					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectPickupTime-{{item[1]}}">Reject</button>
 					{% endif %}
 				</div>
@@ -166,20 +168,22 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<div class="row p-2">
-							<label for="validationTooltip08">Preffered pickup time</label>
-							<select class="custom-select" id="validationTooltip08" name = "time" aria-describedby="timeHelp" required>
-								<option selected disabled value="">Choose...</option>
-								<option>Morning (8:00 AM - 11:00 AM)</option>
-								<option>Afternoon (2:00 PM - 5:00 PM)</option>
-								<option>Evening (7:00 PM - 9:00 PM)</option>
-							</select>
-							<small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Submit</button>
+						<form method="POST" action="/item/{{item[1]}}/changePickupTime">
+							<div class="row p-2">
+								<label for="validationTooltip08">Preffered pickup time</label>
+								<select class="custom-select" id="validationTooltip08" name = "time" aria-describedby="timeHelp" required>
+									<option selected disabled value="">Choose...</option>
+									<option>Morning (8:00 AM - 11:00 AM)</option>
+									<option>Afternoon (2:00 PM - 5:00 PM)</option>
+									<option>Evening (7:00 PM - 9:00 PM)</option>
+								</select>
+								<small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>

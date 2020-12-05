@@ -59,5 +59,5 @@ class DB:
 
 		# Let's create some items
 		shirt_uuid = str(uuid.uuid4())
-		cur.execute('INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image,status) VALUES (?,?,?,?,?,?,?,?,?,?,0)', (shirt_uuid,'Red Hoodie','Clothes','New','A red hoodie.',red_cresent_uuid,donald_uuid,datetime.now().strftime("%d/%m/%Y - %H:%M:%S"),'Morning (8:00 AM - 11:00 AM)',b''))
+		cur.execute('INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image,status) VALUES (?,?,?,?,?,?,?,?,?,?,2)', (shirt_uuid,'Red Hoodie','Clothes','New','A red hoodie.',red_cresent_uuid,donald_uuid,datetime.now().strftime("%d/%m/%Y - %H:%M:%S"),'Morning (8:00 AM - 11:00 AM)',b''))
 		dbcon.commit()

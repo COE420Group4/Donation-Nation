@@ -132,6 +132,33 @@ def removeItem(uuid):
 		flash('You are not logged in yet! Please login then try again', 'error')
 		return redirect('/login')
 
+@app.route('/item/<uuid>/changePickupTime', methods=['POST'])
+def changePickupTime(uuid):
+	if 'isLoggedIn' in session:
+		try:
+			User.changePickupTime(request.form, uuid)
+			flash('Pickup time changed successfully.', 'success')
+			return redirect('/items')
+		except UserException as ue:
+			flash(ue.reason, 'error')
+			return redirect('/items')
+	else:
+		flash('You are not logged in yet! Please login then try again', 'error')
+		return redirect('/login')
+
+@app.route('/item/<uuid>/accept', methods=['POST'])
+def accept(uuid):
+	if 'isLoggedIn' in session:
+		try:
+			User.accept(uuid)
+			flash('Pickup time accepted! You will be contacted by the organization shortly.', 'success')
+			return redirect('/items')
+		except UserException as ue:
+			flash(ue.reason, 'error')
+			return redirect('/items')
+	else:
+		flash('You are not logged in yet! Please login then try again', 'error')
+		return redirect('/login')
 
 @app.route('/admin', methods=['GET'])
 def admin():
