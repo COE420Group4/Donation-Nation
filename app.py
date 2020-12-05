@@ -234,7 +234,7 @@ def viewOrg(uuid):
 	# Fetch user info
 	org_data = Organization.fetchByUUID(uuid)
 	if org_data is not False:
-		return render_template('viewOrg.html', orgData=org_data, type=session['type'])
+		return render_template('viewOrg.html', orgData=org_data)
 	else:
 		abort(404)
 

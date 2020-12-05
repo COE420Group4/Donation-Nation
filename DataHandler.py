@@ -552,6 +552,23 @@ class Organization:
 		else:
 			raise OrgException("Invalid or missing information!")
 
+	def getAllItems(org_uuid):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, items.status, users.first_name, users.last_name FROM items, users WHERE users.UUID=items.user_id AND org_id=?", (org_uuid,))
+			items = cur.fetchall()
+			cur.close()
+			dbcon.close()
+			if len(items) > 0:
+				return items
+			else:
+				raise OrgException("No items exist for this organization.")
+		except OrgException as ue:
+			raise ue
+		except Exception as e:
+			raise UserException("Something went wrong. Please contact an admin.")
+
 class OrgException(Exception):
 	def __init__(self, message):
 		self.reason = message
