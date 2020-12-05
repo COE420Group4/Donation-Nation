@@ -464,7 +464,6 @@ class Organization:
 	def reject(org_uuid):
 		try:
 			org_data = Organization.fetchByUUID(org_uuid)
-			print(org_data)
 			# Check their status
 			if org_data[3] == 2:
 				raise OrgException("Organization already accepted!")

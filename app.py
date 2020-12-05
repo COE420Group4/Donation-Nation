@@ -102,7 +102,6 @@ def items():
 		if session['type'] == 'user':
 			try:
 				items = User.getAllItems(session['isLoggedIn'][1])
-				print(items[0])
 				return render_template('itemsUser.html', items_list=items)
 			except UserException as ue:
 				flash(ue.reason, 'error')
