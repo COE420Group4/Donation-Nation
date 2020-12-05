@@ -102,20 +102,36 @@ def items():
 		if session['type'] == 'user':
 			try:
 				items = User.getAllItems(session['isLoggedIn'][1])
-				print(items)
+				print(items[0])
 				return render_template('itemsUser.html', items_list=items)
 			except UserException as ue:
 				flash(ue.reason, 'error')
-				# WHERE DO I REDIRECT IF THE USER HAS NO ITEMS. SHOUlD BE THE SAME PAGE RIGHT?
 				return redirect('/dashboard')
 		else:
 			try:
 				items = Organization.getAllItems(session['isLoggedIn'][1])
 				return render_template('itemsOrg.html', items_list=items)
-			except UserException as ue:
+			except OrgException as ue:
 				flash(ue.reason, 'error')
-				# WHERE DO I REDIRECT IF THE USER HAS NO ITEMS. SHOUlD BE THE SAME PAGE RIGHT?
-				return redirect('/addItem')
+				return redirect('/dashboard')
+	else:
+		flash('You are not logged in yet! Please login then try again', 'error')
+		return redirect('/login')
+
+@app.route('/item/<uuid>/remove', methods=['POST'])
+def removeItem(uuid):
+	if 'isLoggedIn' in session:
+		try:
+			User.removeItem(uuid)
+			flash('Item removed successfully', 'success')
+			return redirect('/items')
+		except UserException as ue:
+			flash(ue.reason, 'error')
+			return redirect('/items')
+	else:
+		flash('You are not logged in yet! Please login then try again', 'error')
+		return redirect('/login')
+
 
 @app.route('/admin', methods=['GET'])
 def admin():
@@ -172,16 +188,20 @@ def approve_org(uuid):
 
 @app.route('/addItem', methods=['GET', 'POST'])
 def donate():
-	if request.method == 'POST':
-		try:
-			User.addItem(request.form, session)
-			return 'Success'
-		except UserException as ue:
-			flash(ue.reason, 'error')
-			return redirect('/addItem')
+	if 'isLoggedIn' in session:
+		if request.method == 'POST':
+			try:
+				User.addItem(request.form, session, request.files)
+				flash('Item added successfully.', 'success')
+				return redirect('/items')
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/addItem')
+		else:
+			return render_template('addItem.html', orgs_details=Organization.getAllVerified())
 	else:
-		print(Organization.getAllVerified())
-		return render_template('addItem.html', orgs_details=Organization.getAllVerified())
+		flash("You have to be logged in for this!", "error")
+		return redirect('/login?type=user')
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():

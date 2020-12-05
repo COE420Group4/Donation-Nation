@@ -190,28 +190,44 @@ class User:
 			traceback.print_exc()
 			raise e
 
-	def addItem(form,session):
-		if check_form(form, ['name','category','condition','description','image','organization','time']):
+	def addItem(form,session,files):
+		if check_form(form, ['name','category','condition','description','organization','time']) and (files['image'] is not None):
 			item_uuid = str(uuid.uuid4())
-			user_uuid = session[0]
-			current_time = datetime.now().strftime("%H:%M:%S")
-
+			user_uuid = session['isLoggedIn'][1]
+			current_time = datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
+			image = standard_b64encode(files['image'].read())
 			try:
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
-				print(user_uuid)
-				cur.execute("INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image) VALUES(?,?,?,?,?,?,?,?,?,?)",(item_uuid,form['name'],form['category'],form['description'],form['organization'], user_uuid, current_time ,form['time'],form['image']))
+				cur.execute("INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image,status) VALUES (?,?,?,?,?,?,?,?,?,?,0)",(item_uuid,form['name'],form['category'],form['condition'],form['description'],form['organization'],user_uuid,current_time,form['time'],image))
+				dbcon.commit()
+				cur.close()
+				dbcon.close()
 			except Exception as e:
 				# We raise any exception so that the flask app can handle it
 				traceback.print_exc()
 				raise e
+
+	def removeItem(uuid):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute('DELETE FROM items WHERE UUID=?', (uuid,))
+			dbcon.commit()
+			cur.close()
+			dbcon.close()
+		except UserException as ue:
+			raise ue
+		except Exception:
+			traceback.print_exc()
+			raise UserException('An issue has occurred. Please contact an admin.')
 
 	def getAllItems(user_uuid):
 		# Connect to the database
 		try:
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
-			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, org_id, user_id, time_submitted, pickup_time, image, items.status, organizations.name FROM items, organizations WHERE organizations.UUID=items.org_id AND user_id=?", (user_uuid,))
+			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, items.status, organizations.name FROM items, organizations WHERE organizations.UUID=items.org_id AND user_id=?", (user_uuid,))
 			items = cur.fetchall()
 			cur.close()
 			dbcon.close()
@@ -231,7 +247,6 @@ class User:
 				raise UserException('Both password fields must be the same.')
 			else:
 				hash = hashlib.sha256(form['password'].encode('utf-8')).hexdigest()
-				user_uuid = str(uuid.uuid4())
 				try:
 					dbcon = sql.connect()
 					dbcon.execute("UPDATE users set password = ? where UUID = ?", (hash, session['isLoggedIn'][1]))

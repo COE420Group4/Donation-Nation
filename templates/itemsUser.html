@@ -31,10 +31,10 @@
 </div>
 
 <div class="container pt-5 mb-5">
-	{% for batch in items | batch(4) %}
+	{% for item_group in items_list | batch(4) %}
 	<div class="row align-items-center justify-content-center">
 		<div class="card-deck padded-top">
-			{% for item in batch %}
+			{% for item in item_group %}
 			<div class="card border-dark mb-3 org-cards text-center">
 				<div class="container-fluid">
 					<img class="card-img-top"
@@ -57,17 +57,25 @@
 					<h4 class="card-title">{{item[2]}}</h4>
 					<p class="text-muted">{{item[1]}}</p>
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#aaaa-bbb-ccc-dddd">View More</button>
+						data-target="#{{item[1]}}">View More</button>
+					<!-- Item is awaiting approval -->
+					{% if item[11] == 0 %}
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeItem-{{item[1]}}">Remove Item</button>
+					<!-- Item awaiting pickup time approval from user -->
+					{% elif item[11] == 2 %}
+					<button type="button" class="btn btn-success">Accept</button>
+					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectPickupTime-{{item[1]}}">Reject</button>
+					{% endif %}
 				</div>
 				<div class="card-footer">
-					<p class="card-text"><small class="text-muted">Donated on {{item[9]}}</small></p>
+					<p class="card-text"><small class="text-muted">Donated on {{item[8]}}</small></p>
 				</div>
 			</div>
-			<div class="modal" id="aaaa-bbb-ccc-dddd" tabindex="-1">
+			<div class="modal" id="{{item[1]}}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Detailed Information</h5>
+							<h5 class="modal-title" id="modalLabel">Detailed Information</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -118,71 +126,66 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<!-- Item is awaiting approval -->
-							{% if item[11] == 1 %}
-							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeItem">Remove Item</button>
-							<!-- Item awaiting pickup time approval from user -->
-							{% elif item[11] == 2%}
-							<button type="button" class="btn btn-success">Accept</button>
-							<button type="button" class="btn btn-danger data-toggle="modal" data-target="#rejectPickupTime">Reject</button>
-							{% endif %}
 						</div>
 					</div>
 				</div>
 			</div>
-			{% endfor %}
 		</div>
 	</div>
-	<!-- Remove Item Modal -->
-	<div class="modal fade" id="removeItem" tabindex="-1" aria-labelledby="removeItemLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="remove">Remove Item "{{item[2]}}"</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+		<!-- Remove Item Modal -->
+		<div class="modal fade" id="removeItem-{{item[1]}}" tabindex="-1" role="dialog" aria-labelledby="removeItemLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="removeItemLabel">Remove Item "{{item[2]}}"</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Are you sure you want to remove this item?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<form method="POST" action="/item/{{item[1]}}/remove">
+							<button type="submit" class="btn btn-primary">Remove Item</button>
+						</form>
+					</div>
 				</div>
-			<div class="modal-body">
-			Are you sure you want to remove this item?
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Remove Item</button>
-			</div>
 			</div>
 		</div>
-	</div>
 
-	<!-- Reject Pickup Time Modal -->
-	<div class="modal fade" id="rejectPickupTime" tabindex="-1" aria-labelledby="reject" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="reject">Choose a Pickup Time</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+		<!-- Reject Pickup Time Modal -->
+		<div class="modal fade" id="rejectPickupTime-{{item[1]}}" role="dialog" tabindex="-1" aria-labelledby="reject" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="reject">Choose a Pickup Time</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="row p-2">
+							<label for="validationTooltip08">Preffered pickup time</label>
+							<select class="custom-select" id="validationTooltip08" name = "time" aria-describedby="timeHelp" required>
+								<option selected disabled value="">Choose...</option>
+								<option>Morning (8:00 AM - 11:00 AM)</option>
+								<option>Afternoon (2:00 PM - 5:00 PM)</option>
+								<option>Evening (7:00 PM - 9:00 PM)</option>
+							</select>
+							<small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Submit</button>
+					</div>
 				</div>
-			<div class="modal-body">
-				<div class="row">
-					<label for="validationTooltip08">Preffered pickup time</label>
-					<select class="custom-select" id="validationTooltip08" name = "time" aria-describedby="timeHelp" required>
-						<option selected disabled value="">Choose...</option>
-						<option>Morning (8:00 AM - 11:00 AM)</option>
-						<option>Afternoon (2:00 PM - 5:00 PM)</option>
-						<option>Evening (7:00 PM - 9:00 PM)</option>
-					</select>
-					<small id="timeHelp" class="form-text text-muted">All timings are in UAE standard time.</small>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Remove Item</button>
-			</div>
 			</div>
 		</div>
-	</div>
+		{% endfor %}
 	{% endfor %}
 </div>
+
 {% endblock %}

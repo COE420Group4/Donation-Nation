@@ -33,7 +33,7 @@
     <div class="card mb-3 bg-light">
         <h5 class="card-header font-weight-bold text-center colorSchemeWhite bgColorSchemeDarkBlue mb-3">Donation Form</h5>
         <div class="card-body">
-            <form method="POST" action="/addItem">
+            <form method="POST" action="/addItem" enctype="multipart/form-data">
                 <h5 class="text-muted text-left">Item Details</h5>
                 <!--Item Details Begin-->
                 <div class="form-row">
@@ -76,7 +76,7 @@
                 <!--Image Upload-->
                 <div class="form-group">
                     <label for="validationTooltip06">Upload image(s) of your item</label>
-                    <input type="file" class="form-control-file" id="validationTooltip06" name = "image"> 
+                    <input type="file" class="form-control-file" id="validationTooltip06" name="image">
                     <hr />
                 </div>
                 <!--Item Details End-->
@@ -86,7 +86,7 @@
                     <!--Select an Organization-->
                     <div class="col-md-8 mb-3">
                         <label for="validationTooltip07">Name of Organization</label>
-                        <select class="custom-select" id="validationTooltip07" required name = "organization">
+                        <select class="custom-select" id="validationTooltip07" required name="organization">
                             {% for org in orgs_details %}
                                 <option value="{{org[1]}}">{{org[2]}}</option>
                             {% endfor %}
@@ -96,7 +96,7 @@
                     <!--Preferred Pickup Time-->
                     <div class="col-md-4 mb-3">
                         <label for="validationTooltip08">Preffered pickup time</label>
-                        <select class="custom-select" id="validationTooltip08" name = "time" aria-describedby="timeHelp" required>
+                        <select class="custom-select" id="validationTooltip08" name="time" aria-describedby="timeHelp" required>
                             <option selected disabled value="">Choose...</option>
                             <option>Morning (8:00 AM - 11:00 AM)</option>
                             <option>Afternoon (2:00 PM - 5:00 PM)</option>

@@ -65,22 +65,22 @@ Routes marked with (!) are visited by the user
 - [ ] **R5: Offer item**
   - [x] Frontend
   - [x] Database setup
-  - [ ] Verifying information
-  - [ ] Inserting item into db
+  - [x] Verifying information
+  - [x] Inserting item into db
   - [ ] Sending notification email
 - [x] **R6: View donor info**
   - [x] Frontend
   - [x] Database setup
   - [x] Fetching info from database
-- [ ] **R7: Remove Item**
-  - [ ] Frontend
-  - [ ] Verifying information
-  - [ ] Logical checks
-  - [ ] Removing item from db
-- [ ] **R8: List Donated items**
+- [x] **R7: Remove Item**
   - [x] Frontend
-  - [ ] Database setup
-  - [ ] Fetching info from database
+  - [x] Verifying information
+  - [x] Logical checks
+  - [x] Removing item from db
+- [x] **R8: List Donated items**
+  - [x] Frontend
+  - [x] Database setup
+  - [x] Fetching info from database
 - [ ] **R9: List Offered Items**
   - [x] Frontend
   - [ ] Database setup
