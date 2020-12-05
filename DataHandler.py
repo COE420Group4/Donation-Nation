@@ -197,6 +197,8 @@ class User:
 			current_time = datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
 			image = standard_b64encode(files['image'].read())
 			try:
+				org = Organization.fetchByUUID(form['organization'])
+				send_email.send('New Item Offered!', f'Hi {org[2].strip()}!\n\n\nYou have been offered a new item ({form["name"]}) [{form["category"]}]! Log into the application and to approve or reject this item!\n\nRegards,\nDonationNation', [org[12],])
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
 				cur.execute("INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image,status) VALUES (?,?,?,?,?,?,?,?,?,?,0)",(item_uuid,form['name'],form['category'],form['condition'],form['description'],form['organization'],user_uuid,current_time,form['time'],image))
