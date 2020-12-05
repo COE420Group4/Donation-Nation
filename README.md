@@ -9,36 +9,6 @@ To install the libraries used in the project, run the following command:
 pip install flask sqlite3 hashlib
 ```
 
-## Routes
-
-Routes marked with (!) are visited by the user
-
-**NOTE:** We use UUIDs because a non-functional requirement is security.
-
-- (!) `/login`
-- (!) `/register`
-- (!) `/verify/<uuid>`
-- (!) `/donor/<uuid>`
-- (!) `/items`
-- (!) `/items/offer`
-- `/items/remove`
-- `/items/approve`
-- `/items/reject`
-- `/items/approve_time`
-- `/items/reject_time`
-- (!) `/orgs`
-- (!) `/orgs/<uuid>`
-- (!) `/access_requests`
-- `/access_requests/approve`
-- `/access_requests/reject`
-
-## Database Structure
-
-- USERS
-- ITEMS
-- ORGS (if user.type == 2)
-- ACCESS_REQS
-
 ## Functional Requirements
 
 - [x] **R1: Login to system**
@@ -62,12 +32,12 @@ Routes marked with (!) are visited by the user
   - [x] Frontend
   - [x] Database setup
   - [x] Backend logic to verify account
-- [ ] **R5: Offer item**
+- [x] **R5: Offer item**
   - [x] Frontend
   - [x] Database setup
   - [x] Verifying information
   - [x] Inserting item into db
-  - [ ] Sending notification email
+  - [x] Sending notification email
 - [x] **R6: View donor info**
   - [x] Frontend
   - [x] Database setup
@@ -82,8 +52,8 @@ Routes marked with (!) are visited by the user
   - [x] Database setup
   - [x] Fetching info from database
 - [ ] **R9: List Offered Items**
-  - [x] Frontend
-  - [ ] Database setup
+  - [ ] Frontend
+  - [x] Database setup
   - [ ] Fetching info from database
 - [ ] **R10: Approve Donated Item**
   - [ ] Frontend
@@ -96,13 +66,13 @@ Routes marked with (!) are visited by the user
   - [ ] Mark item as rejected
   - [ ] Send email with new suggested time
 - [ ] **R12: Approve Pickup Time**
-  - [ ] Frontend
-  - [ ] Verifying information
+  - [x] Frontend
+  - [x] Verifying information
   - [ ] Mark item as approved
   - [ ] Send emails
 - [ ] **R13: Reject Pickup Time**
-  - [ ] Frontend
-  - [ ] Verifying information
+  - [x] Frontend
+  - [x] Verifying information
   - [ ] Mark new pickup time as rejected
   - [ ] Send email with new suggested time
 - [x] **R14: List Organizations**
@@ -138,7 +108,7 @@ Routes marked with (!) are visited by the user
 - [x] Finish database structure
 - [x] Finish db.py
 - [ ] Finish all the frontend
-- [x] Finish login/signup for users
-- [x] Finish organization signup
+- [x] Finish login/registration for users
+- [x] Finish organization registration
 - [x] Finish email sending code
 - [ ] Finish the listing functional requirements

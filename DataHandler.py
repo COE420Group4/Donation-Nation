@@ -197,6 +197,8 @@ class User:
 			current_time = datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
 			image = standard_b64encode(files['image'].read())
 			try:
+				org = Organization.fetchByUUID(form['organization'])
+				send_email.send('New Item Offered!', f'Hi {org[2].strip()}!\n\n\nYou have been offered a new item ({form["name"]}) [{form["category"]}]! Log into the application and to approve or reject this item!\n\nRegards,\nDonationNation', [org[12],])
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
 				cur.execute("INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image,status) VALUES (?,?,?,?,?,?,?,?,?,?,0)",(item_uuid,form['name'],form['category'],form['condition'],form['description'],form['organization'],user_uuid,current_time,form['time'],image))
@@ -578,38 +580,24 @@ class Organization:
 		else:
 			raise OrgException("Invalid or missing information!")
 
+	def getAllItems(org_uuid):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, items.status, users.first_name, users.last_name FROM items, users WHERE users.UUID=items.user_id AND org_id=?", (org_uuid,))
+			items = cur.fetchall()
+			cur.close()
+			dbcon.close()
+			if len(items) > 0:
+				return items
+			else:
+				raise OrgException("No items exist for this organization.")
+		except OrgException as ue:
+			raise ue
+		except Exception as e:
+			raise UserException("Something went wrong. Please contact an admin.")
+
 class OrgException(Exception):
-	def __init__(self, message):
-		self.reason = message
-		super().__init__(self, self.reason)
-class Item:
-	# validate information then insert into database
-	def insert(form):
-		# Check that all information is here
-		if check_form(form, ['name', 'category', 'condition', 'description', 'organization', 'time']) and (files['image'] is not None):
-			is_all_alpha(form, ['itemName'])
-			is_all_alnum(form, ['itemDescription'])
-
-			image = standard_b64encode(files['image'].read())
-
-			item_uuid = str(uuid.uuid4())
-			user_uuid = session[0]
-			current_time = datetime.now().strftime("%H:%M:%S")
-
-			try:
-				dbcon = sql.connect()
-				dbcon.execute("INSERT INTO items (UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, status) VALUES(?,?,?,?,?,?,?,?,?,?,0)", (item_uuid, form['name'], form['category'], form['description'], form['organization'], user_uuid, current_time, form['time'], image))
-
-				# Commit changes and close the db connection
-				dbcon.commit()
-				dbcon.close()
-
-			except Exception:
-				traceback.print_exc()
-				raise ItemException("Something went wrong. Contact an admin.")
-		else:
-			raise ItemException("Invalid or missing information!")
-class ItemException(Exception):
 	def __init__(self, message):
 		self.reason = message
 		super().__init__(self, self.reason)
