@@ -56,17 +56,16 @@
 					{% endif %}
 					<h4 class="card-title">{{item[2]}}</h4>
 					<p class="text-muted">{{item[1]}}</p>
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#{{item[1]}}">View More</button>
+					<button type="button" class="my-3 btn btn-primary" onclick="$('#{{item[1]}}').modal('show')">View More</button>
 					<!-- Item is awaiting approval -->
 					{% if item[11] == 0 %}
-					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeItem-{{item[1]}}">Remove Item</button>
+					<button type="button" class="my-3 btn btn-danger" onclick="$('#removeItem-{{item[1]}}').modal('show')">Remove Item</button>
 					<!-- Item awaiting pickup time approval from user -->
 					{% elif item[11] == 2 %}
 					<form method="POST" action="/item/{{item[1]}}/accept">
 						<button type="submit" class="btn btn-success">Accept</button>
 					</form>
-					<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#rejectPickupTime-{{item[1]}}">Reject</button>
+					<button type="button" class="my-3 btn btn-danger" onclick="$('#rejectPickupTime-{{item[1]}}').modal('show')">Reject</button>
 					{% endif %}
 				</div>
 				<div class="card-footer">
@@ -113,7 +112,7 @@
 									</tr>
 									<tr>
 										<th class="text-left font-weight-bold">Donated Organization</th>
-										<th>{{item[12]}}</th>
+										<th><a href="/org/{{item[6]}}">{{item[12]}}</a></th>
 									</tr>
 									<tr>
 										<th class="text-left font-weight-bold">Time Submitted</th>

@@ -512,22 +512,6 @@ class Organization:
 		except Exception as e:
 			return False
 
-	def getAllItems(org_uuid):
-		# Connect to the database
-		try:
-			dbcon = sql.connect()
-			cur = dbcon.cursor()
-			cur.execute("SELECT * FROM items WHERE org_id=?", (org_uuid))
-			items = cur.fetchall()
-			cur.close()
-			dbcon.close()
-			if items is not None:
-				return items
-			else:
-				raise OrgException("No items exist for this organization.")
-		except Exception as e:
-			raise e
-
 	def getAllVerified():
 		try:
 			dbcon = sql.connect()

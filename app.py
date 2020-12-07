@@ -226,19 +226,29 @@ def donate():
 		else:
 			return render_template('addItem.html', orgs_details=Organization.getAllVerified())
 	else:
-		flash("You have to be logged in for this!", "error")
+		flash('You are not logged in yet! Please login then try again.', 'error')
 		return redirect('/login?type=user')
 
 @app.route('/orgProfile', methods=['GET'])
 def orgProfile():
-	return render_template('orgProfile.html', orgData = session['isLoggedIn'])
+	if 'isLoggedIn' in session:
+		if session['type'] == 'org':
+			return render_template('orgProfile.html', orgData=session['isLoggedIn'])
+		else:
+			abort(404)
+	else:
+		flash('You are not logged in yet! Please login then try again.', 'error')
+		return redirect('/login?type=org')
 
 @app.route('/userProfile', methods=['GET'])
 def userProfile():
-	if 'isLoggedIn' in session and session['type'] == 'user':
-		return render_template('userProfile.html', userData=session['isLoggedIn'])
+	if 'isLoggedIn' in session:
+		if session['type'] == 'user':
+			return render_template('userProfile.html', userData=session['isLoggedIn'])
+		else:
+			abort(404)
 	else:
-		flash('You are not logged in yet! Please login then try again', 'error')
+		flash('You are not logged in yet! Please login then try again.', 'error')
 		return redirect('/login?type=user')
 
 # The user information page from organization's perspective
