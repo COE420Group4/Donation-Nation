@@ -84,6 +84,7 @@
 </div>
 
 <!--Last thing-->
+{% if 'isLoggedIn' not in session %}
 <div class="container pt-5 mb-5">
 	<h1>Register Now!</h1>
 	<hr />
@@ -112,4 +113,9 @@
 	</div>
 </div>
 </div>
+{% else %}
+<div class="container pt-5 mb-5">
+</div>
+{% endif %}
+
 {% endblock %}

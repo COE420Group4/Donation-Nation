@@ -76,7 +76,7 @@ class User:
 				dbcon.execute("INSERT INTO verifications VALUES (?,?)", (user_uuid, verification_uuid))
 
 				# Send email to user for verification
-				send_email.send('Email Verification', f'Hi {form["firstName"].strip()}!\n\n\nThank you for signing up for DonationNation!\n\nTo complete your registration and enable your account, please verify your email by visiting the link: http://127.0.0.1:5000/verify_user/{verification_uuid}\n\nRegards,\nDonationNation', [form['email'],])
+				send_email.send('Email Verification', f'Hi {form["firstName"].strip()}!\n\n\nThank you for signing up for Donation Nation!\n\nTo complete your registration and enable your account, please verify your email by visiting the link: http://127.0.0.1:5000/verify_user/{verification_uuid}\n\nRegards,\nDonation Nation', [form['email'],])
 
 				# Commit changes and close the db connection
 				dbcon.commit()
@@ -198,7 +198,7 @@ class User:
 			image = standard_b64encode(files['image'].read())
 			try:
 				org = Organization.fetchByUUID(form['organization'])
-				send_email.send('New Item Offered!', f'Hi {org[2].strip()}!\n\n\nYou have been offered a new item ({form["name"]}) [{form["category"]}]! Log into the application and to approve or reject this item!\n\nRegards,\nDonationNation', [org[12],])
+				send_email.send('New Item Offered!', f'Hi {org[2].strip()}!\n\n\nYou have been offered a new item ({form["name"]}) [{form["category"]}]! Log into the application to approve or reject this item!\n\nRegards,\nDonation Nation', [org[12],])
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
 				cur.execute("INSERT INTO items (UUID,item_name,category,condition,description,org_id,user_id,time_submitted,pickup_time,image,status) VALUES (?,?,?,?,?,?,?,?,?,?,0)",(item_uuid,form['name'],form['category'],form['condition'],form['description'],form['organization'],user_uuid,current_time,form['time'],image))
@@ -223,9 +223,12 @@ class User:
 		except Exception:
 			traceback.print_exc()
 			raise UserException('An issue has occurred. Please contact an admin.')
-	
+
 	def changePickupTime(form, uuid):
 		try:
+			item_data = User.fetchItemByUUID(uuid)
+			org_data = Organization.fetchByUUID(item_data[6])
+			send_email.send('Item Pickup Date Changed', f'Hi {org_data[2]}!\n\n\nThe item ({item_data[2]}) [UUID: {item_data[1]}] has been suggested a new pickup time by the donator. Log in to the application to view and accept or reject the new pickup time.\n\nRegards,\nDonation Nation', [org_data[12],])
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
 			cur.execute('UPDATE items SET pickup_time=?, status=? WHERE UUID=?', (form['time'], 3, uuid))
@@ -237,9 +240,12 @@ class User:
 		except Exception:
 			traceback.print_exc()
 			raise UserException('An issue has occurred. Please contact an admin.')
-	
+
 	def accept(uuid):
 		try:
+			item_data = User.fetchItemByUUID(uuid)
+			org_data = Organization.fetchByUUID(item_data[6])
+			send_email.send('Item Accepted', f'Hi {org_data[2]}!\n\n\nThe item ({item_data[2]}) [UUID: {item_data[1]}] has been accepted by the user for pickup. Contact the user for further details.\n\nRegards,\nDonation Nation', [org_data[12],])
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
 			cur.execute('UPDATE items SET status=? WHERE UUID=?', (1, uuid))
@@ -310,6 +316,20 @@ class User:
 			except Exception:
 				traceback.print_exc()
 				raise UserException("Something went wrong. Contact an admin.")
+
+	def fetchItemByUUID(item_uuid):
+		try:
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute('SELECT * FROM items WHERE UUID=?', (item_uuid,))
+			data = cur.fetchone()
+			cur.close()
+			dbcon.close()
+			return data
+		except Exception:
+			traceback.print_exc()
+			raise UserException("Something went wrong. Contact an admin.")
+
 class UserException(Exception):
 	def __init__(self, message):
 		self.reason = message
@@ -338,7 +358,7 @@ class Organization:
 				dbcon.execute("INSERT INTO verifications VALUES (?,?)", (org_uuid, verification_uuid))
 
 				# Send email to user for verification
-				send_email.send('Email Verification', f'Hi {form["name"].strip()}!\n\n\nThank you for signing up for DonationNation!\n\nTo complete your registration and enable your account, please verify your email by visiting the link: http://127.0.0.1:5000/verify_org/{verification_uuid}\n\nRegards,\nDonationNation', [form['email'],])
+				send_email.send('Email Verification', f'Hi {form["name"].strip()}!\n\n\nThank you for signing up for Donation Nation!\n\nTo complete your registration and enable your account, please verify your email by visiting the link: http://127.0.0.1:5000/verify_org/{verification_uuid}\n\nRegards,\nDonation Nation', [form['email'],])
 
 				# Commit changes and close the db connection
 				dbcon.commit()
@@ -448,7 +468,7 @@ class Organization:
 			if org_data[3] == 2:
 				raise OrgException("Organization already accepted!")
 			else:
-				send_email.send('Application Accepted', f'Hi {org_data[2].strip()}!\n\n\nWe are pleased to inform you that your application ({org_data[1]}) for being an organization registered with us has been accepted. You can now log in to the application and begin accepting donations.\n\nRegards,\nDonationNation', [org_data[12],])
+				send_email.send('Application Accepted', f'Hi {org_data[2].strip()}!\n\n\nWe are pleased to inform you that your application ({org_data[1]}) for being an organization registered with us has been accepted. You can now log in to the application and begin accepting donations.\n\nRegards,\nDonation Nation', [org_data[12],])
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
 				cur.execute("UPDATE organizations SET status=2 WHERE UUID=?", (org_data[1],))
@@ -468,7 +488,7 @@ class Organization:
 			if org_data[3] == 2:
 				raise OrgException("Organization already accepted!")
 			else:
-				send_email.send('Application Rejected', f'Hi {org_data[2].strip()}!\n\n\nWe regret to inform you that your application ({org_data[1]}) for being an organization registered with us has been rejected. You can contact us at tips@fbi.gov to repeal your rejection.\n\nRegards,\nDonationNation', [org_data[12],])
+				send_email.send('Application Rejected', f'Hi {org_data[2].strip()}!\n\n\nWe regret to inform you that your application ({org_data[1]}) for being an organization registered with us has been rejected. You can contact us at tips@fbi.gov to repeal your rejection.\n\nRegards,\nDonation Nation', [org_data[12],])
 				dbcon = sql.connect()
 				cur = dbcon.cursor()
 				cur.execute("DELETE FROM organizations WHERE UUID=?", (org_data[1],))
@@ -567,7 +587,7 @@ class Organization:
 		try:
 			dbcon = sql.connect()
 			cur = dbcon.cursor()
-			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, items.status, users.first_name, users.last_name FROM items, users WHERE users.UUID=items.user_id AND org_id=?", (org_uuid,))
+			cur.execute("SELECT items.id, items.UUID, item_name, category, condition, description, org_id, user_id, time_submitted, pickup_time, image, items.status, users.first_name, users.last_name FROM items, users WHERE users.UUID=items.user_id AND org_id=? AND items.status!=-1", (org_uuid,))
 			items = cur.fetchall()
 			cur.close()
 			dbcon.close()
@@ -578,7 +598,58 @@ class Organization:
 		except OrgException as ue:
 			raise ue
 		except Exception as e:
-			raise UserException("Something went wrong. Please contact an admin.")
+			raise OrgException("Something went wrong. Please contact an admin.")
+
+	def acceptItem(uuid):
+		try:
+			item_data = User.fetchItemByUUID(uuid)
+			user_data = User.fetchByUUID(item_data[7])
+			send_email.send('Item Accepted', f'Hi {user_data[2]}!\n\n\nYour item ({item_data[2]}) [UUID: {item_data[1]}] has been accepted for pickup. The organization you donated to should contact you shortly.\n\nRegards,\nDonation Nation', [user_data[11],])
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute('UPDATE items SET status=? WHERE UUID=?', (1, uuid))
+			dbcon.commit()
+			cur.close()
+			dbcon.close()
+		except OrgException as ue:
+			raise ue
+		except Exception:
+			traceback.print_exc()
+			raise OrgException('An issue has occurred. Please contact an admin.')
+
+	def removeItem(uuid):
+		try:
+			item_data = User.fetchItemByUUID(uuid)
+			user_data = User.fetchByUUID(item_data[7])
+			send_email.send('Item Rejected', f'Hi {user_data[2]}!\n\n\nYour item ({item_data[2]}) [UUID: {item_data[1]}] has been rejected by the organization. Either try again or contact the organization for more details.\n\nRegards,\nDonation Nation', [user_data[11],])
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute('UPDATE items SET status=-1 WHERE UUID=?', (uuid,))
+			dbcon.commit()
+			cur.close()
+			dbcon.close()
+		except OrgException as ue:
+			raise ue
+		except Exception:
+			traceback.print_exc()
+			raise OrgException('An issue has occurred. Please contact an admin.')
+
+	def changePickupTime(form, uuid):
+		try:
+			item_data = User.fetchItemByUUID(uuid)
+			user_data = User.fetchByUUID(item_data[7])
+			send_email.send('Item Pickup Time Changed', f'Hi {user_data[2]}!\n\n\nYour item ({item_data[2]}) [UUID: {item_data[1]}] has been suggested a new pickup time. Log into the application to approve or reject this new time.\n\nRegards,\nDonation Nation', [user_data[11],])
+			dbcon = sql.connect()
+			cur = dbcon.cursor()
+			cur.execute('UPDATE items SET pickup_time=?, status=? WHERE UUID=?', (form['time'], 2, uuid))
+			dbcon.commit()
+			cur.close()
+			dbcon.close()
+		except OrgException as ue:
+			raise ue
+		except Exception:
+			traceback.print_exc()
+			raise OrgException('An issue has occurred. Please contact an admin.')
 
 class OrgException(Exception):
 	def __init__(self, message):

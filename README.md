@@ -51,30 +51,30 @@ pip install flask sqlite3 hashlib
   - [x] Frontend
   - [x] Database setup
   - [x] Fetching info from database
-- [ ] **R9: List Offered Items**
-  - [ ] Frontend
+- [x] **R9: List Offered Items**
+  - [x] Frontend
   - [x] Database setup
-  - [ ] Fetching info from database
-- [ ] **R10: Approve Donated Item**
-  - [ ] Frontend
-  - [ ] Verifying information
-  - [ ] Mark item as approved
-  - [ ] Send emails
-- [ ] **R11: Reject Donated Item**
-  - [ ] Frontend
-  - [ ] Verifying information
-  - [ ] Mark item as rejected
-  - [ ] Send email with new suggested time
-- [ ] **R12: Approve Pickup Time**
+  - [x] Fetching info from database
+- [x] **R10: Approve Donated Item**
   - [x] Frontend
   - [x] Verifying information
-  - [ ] Mark item as approved
-  - [ ] Send emails
-- [ ] **R13: Reject Pickup Time**
+  - [x] Mark item as approved
+  - [x] Send emails
+- [x] **R11: Reject Donated Item**
   - [x] Frontend
   - [x] Verifying information
-  - [ ] Mark new pickup time as rejected
-  - [ ] Send email with new suggested time
+  - [x] Mark item as rejected
+  - [x] Send email with new suggested time
+- [x] **R12: Approve Pickup Time**
+  - [x] Frontend
+  - [x] Verifying information
+  - [x] Mark item as approved
+  - [x] Send emails
+- [x] **R13: Reject Pickup Time**
+  - [x] Frontend
+  - [x] Verifying information
+  - [x] Mark new pickup time as rejected
+  - [x] Send email with new suggested time
 - [x] **R14: List Organizations**
   - [x] Frontend
   - [x] Fetch information from db
@@ -107,8 +107,9 @@ pip install flask sqlite3 hashlib
 - [x] Finish planning routes
 - [x] Finish database structure
 - [x] Finish db.py
-- [ ] Finish all the frontend
+- [x] Finish all the frontend
 - [x] Finish login/registration for users
 - [x] Finish organization registration
 - [x] Finish email sending code
-- [ ] Finish the listing functional requirements
+- [ ] Fix signup/registration pages according to Professor feedback
+- [x] Finish the listing functional requirements

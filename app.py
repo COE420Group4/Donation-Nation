@@ -120,13 +120,22 @@ def items():
 @app.route('/item/<uuid>/remove', methods=['POST'])
 def removeItem(uuid):
 	if 'isLoggedIn' in session:
-		try:
-			User.removeItem(uuid)
-			flash('Item removed successfully', 'success')
-			return redirect('/items')
-		except UserException as ue:
-			flash(ue.reason, 'error')
-			return redirect('/items')
+		if session['type'] == 'user':
+			try:
+				User.removeItem(uuid)
+				flash('Item removed successfully', 'success')
+				return redirect('/items')
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/items')
+		else:
+			try:
+				Organization.removeItem(uuid)
+				flash('Item removed successfully', 'success')
+				return redirect('/items')
+			except OrgException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/items')
 	else:
 		flash('You are not logged in yet! Please login then try again', 'error')
 		return redirect('/login')
@@ -134,13 +143,22 @@ def removeItem(uuid):
 @app.route('/item/<uuid>/changePickupTime', methods=['POST'])
 def changePickupTime(uuid):
 	if 'isLoggedIn' in session:
-		try:
-			User.changePickupTime(request.form, uuid)
-			flash('Pickup time changed successfully.', 'success')
-			return redirect('/items')
-		except UserException as ue:
-			flash(ue.reason, 'error')
-			return redirect('/items')
+		if session['type'] == 'user':
+			try:
+				User.changePickupTime(request.form, uuid)
+				flash('Pickup time changed successfully.', 'success')
+				return redirect('/items')
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/items')
+		else:
+			try:
+				Organization.changePickupTime(request.form, uuid)
+				flash('Pickup time changed successfully.', 'success')
+				return redirect('/items')
+			except OrgException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/items')
 	else:
 		flash('You are not logged in yet! Please login then try again', 'error')
 		return redirect('/login')
@@ -148,13 +166,22 @@ def changePickupTime(uuid):
 @app.route('/item/<uuid>/accept', methods=['POST'])
 def accept(uuid):
 	if 'isLoggedIn' in session:
-		try:
-			User.accept(uuid)
-			flash('Pickup time accepted! You will be contacted by the organization shortly.', 'success')
-			return redirect('/items')
-		except UserException as ue:
-			flash(ue.reason, 'error')
-			return redirect('/items')
+		if session['type'] == 'user':
+			try:
+				User.accept(uuid)
+				flash('Pickup time accepted! You will be contacted by the organization shortly.', 'success')
+				return redirect('/items')
+			except UserException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/items')
+		else:
+			try:
+				Organization.acceptItem(uuid)
+				flash('Pickup time accepted! Please contact the donator for further details.', 'success')
+				return redirect('/items')
+			except OrgException as ue:
+				flash(ue.reason, 'error')
+				return redirect('/items')
 	else:
 		flash('You are not logged in yet! Please login then try again', 'error')
 		return redirect('/login')
@@ -255,15 +282,19 @@ def userProfile():
 # * This is an example of how we pass variables in the URL path
 @app.route('/user/<uuid>', methods=['GET'])
 def viewUser(uuid):
-	if session['type'] == 'org':
-		# Fetch user info
-		user_info = User.fetchByUUID(uuid)
-		if user_info is not False:
-			return render_template('viewUser.html', userData=user_info)
+	if 'isLoggedIn' in session:
+		if session['type'] == 'org':
+			# Fetch user info
+			user_info = User.fetchByUUID(uuid)
+			if user_info is not False:
+				return render_template('viewUser.html', userData=user_info)
+			else:
+				abort(404)
 		else:
 			abort(404)
 	else:
-		abort(404)
+		flash('You are not logged in yet! Please login then try again.', 'error')
+		return redirect('/login?type=org')
 
 @app.route('/org/<uuid>', methods=['GET'])
 def viewOrg(uuid):
