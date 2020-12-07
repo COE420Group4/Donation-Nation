@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}Organization Profile{% endblock %}
 {% block navbar %}
-    {% if session['type'] == 'user' %}
+    {% if orgData == 'user' %}
         <li class="nav-item">
             <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
         </li>
@@ -27,7 +27,7 @@
         <li class="nav-item">
             <a class="nav-link" href="/dashboard"><i class="fas fa-book-open"></i> Dashboard</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" href="/orgProfile"><i class="far fa-user"></i> My Profile</a>
         </li>
         <li class="nav-item">
@@ -45,23 +45,9 @@
 	<a class="nav-link" href="/orgs"><i class="far fa-building"></i> Organizations</a>
 </li>
 {% endblock %}
-{% block navbar %}
-<li class="nav-item">
-    <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
-</li>
-<li class="nav-item active">
-    <a class="nav-link" href="/dashboard"><i class="fas fa-book-open"></i> Dashboard</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="/orgProfile"><i class="far fa-user"></i> My Profile</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
-</li>
-{% endblock %}
 
 {% block content %}
-<div class="jumbotron jumbotron-fluid bgColorSchemeRed colorSchemeWhite">
+<div class="jumbotron jumbotron-fluid colorSchemeDarkBlue bgColorSchemePink">
     <div class="container">
         <h2 class="display-1">Hello, {{orgData[2]}}!</h2>
         <p class="lead" id=intro>This is your information. It is what donors see when they view your information.</p>

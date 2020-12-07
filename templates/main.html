@@ -3,6 +3,7 @@
 
 <!--When the user is logged in-->
 {% block navbar %}
+{% if session['type'] == 'user' %}
 <li class="nav-item active">
 	<a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
 </li>
@@ -21,6 +22,20 @@
 <li class="nav-item">
 	<a class="nav-link" href="/orgs"><i class="far fa-building"></i> Organizations</a>
 </li>
+{% else %}
+<li class="nav-item active">
+	<a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/dashboard"><i class="fas fa-book-open"></i> Dashboard</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/orgProfile"><i class="far fa-user"></i> My Profile</a>
+</li>
+<li class="nav-item">
+	<a class="nav-link" href="/items"><i class="fas fa-store"></i> My Items</a>
+</li>
+{% endif %}
 {% endblock %}
 
 <!--When the user is not logged in-->
