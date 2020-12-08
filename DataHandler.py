@@ -211,7 +211,7 @@ class User:
 			except Exception as e:
 				# We raise any exception so that the flask app can handle it
 				traceback.print_exc()
-				raise e
+				raise UserException('Something went wrong. Contact an admin.')
 
 	def removeItem(uuid):
 		try:

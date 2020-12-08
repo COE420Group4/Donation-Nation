@@ -107,7 +107,13 @@ def test_registerOrganization():
 	cur.close()
 	dbcon.close()
 
+# TODO: do this.
 def test_addItem():
+	# Empty form
+	# Missing image
+	# Nonexistent user uuid
+	# Nonexistend org uuid
+	# All good
 	pass
 
 def test_getAllItemsOrg():
@@ -190,20 +196,108 @@ def test_fetchUserByUUID():
 	assert fetched_data[2] == 'Donald'
 
 def test_orgExists():
-	pass
+	# Existing email, should raise
+	with pytest.raises(OrgException):
+		Organization.check_email_exists('contact@redcrescent.org')
+
+	# Non existing email, should run fine
+	Organization.check_email_exists('doestnot@exist.org')
+
+	# Existing phone number, should raise
+	with pytest.raises(OrgException):
+		Organization.check_phone_exists('062224444')
+
+	# Non existing phone number, should run fine
+	Organization.check_phone_exists('022222222')
 
 def test_userExists():
-	pass
+	# Existing email, should raise
+	with pytest.raises(UserException):
+		User.check_email_exists('donald@email.com')
 
-# ? Optional
+	# Non existing email, should run fine
+	User.check_email_exists('doestnot@exist.org')
+
+	# Existing phone number, should raise
+	with pytest.raises(UserException):
+		User.check_phone_exists('0508764563')
+
+	# Non existing phone number, should run fine
+	User.check_phone_exists('0502222222')
+
 def test_is_all_alpha():
-	pass
+	form = {}
+
+	# Valid input, no exception
+	form['test'] = ''
+	is_all_alpha(form, ['test'])
+	form['test'] = 'a     b'
+	is_all_alpha(form, ['test'])
+	form['test'] = 'helloTEST'
+	is_all_alpha(form, ['test'])
+
+	# Invalid input, exception
+	form['test'] = '<>#'
+	with pytest.raises(UserException):
+		is_all_alpha(form, ['test'])
+	form['test'] = '12123123'
+	with pytest.raises(UserException):
+		is_all_alpha(form, ['test'])
+	form['test'] = 'hello Gamer1'
+	with pytest.raises(UserException):
+		is_all_alpha(form, ['test'])
 
 def test_is_all_alnum():
-	pass
+	form = {}
+
+	# Valid input, no exception
+	form['test'] = 'helloTEST'
+	is_all_alnum(form, ['test'])
+	form['test'] = '12123123'
+	is_all_alnum(form, ['test'])
+	form['test'] = 'Gamer1'
+	is_all_alnum(form, ['test'])
+
+	# Invalid input, exception
+	form['test'] = '<>#'
+	with pytest.raises(UserException):
+		is_all_alnum(form, ['test'])
+	form['test'] = ''
+	with pytest.raises(UserException):
+		is_all_alnum(form, ['test'])
+	form['test'] = 'a     b'
+	with pytest.raises(UserException):
+		is_all_alnum(form, ['test'])
 
 def test_is_all_numeric():
-	pass
+	form = {}
+
+	# Valid input, no exception
+	form['test'] = '12123123'
+	is_all_numeric(form, ['test'])
+
+	# Invalid input, exception
+	form['test'] = 'one'
+	with pytest.raises(UserException):
+		is_all_numeric(form, ['test'])
+	form['test'] = ''
+	with pytest.raises(UserException):
+		is_all_numeric(form, ['test'])
 
 def test_is_email():
-	pass
+	form = {}
+
+	# Valid email, all good
+	form['test'] = 'testing@test.com'
+	is_email(form, 'test')
+
+	# Invalid email, exception
+	form['test'] = ''
+	with pytest.raises(UserException):
+		is_email(form, 'test')
+	form['test'] = 'invalid'
+	with pytest.raises(UserException):
+		is_email(form, 'test')
+	form['test'] = 'notquite@yes'
+	with pytest.raises(UserException):
+		is_email(form, 'test')
