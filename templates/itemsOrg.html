@@ -62,8 +62,8 @@
 					{% elif item[11] == 3 %}
 					<form>
 						<button type="button" class="my-3 btn btn-success" onclick="$('#approve-{{item[1]}}').modal('show')">Accept</button>
-						<button type="button" class="my-3 btn btn-danger" onclick="$('#rejectPickupTime-{{item[1]}}').modal('show')">Reject Pickup Time</button>
 						<button type="button" class="my-3 btn btn-danger" onclick="$('#removeItem-{{item[1]}}').modal('show')">Reject Item</button>
+						<button type="button" class="my-3 btn btn-warning" onclick="$('#rejectPickupTime-{{item[1]}}').modal('show')">Reject Pickup Time</button>
 					</form>
 					{% endif %}
 				</div>

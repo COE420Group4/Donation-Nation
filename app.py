@@ -3,7 +3,7 @@ from DataHandler import OrgException, Organization, User, UserException
 
 # Library imports
 import os
-from flask import Flask, session, render_template, request, abort, redirect, flash, url_for
+from flask import Flask, session, render_template, request, abort, redirect, flash, url_for, send_from_directory
 app = Flask(__name__, static_url_path='/assets', static_folder='assets')
 app.secret_key = os.urandom(64)
 
@@ -372,6 +372,10 @@ def editInfo():
 	else:
 		flash('You must be logged in to do that!', 'error')
 		return redirect('/login')
+
+@app.route('/favicon.ico')
+def favicon():
+    return redirect(url_for('static', filename='favicon.ico'))
 
 # Custom 404 page
 @app.errorhandler(404)
