@@ -17,7 +17,10 @@ sql.populate()
 # Checker function to check all form variables
 def check_form(form, paramters):
 	for param in paramters:
-		if form[param] and len(form[param]) < 1:
+		try:
+			if form[param] and len(form[param]) < 1:
+				return False
+		except Exception:
 			return False
 	return True
 
