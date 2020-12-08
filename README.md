@@ -99,7 +99,7 @@ pip install flask sqlite3 hashlib
 - Animate.css for the animations
 - Jinja2 for the templates
 
-## TODO
+## Things left to do
 
 - [x] Setup files
 - [x] Build flask skeleton
@@ -111,5 +111,6 @@ pip install flask sqlite3 hashlib
 - [x] Finish login/registration for users
 - [x] Finish organization registration
 - [x] Finish email sending code
-- [ ] Fix signup/registration pages according to Professor feedback
+- [x] Fix signup/registration pages according to Professor feedback
 - [x] Finish the listing functional requirements
+- [ ] Write all test cases
