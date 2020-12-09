@@ -9,9 +9,18 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.chrome.options import Options
+import sys # ! Don't remove this line.
+sys.path.append('.')
+from db import DB
+
+# * This is a suite of tests to test functionality that relates to the GUI (alerts exists, buttons are clickable, etc)
 
 class TestGUI():
 	def setup_method(self, method):
+		self.sql = DB()
+		self.sql.clear_db()
+		self.sql.init_db()
+		self.sql.populate()
 		chrome_options = Options()
 		chrome_options.add_argument("--headless")
 		self.driver = webdriver.Chrome(options=chrome_options)

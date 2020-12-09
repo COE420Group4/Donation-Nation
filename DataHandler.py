@@ -194,7 +194,7 @@ class User:
 			raise e
 
 	def addItem(form,session,files):
-		if check_form(form, ['name','category','condition','description','organization','time']) and (files['image'] is not None):
+		if check_form(form, ['name','category','condition','description','organization','time']) and 'image' in files:
 			item_uuid = str(uuid.uuid4())
 			user_uuid = session['isLoggedIn'][1]
 			current_time = datetime.now().strftime("%d/%m/%Y - %H:%M:%S")
@@ -212,6 +212,8 @@ class User:
 				# We raise any exception so that the flask app can handle it
 				traceback.print_exc()
 				raise UserException('Something went wrong. Contact an admin.')
+		else:
+			raise UserException('Missing or invalid information!')
 
 	def removeItem(uuid):
 		try:
