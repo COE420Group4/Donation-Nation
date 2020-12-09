@@ -2,17 +2,43 @@ import pytest
 import hashlib
 from uuid import uuid4
 from datetime import datetime
-import sys
+import sys # ! Don't remove this line.
 sys.path.append('.')
 from DataHandler import *
 from db import DB
 sql = DB()
 
+# * This is unit testing, making sure our functions in the backend is working properly
 def test_initDB():
 	# Let's reset the DB before we start
 	sql.clear_db()
 	sql.init_db()
+	dbcon = sql.connect()
+	cur = dbcon.cursor()
+	users = cur.execute('SELECT * FROM users').fetchall()
+	orgs = cur.execute('SELECT * FROM organizations').fetchall()
+	items = cur.execute('SELECT * FROM items').fetchall()
+	assert len(users) == 0
+	assert len(orgs) == 0
+	assert len(items) == 0
+	cur.close()
+	dbcon.close()
+
+def test_populateDB():
+	# Populate the db
 	sql.populate()
+
+	# Test if db was populated
+	dbcon = sql.connect()
+	cur = dbcon.cursor()
+	users = cur.execute('SELECT * FROM users').fetchall()
+	orgs = cur.execute('SELECT * FROM organizations').fetchall()
+	items = cur.execute('SELECT * FROM items').fetchall()
+	assert len(users) > 0
+	assert len(orgs) > 0
+	assert len(items) > 0
+	cur.close()
+	dbcon.close()
 
 def test_registerUser():
 	# Test with missing form data
@@ -107,14 +133,47 @@ def test_registerOrganization():
 	cur.close()
 	dbcon.close()
 
-# TODO: do this.
 def test_addItem():
 	# Empty form
+	form = {}
+	session = {}
+	files = {}
+	with pytest.raises(UserException):
+		User.addItem(form, session, files)
+
 	# Missing image
+	form['name'] = 'testing'
+	form['category'] = 'Books'
+	form['condition'] = 'Heavily Used'
+	form['description'] = 'testing'
+	form['organization'] = 'aaaaaa'
+	form['time'] = 'Afternoon (2:00 PM - 5:00 PM)'
+	with pytest.raises(UserException):
+		User.addItem(form, session, files)
+
 	# Nonexistent user uuid
+	files['image'] = open('./assets/shirt.jpg', 'rb')
+	session['isLoggedIn'] = [1, '']
+	with pytest.raises(UserException):
+		User.addItem(form, session, files)
+
 	# Nonexistend org uuid
+	dbcon = sql.connect()
+	cur = dbcon.cursor()
+	donald_uuid = cur.execute('SELECT * FROM users WHERE first_name="Donald"').fetchone()
+	session['isLoggedIn'] = donald_uuid
+	with pytest.raises(UserException):
+		User.addItem(form, session, files)
+
 	# All good
-	pass
+	red_uuid = cur.execute('SELECT * FROM organizations WHERE email="contact@redcrescent.org"').fetchone()[1]
+	form['organization'] = red_uuid
+	User.addItem(form, session, files)
+
+	# Check the item was inserted
+	data = cur.execute('SELECT * FROM items WHERE item_name="testing"').fetchone()
+	assert len(data) == 12
+	assert data[7] == donald_uuid[1]
 
 def test_getAllItemsOrg():
 	dbcon = sql.connect()
@@ -301,3 +360,21 @@ def test_is_email():
 	form['test'] = 'notquite@yes'
 	with pytest.raises(UserException):
 		is_email(form, 'test')
+
+def test_clearDB():
+	sql.clear_db()
+	dbcon = sql.connect()
+	cur = dbcon.cursor()
+
+	with pytest.raises(Exception):
+		cur.execute('SELECT * FROM users').fetchall()
+
+	with pytest.raises(Exception):
+		cur.execute('SELECT * FROM organizations').fetchall()
+
+	with pytest.raises(Exception):
+		cur.execute('SELECT * FROM items').fetchall()
+
+	cur.close()
+	dbcon.close()
+
