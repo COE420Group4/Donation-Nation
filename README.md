@@ -10,6 +10,7 @@ pip install flask sqlite3 hashlib pytest selenium
 ```
 
 Then when in the project folder, run the application with the following command:
+
 ```bash
 flask run
 ```
