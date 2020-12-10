@@ -1,4 +1,4 @@
-# COE420Project
+# COE420Project - Donation Nation
 
 ## Running The Project
 
@@ -6,8 +6,27 @@ You need **Python 3** to get started.
 To install the libraries used in the project, run the following command:
 
 ```bash
-pip install flask sqlite3 hashlib
+pip install flask sqlite3 hashlib pytest selenium
 ```
+
+Then when in the project folder, run the application with the following command:
+```bash
+flask run
+```
+
+This will initialize the database and start a webserver on `http://127.0.0.1:5000`.
+
+## Running the tests
+
+To run the tests, be in the project folder and have the above requirements installed then run:
+
+```bash
+pytest -v
+```
+
+This will run all the tests.
+
+**NOTE: You need to have the project running before you run the tests.**
 
 ## Functional Requirements
 
@@ -99,7 +118,7 @@ pip install flask sqlite3 hashlib
 - Animate.css for the animations
 - Jinja2 for the templates
 
-## Things left to do
+## Tasks
 
 - [x] Setup files
 - [x] Build flask skeleton
@@ -113,4 +132,4 @@ pip install flask sqlite3 hashlib
 - [x] Finish email sending code
 - [x] Fix signup/registration pages according to Professor feedback
 - [x] Finish the listing functional requirements
-- [ ] Write all test cases
+- [x] Write all test cases
